@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ManagerUser\PermissioinController;
+use App\Http\Controllers\Admin\ManagerUser\PermissionController;
 use App\Http\Controllers\Admin\ManagerUser\RoleController;
 use App\Http\Controllers\Admin\ManagerUser\UserController;
 use App\Http\Controllers\PostController;
@@ -24,7 +24,7 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index');
     Route::post('manager-user/roles/{role}/permissions', [RoleController::class, 'assignPermissions'])->name('roles.permissions');
     Route::resource('manager-user/roles', RoleController::class);
-    Route::resource('manager-user/permissions', PermissioinController::class);
+    Route::resource('manager-user/permissions', PermissionController::class);
     Route::resource('manager-user/users', UserController::class);
 });
 

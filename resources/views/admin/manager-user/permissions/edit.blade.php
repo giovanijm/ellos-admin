@@ -1,16 +1,23 @@
 <x-admin-layout>
 
     @include('admin.manager-user.permissions.partials.breadcumbs')
+    @section('title', 'Editar ' . __('admin/permissions.labelPermissions'))
 
     <div class="p-4 mt-4 sm:p-8 bg-white shadow rounded-lg">
-        <div class="flex-1 px-3 py-3 bg-gray-50 border rounded-lg">
-            <h1 class="inline-flex font-bold text-sm sm:text-2xl mt-2 text-gray-900 uppercase drop-shadow-lg">
-                <x-clarity-note-edit-line class="h-4 w-4 sm:h-8 sm:w-8 mr-2" fill="currentColor" /> Editar @lang('admin/permissions.labelPermissions')
-            </h1>
-            <p class="text-sm font-medium text-gray-500 ">
-                Preencha as informações abaixo solicitadas. Os campos marcados em negrito, são de preenchimento obrigatório.
-            </p>
+        <div class="flex">
+            <div class="flex items-center justify-center text-gray-100 bg-green-700 rounded-md w-12 h-12">
+                <x-clarity-note-edit-line class="h-8 w-8" fill="currentColor" />
+            </div>
+            <div class="flex flex-col ml-2">
+                <span class="text-sm font-medium text-gray-500">@lang('admin/permissions.labelManagerUsers')</span>
+                <span class="font-bold text-2xl  text-gray-900 uppercase drop-shadow-lg">
+                    Editar @lang('admin/permissions.labelPermissions')
+                </span>
+            </div>
         </div>
+        <p class="text-sm font-medium text-gray-500 ">
+            Preencha as informações abaixo solicitadas. Os campos marcados em negrito, são de preenchimento obrigatório.
+        </p>
         <div class="px-6 py-6 mt-6 border rounded-lg">
             <div class="lg:grid lg:grid-cols-3 lg:gap-6">
                 <div class="lg:col-span-1 hidden sm:block">

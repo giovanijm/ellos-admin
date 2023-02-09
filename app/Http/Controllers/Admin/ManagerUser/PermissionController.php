@@ -8,7 +8,7 @@ use App\Http\Requests\Admin\ManagerUser\PermissionRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
-class PermissioinController extends Controller
+class PermissionController extends Controller
 {
     private $permission;
     private $permissionName = 'CadPermissoes';
@@ -25,18 +25,16 @@ class PermissioinController extends Controller
     {
         $this->negarAcesso();
         $data = $request->all();
-        $dadosbusca = null;
 
         if($data && isset($data['search-dropdown']) && isset($data['campo-radio'])){
             if(empty($data["sort"])){
                 $data["sort"] = $data['campo-radio'];
             }
-            $dadosbusca = $data;
-            $permissions = Permission::where($data['campo-radio'], 'LIKE', $data['search-dropdown']."%")->orderBy($data['sort'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+            $permissions = Permission::where($data['campo-radio'], 'LIKE', $data['search-dropdown']."%")->orderBy($data['sort'])->with(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }else{
-            $permissions = Permission::paginate(env('NUMBER_LINE_PER_PAGE', 20));
+            $permissions = Permission::with(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }
-        return view('admin.manager-user.permissions.index', compact('permissions', 'dadosbusca'));
+        return view('admin.manager-user.permissions.index', compact('permissions'));
     }
 
     /**
@@ -65,7 +63,7 @@ class PermissioinController extends Controller
     }
 
     /**
-     * Método responsável buscar os dados de uma permissão e retorar para a view.
+     * Método responsável buscar os dados de uma permissão e retornar para a view.
      */
     public function edit(Permission $permission)
     {

@@ -7,7 +7,7 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="referrer" content="always">
 
-    <title>Admin</title>
+    <title>@yield('title') - {{ config('app.name', 'Sistema Ellos') }}</title>
 
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
