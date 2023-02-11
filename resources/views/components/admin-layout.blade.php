@@ -13,6 +13,8 @@
     @vite('resources/js/app.js')
     @routes
 
+    <script src="https://kit.fontawesome.com/65edcec876.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>

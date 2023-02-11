@@ -18,9 +18,10 @@
                         <tr class="even:bg-white odd:bg-gray-100 hover:bg-blue-100">
                             <td scope="row" class="px-2 py-3 font-bold">{{ $role->id }}</td>
                             <td scope="row" class="px-2 py-3">{{ $role->name }}</td>
-                            <td scope="row" class="sm:grid sm:grid-cols-1 2xl:grid-cols-8 xl:grid-cols-4 lg:grid-cols-2 gap-1 px-2 py-3">
+                            <td scope="row" class="px-1 py-2">
                                 @forelse ($role->permissions as $rp)
-                                    <span class="m-1 px-2 py-0 uppercase text-center bg-green-300 rounded-lg">{{ $rp->name }}</span>
+                                    {{-- <span class="m-1 px-2 py-0 uppercase text-center bg-green-300 rounded-lg">{{ $rp->name }}</span> --}}
+                                    <span class="m-1 text-center uppercase bg-green-400 text-green-900 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ $rp->name }}</span>
                                 @empty
                                 <span class="m-1 px-2 py-0 text-red-800 uppercase text-center bg-red-300 rounded-lg">@lang('admin/roles.labelNotPermission')</span>
                                 @endforelse

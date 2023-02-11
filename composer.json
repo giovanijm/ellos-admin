@@ -11,6 +11,7 @@
         "codeat3/blade-eos-icons": "^1.12",
         "codeat3/blade-typicons": "^1.4",
         "guzzlehttp/guzzle": "^7.2",
+        "kyslik/column-sortable": "^6.4",
         "laravel/framework": "^9.19",
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",

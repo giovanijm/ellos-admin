@@ -24,16 +24,19 @@ class PermissionController extends Controller
     public function index(Request $request)
     {
         $this->negarAcesso();
-        $data = $request->all();
+        //$data = $request->all();
 
-        if($data && isset($data['search-dropdown']) && isset($data['campo-radio'])){
+        /* if($data && isset($data['search-dropdown']) && isset($data['campo-radio'])){
             if(empty($data["sort"])){
                 $data["sort"] = $data['campo-radio'];
             }
-            $permissions = Permission::where($data['campo-radio'], 'LIKE', $data['search-dropdown']."%")->orderBy($data['sort'])->with(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
-        }else{
-            $permissions = Permission::with(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
-        }
+            if(empty($data["direction"])){
+                $data["direction"] = 'asc';
+            }
+            $permissions = Permission::sortable($data['campo-radio'], 'LIKE', $data['search-dropdown']."%")->orderBy($data['sort'], $data["direction"])->with(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+        }else{ */
+            $permissions = Permission::sortable(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+        //}
         return view('admin.manager-user.permissions.index', compact('permissions'));
     }
 

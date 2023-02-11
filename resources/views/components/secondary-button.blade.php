@@ -1,4 +1,4 @@
-@props(['active' => true, 'icon'])
+@props(['active' => true, 'icon', 'adaptative' => false])
 
 @php
 $classes = ($active ?? false)
@@ -9,6 +9,14 @@ $attrib = ($active ?? false)
             ? $attributes->merge(['type' => 'button', 'class' => $classes])
             : $attributes->merge(['type' => 'button', 'disabled' => 'disabled', 'class' => $classes]);
 
+$classesLabel = ($adaptative ?? false)
+            ? "hidden lg:flex"
+            : "flex-auto";
+
+$classesLabelIcon = ($adaptative ?? false)
+            ? "hidden lg:flex ml-2"
+            : "flex-auto ml-2";
+
 $isIcon = true;
 if(empty($icon)){
     $isIcon = false;
@@ -18,8 +26,8 @@ if(empty($icon)){
 <button {{ $attrib }}>
     @if ($isIcon)
         <span class="w-6 h-6">{{ svg( $icon ) }}</span>
-        <span class="block flex-auto ml-2">{{ $slot }}</span>
+        <span class="{{ $classesLabelIcon }}">{{ $slot }}</span>
     @else
-        <span class="flex-auto">{{ $slot }}</span>
+        <span class="{{ $classesLabel }}">{{ $slot }}</span>
     @endif
 </button>
