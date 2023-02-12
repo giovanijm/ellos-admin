@@ -3,12 +3,13 @@
 
     $modifyProfile = new Permission(); $modifyProfile->name = "ModifyProfile";
 @endphp
-<header class="flex items-center justify-between px-6 py-4 bg-gradient-to-r from-sky-800 to-indigo-800">
+
+<header class="fixed top-0 left-0 right-0 z-20 flex items-center justify-between px-2 py-1 lg:px-6 lg:py-4 bg-gray-900 bg-opacity-70 lg:static lg:none lg:bg-sky-800 lg:bg-opacity-100">
     <!-- INICIO CENTRO MENU TOP -->
     <div class="flex items-center">
         <!-- BOTÃO QUANDO FICA PEQUENO -->
-        <button @click="sidebarOpen = true" class="text-white focus:outline-none lg:hidden">
-            <svg class="w-6 h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <button @click="sidebarOpen = true" class="text-white ml-2 focus:outline-none lg:hidden">
+            <svg class="w-5 h-5 lg:w-6 lg:h-6" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M4 6H20M4 12H20M4 18H11" stroke="currentColor" stroke-width="2" stroke-linecap="round"
                     stroke-linejoin="round" />
             </svg>
@@ -77,7 +78,7 @@
 
         <!-- INICIO HAVATAR MENU TOP -->
         <div x-data="{ dropdownOpen: false }" class="relative">
-            <button @click="dropdownOpen = ! dropdownOpen" class="relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center mr-2">
+            <button @click="dropdownOpen = ! dropdownOpen" class="relative text-white bg-blue-700 hover:bg-blue-800 focus:ring-2 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm p-1 lg:p-2.5 text-center inline-flex items-center mr-1 lg:mr-2">
                 <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>

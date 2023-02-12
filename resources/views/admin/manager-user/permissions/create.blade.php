@@ -1,58 +1,50 @@
-<x-admin-layout>
+@extends('layouts.app')
 
-    @include('admin.manager-user.permissions.partials.breadcumbs')
+@section('title', 'Adicionar ' . __('admin/permissions.labelPermissions'))
 
-    <div class="p-4 mt-4 sm:p-8 bg-white shadow rounded-lg">
-        <div class="flex-1 px-3 py-3 bg-gray-50 border rounded-lg">
-            <h1 class="inline-flex font-bold text-sm sm:text-2xl mt-2 text-gray-900 uppercase drop-shadow-lg">
-                <x-codicon-new-file class="h-4 w-4 sm:h-8 sm:w-8 mr-2" fill="currentColor" /> Adicionar @lang('admin/permissions.labelPermissions')
-            </h1>
-            <p class="text-sm font-medium text-gray-500 ">
-                Preencha as informações abaixo solicitadas. Os campos marcados em negrito, são de preenchimento obrigatório.
-            </p>
+@section('content')
+    @include('admin.manager-user.permissions._partials.breadcumbs')
+    <div class="p-2 sm:p-4 xl:p-6 mt-4 bg-white sm:shadow rounded-lg">
+        <div class="flex items-center mb-2">
+            <div class="flex items-center justify-center text-gray-100 bg-green-700 rounded-md w-8 h-8 lg:w-12 lg:h-12 shadow">
+                <x-codicon-new-file class="h-4 w-4 sm:h-6 sm:w-6" fill="currentColor" />
+            </div>
+            <div class="flex flex-col ml-2">
+                <span class="text-xs lg:text-sm font-medium text-gray-500">@lang('admin/permissions.labelManagerUsers')</span>
+                <span class="font-bold text-normal text-sm lg:text-2xl  text-gray-900 uppercase drop-shadow">
+                    Adicionar {{ __('admin/permissions.labelPermissions') }}
+                </span>
+            </div>
         </div>
-        <div class="px-6 py-6 mt-6 border rounded-lg">
-            <div class="md:grid md:grid-cols-3 md:gap-6">
+        <p class="text-sm font-medium text-gray-500">
+            Preencha as informações abaixo solicitadas. Os campos marcados em negrito, são de preenchimento obrigatório.
+        </p>
+        <div class="sm:px-6 sm:py-6 mt-2 sm:mt-6 bg-white sm:bg-transparent border rounded-lg">
+            <div class="lg:grid lg:grid-cols-3 lg:gap-6 border-0 bg-white sm:bg-transparent rounded-lg sm:rounded-none">
                 <div class="md:col-span-1 hidden sm:block">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Específica</h3>
                         <p class="mt-1 text-sm text-gray-600">Aqui vais as informações necessárias para a criação de uma nova permissão.</p>
                     </div>
                 </div>
-                <div class="mt-5 md:col-span-2 md:mt-0">
+                <div class="lg:col-span-2 mt-2 lg:mt-0">
                     <form class="w-full" method="POST" action="{{ route('admin.permissions.store') }}">
-                        @csrf
-                        <div class="shadow sm:overflow-hidden sm:rounded-md">
-                            <div class="space-y-6 bg-white px-4 py-5 sm:p-6">
-                                <div class="grid grid-cols-3 gap-6">
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="name" class="block text-sm font-bold text-gray-700">Nome da Permissão:</label>
-                                        <input type="text" name="name" id="name" autocomplete="given-name" maxlength="30"
-                                        class="form-control mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500 sm:text-sm valid:border-green-500 required:border-red-800 invalid:border-red-500 @error('name') is-invalid @enderror" required value="{{ old('name') }}">
-                                        @error('name')
-                                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="grid grid-cols-3 gap-6">
-                                    <div class="col-span-6 sm:col-span-3">
-                                        <label for="description" class="block text-sm text-gray-700">Descrição:</label>
-                                        <input type="text" name="description" id="description" autocomplete="given-name" maxlength="100"
-                                        class="form-control mt-1 block w-full rounded-md focus:border-blue-500 sm:text-sm @error('description') border-red-800 @else border-gray-600 @enderror" value="{{ old('description') }}">
-                                        @error('description')
-                                            <p class="text-red-500 text-xs italic">{{ $message }}</p>
-                                        @enderror
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="bg-gray-50 px-4 py-3 text-right sm:px-6">
-                                <x-danger-button id="btnVoltar" icon="codicon-reply">
-                                    {{ __('Voltar') }}
-                                </x-danger-button>
-                                <x-primary-button type="submit" icon="codicon-save">
+                        <div class="sm:overflow-hidden rounded-lg sm:border">
+                            @include('admin.manager-user.permissions._partials.form')
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-gray-50 px-4 py-3 sm:px-6">
+                                <x-primary-button
+                                    type="submit"
+                                    icon="codicon-save"
+                                >
                                     {{ __('Salvar') }}
                                 </x-primary-button>
+                                <x-danger-button
+                                    type="button"
+                                    id="btnVoltar"
+                                    icon="codicon-reply"
+                                >
+                                    {{ __('Voltar') }}
+                                </x-danger-button>
                             </div>
                         </div>
                     </form>
@@ -60,7 +52,5 @@
             </div>
         </div>
     </div>
-
     @vite('resources/js/admin/manager-user/permissions.js')
-
-</x-admin-layout>
+@endsection

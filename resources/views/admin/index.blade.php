@@ -1,4 +1,6 @@
-<x-admin-layout>
+@extends('layouts.app')
+@section('title', 'Dasboard')
+@section('content')
     <nav aria-label="Breadcrumb">
         <ol role="list" class="mx-auto flex items-center space-x-2 ">
             <li>
@@ -25,5 +27,4 @@
     <div class="flex flex-col flex-grow border-2 border-gray-400 border-dashed bg-white rounded mt-2">
         <x-dashboard />
     </div>
-</x-admin-layout>
-
+@endsection

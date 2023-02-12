@@ -13,8 +13,8 @@
 
 <!-- INICIO SIDE BAR -->
         <!-- BOTÃO PARA SAIR QUANDO FICA OCULTANDO -->
-        <div x-cloak :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-20 transition-opacity bg-blue-800 opacity-50 lg:hidden"></div>
-        <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-30 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
+        <div x-cloak :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-30 transition-opacity bg-black opacity-90 lg:hidden"></div>
+        <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-40 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
             <!-- INICIO MENU SIDE BAR -->
             <x-avatar-sidebar>
                 @if(Auth::user()->id == 3)

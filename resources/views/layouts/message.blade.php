@@ -1,5 +1,5 @@
 @if (Session::has('messageInfo'))
-    <div id="toastMessage-Info" class="flex p-4 mb-4 text-blue-800 border-l-4 border-blue-300 bg-blue-50 rounded-lg shadow-lg" role="alert">
+    <div id="toastMessage-Info" class="flex p-4 mb-4 mt-2 lg:mt-0 text-blue-800 border-l-4 border-blue-300 bg-blue-50 rounded-lg shadow-lg" role="alert">
         <div class="flex-none h-6 w-6 mr-2" fill="currentColor">
             {{ svg('typ-info') }}
         </div>
@@ -14,7 +14,7 @@
     </div>
     @vite('resources/js/message-toast.js')
 @elseif (Session::has('messageSuccess'))
-    <div id="toastMessage-Info" class="flex p-4 mb-4 text-green-800 border-l-4 border-green-400 bg-green-100 rounded-lg shadow-lg" role="alert">
+    <div id="toastMessage-Info" class="flex p-4 mb-4 mt-2 lg:mt-0 text-green-800 border-l-4 border-green-400 bg-green-100 rounded-lg shadow-lg" role="alert">
         <div class="flex-none h-6 w-6 mr-2" fill="currentColor">
             {{ svg('clarity-success-standard-solid') }}
         </div>
@@ -29,7 +29,7 @@
     </div>
     @vite('resources/js/message-toast.js')
 @elseif (Session::has('messageWarning '))
-    <div id="toastMessage-Info" class="flex p-4 mb-4 text-yellow-800 border-l-4 border-yellow-400 bg-yellow-100 rounded-lg shadow-lg" role="alert">
+    <div id="toastMessage-Info" class="flex p-4 mb-4 mt-2 lg:mt-0 text-yellow-800 border-l-4 border-yellow-400 bg-yellow-100 rounded-lg shadow-lg" role="alert">
         <div class="flex-none h-6 w-6 mr-2" fill="currentColor">
             {{ svg('clarity-warning-standard-solid') }}
         </div>
@@ -44,7 +44,7 @@
     </div>
     @vite('resources/js/message-toast.js')
 @elseif (Session::has('messageDanger'))
-    <div id="toastMessage-Info" class="flex p-4 mb-4 text-red-800 border-l-4 border-red-400 bg-red-100 rounded-lg shadow-lg" role="alert">
+    <div id="toastMessage-Info" class="flex p-4 mb-4 mt-2 lg:mt-0 text-red-800 border-l-4 border-red-400 bg-red-100 rounded-lg shadow-lg" role="alert">
         <div class="flex-none h-6 w-6 mr-2" fill="currentColor">
             {{ svg('eos-dangerous') }}
         </div>

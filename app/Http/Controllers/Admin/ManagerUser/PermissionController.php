@@ -24,20 +24,43 @@ class PermissionController extends Controller
     public function index(Request $request)
     {
         $this->negarAcesso();
-        //$data = $request->all();
 
-        /* if($data && isset($data['search-dropdown']) && isset($data['campo-radio'])){
-            if(empty($data["sort"])){
-                $data["sort"] = $data['campo-radio'];
-            }
-            if(empty($data["direction"])){
-                $data["direction"] = 'asc';
-            }
-            $permissions = Permission::sortable($data['campo-radio'], 'LIKE', $data['search-dropdown']."%")->orderBy($data['sort'], $data["direction"])->with(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
-        }else{ */
-            $permissions = Permission::sortable(['roles'])->paginate(env('NUMBER_LINE_PER_PAGE', 20));
-        //}
-        return view('admin.manager-user.permissions.index', compact('permissions'));
+        $sort = empty($request->query('sort')) ?? false
+                    ? 'name'
+                    : $request->query('sort');
+
+        $filter_search = $filter = empty($request->query('filter')) ?? false
+                    ? ''
+                    : $request->query('filter');
+
+        $filter_row = empty($request->query('filter_row')) ?? false
+                    ? 'name'
+                    : $request->query('filter_row');
+
+        switch ($filter_row)
+        {
+            case 'id':
+                $sort_type = '=';
+                break;
+            default:
+                $filter_search = empty($filter) ?? false
+                            ? ''
+                            : '%'.$filter.'%';
+                $sort_type = 'LIKE';
+        }
+
+        if(!empty($filter)){
+            $permissions = Permission::sortable()
+                ->where($filter_row, $sort_type, $filter_search)
+                ->with(['roles'])
+                ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+        }else{
+            $permissions = Permission::sortable()
+                ->with(['roles'])
+                ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+        }
+
+        return view('admin.manager-user.permissions.index', compact('permissions', 'filter', 'filter_row'));
     }
 
     /**

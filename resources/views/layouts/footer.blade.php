@@ -5,7 +5,7 @@
 </footer> --}}
 
 
-<footer class="footer p-6 bg-white border-t border-gray-200 shadow lg:flex items-center justify-between hidden">
+<footer class="footer p-6 bg-white border-t border-gray-200 shadow xl:flex items-center justify-between hidden">
     <span class="text-sm text-gray-500 sm:text-center">
         © 2023 <a href="https://sistemaellos.com.br" class="hover:underline">Ellos Tecnologia™ by GJM</a>. Todos os direitos reservados.<br/>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
     </span>
