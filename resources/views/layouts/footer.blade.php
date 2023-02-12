@@ -11,16 +11,16 @@
     </span>
     <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
         <li>
-            <a href="#" class="mr-6 hover:underline">Sobre</a>
+            <a href="#" class="mr-6 hover:underline" data-drawer-target="drawer-right-sobre" data-drawer-show="drawer-right-sobre" data-drawer-placement="right" aria-controls="drawer-right-sobre">Sobre</a>
         </li>
         <li>
-            <a href="#" class="mr-6 hover:underline">Política de Privacidade</a>
+            <a href="#" class="mr-6 hover:underline" data-drawer-target="drawer-right-privacidade" data-drawer-show="drawer-right-privacidade" data-drawer-placement="right" aria-controls="drawer-right-privacidade">Política de Privacidade</a>
         </li>
         <li>
-            <a href="#" class="mr-6 hover:underline">Licenciamento</a>
+            <a href="#" class="mr-6 hover:underline" data-drawer-target="drawer-right-licenciamento" data-drawer-show="drawer-right-licenciamento" data-drawer-placement="right" aria-controls="drawer-right-licenciamento">Licenciamento</a>
         </li>
         <li>
-            <a href="#" class="hover:underline">Contato</a>
+            <a href="#" class="hover:underline" data-drawer-target="drawer-right-contato" data-drawer-show="drawer-right-contato" data-drawer-placement="right" aria-controls="drawer-right-contato">Contato</a>
         </li>
     </ul>
 </footer>
