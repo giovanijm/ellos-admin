@@ -21,7 +21,15 @@
 
 </head>
 
-<body class="bg-gray-50 dark:bg-gray-800">
-    @yield('content')
+<body>
+    <div class="flex h-screen font-roboto">
+        <div class="flex flex-1 flex-col">
+            <main class="flex-1 items-center justify-items-center bg-black">
+                @include('layouts.message')
+                @yield('content')
+            </main>
+            @include('layouts.footer')
+        </div>
+    </div>
 </body>
 </html>

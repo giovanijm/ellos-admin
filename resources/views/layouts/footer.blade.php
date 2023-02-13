@@ -24,3 +24,7 @@
         </li>
     </ul>
 </footer>
+@include('admin._partials.sobre')
+@include('admin._partials.politica-privacidade')
+@include('admin._partials.licenciamento')
+@include('admin._partials.contato')
