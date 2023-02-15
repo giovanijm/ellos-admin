@@ -1,5 +1,5 @@
 @php
-    use \App\Models\Permission;
+    use \App\Models\Admin\ManagerUser\Permission;
 
     $sectionHome = new Permission(); $sectionHome->name = "SectionHome";
     $modifyProfile = new Permission(); $modifyProfile->name = "ModifyProfile";

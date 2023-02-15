@@ -2,22 +2,39 @@
 
 namespace App\Repositories;
 
+use Illuminate\Database\Eloquent\Model;
+
 abstract class AbstractRepository
 {
     protected $model;
 
-    public function __construct()
+    public function __construct(Model $model)
     {
-        $this->model = $this->resolveModel();
+        $this->model = $model;
     }
 
-    protected function resolveModel()
+    public function store(array $data)
     {
-        return app($this->model);
+        return $this->model->create($data);
     }
 
-    public function all()
+    public function getList()
     {
         return $this->model->all();
+    }
+
+    public function get($id)
+    {
+        return $this->model->find($id);
+    }
+
+    public function update(array $data, $id)
+    {
+        return $this->model->find($id)->update($data);
+    }
+
+    public function destroy($id)
+    {
+        return $this->model->find($id)->delete();
     }
 }

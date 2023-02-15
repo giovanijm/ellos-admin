@@ -3,11 +3,11 @@
 @section('title', __('Login'))
 
 @section('content')
-    <div class="flex flex-col items-center justify-center h-full sm:p-4 bg-gray-200">
+    <div class="flex flex-col items-center justify-center h-full sm:p-4 bg-gray-200 bg-cover bg-center" style="background-image: url('/imagem/layout/fundo_principal_claro.jpg')">
         <div class="relative w-full lg:w-10/12 xl:w-8/12 xl2:w-3/12">
-            <div class="block bg-white shadow-lg rounded-lg">
+            <div class="block shadow-lg rounded-lg">
                 <div class="lg:flex lg:flex-wrap g-0">
-                    <div class="lg:w-6/12 px-4 md:px-0 bg-gray-50 rounded-none lg:rounded-l-lg">
+                    <div class="lg:w-6/12 px-4 md:px-0 rounded-none lg:rounded-l-lg bg-gray-50 bg-opacity-80">
                         <div class="p-4 md:p-12 md:mx-6">
                             <div class="text-center my-4 sm:my-8">
                                 <img class="mx-auto w-72" src="/imagem/layout/login/logoSistemaEllos.png" alt="Sistema Ellos"/>

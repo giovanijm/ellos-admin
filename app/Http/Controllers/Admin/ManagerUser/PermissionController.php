@@ -3,19 +3,22 @@
 namespace App\Http\Controllers\Admin\ManagerUser;
 
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
+use App\Models\Admin\ManagerUser\Permission;
 use App\Http\Requests\Admin\ManagerUser\PermissionRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
 
 class PermissionController extends Controller
 {
-    private $permission;
+    private $model;
     private $permissionName = 'CadPermissoes';
+    private $objPermissions;
 
-    public function __construct(Permission $permission)
+    public function __construct(Permission $model)
     {
-        $this->permission = $permission;
+        $this->model = $model;
+        $this->objPermissions = clone $this->model;
+        $this->objPermissions->name = $this->permissionName;
     }
 
     /**
@@ -50,17 +53,19 @@ class PermissionController extends Controller
         }
 
         if(!empty($filter)){
-            $permissions = Permission::sortable()
+            $permissions = $this->model::sortable()
                 ->where($filter_row, $sort_type, $filter_search)
                 ->with(['roles'])
                 ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }else{
-            $permissions = Permission::sortable()
+            $permissions = $this->model::sortable()
                 ->with(['roles'])
                 ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }
 
-        return view('admin.manager-user.permissions.index', compact('permissions', 'filter', 'filter_row'));
+        $objPermissions = $this->objPermissions;
+
+        return view('admin.manager-user.permissions.index', compact('permissions', 'filter', 'filter_row', 'objPermissions'));
     }
 
     /**
@@ -83,7 +88,7 @@ class PermissionController extends Controller
             return to_route('admin.permissions.index')->with('messageDanger', 'Usuário sem permissão de criação.');
         }
         $data = $request->all();
-        $permission = $this->permission->create($data);
+        $permission = $this->model->create($data);
         $returMsg = "[".$permission->id."]".$permission->name;
         return to_route('admin.permissions.create')->with('messageSuccess', 'O registro '.$returMsg.', foi criado com sucesso.');
     }

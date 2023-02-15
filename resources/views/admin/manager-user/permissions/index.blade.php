@@ -1,7 +1,3 @@
-@php
-    $cadPermissoes = new \App\Models\Permission(); $cadPermissoes->name = "CadPermissoes";
-@endphp
-
 @extends('layouts.app')
 
 @section('title', __('admin/permissions.titlePage'))
@@ -18,7 +14,7 @@
                         <th scope="col" class="px-6 py-3">@sortablelink('name', trans('admin/permissions.labelPermissionName'))</th>
                         <th scope="col" class="px-6 py-3">@sortablelink('description', trans('admin/permissions.labelPermissionDescription'))</th>
                         <th scope="col" class="px-6 py-3">{{ __('Quant. Grupos Vinculados') }}</th>
-                        @canany(['edit', 'delete'], $cadPermissoes)
+                        @canany(['edit', 'delete'], $objPermissions)
                             <th scope="col" class="px-6 py-2"></th>
                         @endcanany
                     </tr>
@@ -30,10 +26,10 @@
                             <td class="px-6 py-2">{{ $permission->name }}</td>
                             <td class="px-6 py-2">{{ $permission->description }}</td>
                             <td class="px-6 py-2 ">{{ $permission->roles->count() }}</td>
-                            @canany(['edit', 'delete'], $cadPermissoes)
+                            @canany(['edit', 'delete'], $objPermissions)
                                 <td scope="row" class="px-6 py-2 border-l">
                                     <div class="sm:flex sm:justify-center">
-                                        @can('edit', $cadPermissoes)
+                                        @can('edit', $objPermissions)
                                             <div class="m-1 lg:m2">
                                                 <a href="{{ route('admin.permissions.edit', $permission->id) }}">
                                                     <x-secondary-button class="lg:w-auto" icon="codicon-edit" adaptative="true">
@@ -42,7 +38,7 @@
                                                 </a>
                                             </div>
                                         @endcan
-                                        @can('delete', $cadPermissoes)
+                                        @can('delete', $objPermissions)
                                             <div class="m-1 lg:m2">
                                                 <form method="POST" class="form-exclusao" action="{{ route('admin.permissions.destroy', $permission->id) }}">
                                                     <input type="hidden" value="{{$permission->id}}" name="permission_id">

@@ -70,7 +70,7 @@
                             <div class="tooltip-arrow" data-popper-arrow></div>
                         </div>
                     </a>
-                    @can('new', $cadPermissoes)
+                    @can('new', $objPermissions)
                         <a href="{{ route('admin.permissions.create') }}">
                             <button data-tooltip-target="tooltip-btn-adicionar" data-tooltip-placement="top" type="button" class="p-2.5 ml-2 text-sm font-medium text-white shadow bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
                                 <x-codicon-new-file class="h-5 w-5" fill="currentColor" />

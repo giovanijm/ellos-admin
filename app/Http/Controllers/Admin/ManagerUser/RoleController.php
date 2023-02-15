@@ -3,12 +3,11 @@
 namespace App\Http\Controllers\Admin\ManagerUser;
 
 use App\Http\Controllers\Controller;
-use App\Models\Permission;
-use App\Models\Menu;
-use App\Models\Role;
-use Carbon\Carbon;
 use App\Http\Requests\Admin\ManagerUser\RoleRequest;
+use App\Models\Admin\ManagerUser\Permission;
+use App\Models\Admin\ManagerUser\Role;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class RoleController extends Controller
 {

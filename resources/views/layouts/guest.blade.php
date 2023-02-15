@@ -12,19 +12,35 @@
 
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
-
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
     @routes
 
     <script src="https://kit.fontawesome.com/65edcec876.js" crossorigin="anonymous"></script>
 
+    {{-- Start Google Recaptcha --}}
+        <script src="https://www.google.com/recaptcha/api.js?trustedtypes=true"></script>
+        <script>
+            function onSubmitFrmLogin(token) {
+                document.getElementById("frmLogin").submit();
+            }
+
+            function onSubmitFrmRegister(token) {
+                document.getElementById("frmRegister").submit();
+            }
+
+            function onSubmitFrmForgot(token) {
+                document.getElementById("frmForgot").submit();
+            }
+        </script>
+    {{-- End Google Recaptcha --}}
+
 </head>
 
 <body>
     <div class="flex h-screen font-roboto">
         <div class="flex flex-1 flex-col">
-            <main class="flex-1 items-center justify-items-center bg-black">
+            <main class="flex-1 items-center justify-items-cente">
                 @include('layouts.message')
                 @yield('content')
             </main>

@@ -6,10 +6,16 @@
 
 
 <footer class="footer p-6 bg-white border-t border-gray-200 shadow xl:flex items-center justify-between hidden">
-    <span class="text-sm text-gray-500 sm:text-center">
-        © 2023 <a href="https://sistemaellos.com.br" class="hover:underline">Ellos Tecnologia™ by GJM</a>. Todos os direitos reservados.<br/>Laravel v{{ Illuminate\Foundation\Application::VERSION }} (PHP v{{ PHP_VERSION }})
-    </span>
-    <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0">
+    <div class="inline-flex items-center">
+        <span>
+            <img class="mr-2 w-8" src="/imagem/layout/logoEllos_p1.png"/>
+        </span>
+        <span class="text-sm text-left text-gray-500">
+            © 2023 <a href="https://sistemaellos.com.br" class="hover:underline">Ellos Tecnologia™ by GJM</a>.<br/>
+            Todos os direitos reservados.
+        </span>
+    </div>
+    <ul class="flex flex-wrap items-center mt-3 text-sm text-gray-500 sm:mt-0 mr-24">
         <li>
             <a href="#" class="mr-6 hover:underline" data-drawer-target="drawer-right-sobre" data-drawer-show="drawer-right-sobre" data-drawer-placement="right" aria-controls="drawer-right-sobre">Sobre</a>
         </li>

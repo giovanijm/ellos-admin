@@ -4,15 +4,15 @@ namespace App\Http\Controllers\Admin\ManagerUser;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserUpdateRequest;
-use App\Models\Menu;
-use App\Models\Role;
+use App\Models\Admin\Menu;
+use App\Models\Admin\ManagerUser\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $this->validarAcesso();
         $users = User::whereNotIn('id', [Auth::id()])->orderBy('name')->paginate(env('NUMBER_LINE_PER_PAGE', 20));
