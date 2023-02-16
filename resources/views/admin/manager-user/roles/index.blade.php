@@ -1,4 +1,8 @@
-<x-admin-layout>
+@extends('layouts.app')
+
+@section('title', __('Todos os Grupos'))
+
+@section('content')
     @include('admin.manager-user.roles.partials.breadcumbs')
     <div class="p-4 mt-4 sm:p-8 bg-white shadow rounded-lg">
         <div class="overflow-x-auto mt-4 bg-white border  rounded-lg">
@@ -18,12 +22,17 @@
                         <tr class="even:bg-white odd:bg-gray-100 hover:bg-blue-100">
                             <td scope="row" class="px-2 py-3 font-bold">{{ $role->id }}</td>
                             <td scope="row" class="px-2 py-3">{{ $role->name }}</td>
-                            <td scope="row" class="px-1 py-2">
+                            <td scope="row" class="flex-grid gap-1">
                                 @forelse ($role->permissions as $rp)
-                                    {{-- <span class="m-1 px-2 py-0 uppercase text-center bg-green-300 rounded-lg">{{ $rp->name }}</span> --}}
-                                    <span class="m-1 text-center uppercase bg-green-400 text-green-900 text-xs font-medium px-2.5 py-0.5 rounded-full">{{ $rp->name }}</span>
+                                    <span class="inline-block my-1 px-2 py-2 bg-green-200 text-green-700 font-medium text-xs
+                                    leading-tight uppercase rounded-full shadow-md hover:bg-green-300 hover:shadow-lg
+                                    focus:bg-green-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-green-400
+                                    active:shadow-lg transition duration-150 ease-in-out">{{ $rp->name }}</span>
                                 @empty
-                                <span class="m-1 px-2 py-0 text-red-800 uppercase text-center bg-red-300 rounded-lg">@lang('admin/roles.labelNotPermission')</span>
+                                    <span class="inline-block my-1 px-2 py-2 bg-red-200 text-red-700 font-medium text-xs
+                                    leading-tight uppercase rounded-full shadow-md hover:bg-red-300 hover:shadow-lg
+                                    focus:bg-red-300 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-red-400
+                                    active:shadow-lg transition duration-150 ease-in-out">@lang('admin/roles.labelNotPermission')</span>
                                 @endforelse
                             </td>
                             <td scope="row" class="px-2 py-3">{{ count($role->users) }}</td>
@@ -52,4 +61,4 @@
             {!! $roles->appends(['sort' => 'name'])->links() !!}
         </div>
     </div>
-</x-admin-layout>
+@endsection

@@ -1,4 +1,8 @@
-<x-admin-layout>
+@extends('layouts.app')
+
+@section('title', 'Alterar ' . __('Grupo'))
+
+@section('content')
     <div class="mt-12 max-w-6xl mx-auto bg-slate-50 p-4 rounded">
         <div class="flex m-2 p-2">
             <a href="{{ route('admin.roles.index') }}" class="px-4 py-2 bg-indigo-400 hover:bg-indigo-600 rounded">
@@ -68,4 +72,4 @@
             </form>
         </div>
     </div>
-</x-admin-layout>
+@endsection

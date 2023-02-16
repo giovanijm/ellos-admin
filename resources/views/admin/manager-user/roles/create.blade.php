@@ -1,4 +1,8 @@
-<x-admin-layout>
+@extends('layouts.app')
+
+@section('title', 'Adicionar ' . __('Grupo'))
+
+@section('content')
     @include('admin.manager-user.roles.partials.breadcumbs')
     <div class="p-4 mt-4 sm:p-8 bg-white shadow rounded-lg">
         <div class="flex-1 px-3 py-3 bg-gray-50 border rounded-lg">
@@ -43,4 +47,4 @@
             </form>
         </div>
     </div>
-</x-admin-layout>
+@endsection

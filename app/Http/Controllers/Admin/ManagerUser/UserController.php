@@ -12,36 +12,61 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
+    private $permissionName = 'CadPermissoes';
+
     public function index(Request $request)
     {
-        $this->validarAcesso();
+        $this->negarAcesso();
         $users = User::whereNotIn('id', [Auth::id()])->orderBy('name')->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         return view('admin.manager-user.users.index', compact('users'));
     }
 
     public function edit(User $user)
     {
-        $this->validarAcesso();
+        if ($this->negarAcesso('edit', true)) {
+            return to_route('admin.users.index')->with('messageDanger', 'Usuário sem permissão de edição.');
+        }
         $roles = Role::all();
         return view('admin.manager-user.users.edit', compact('user', 'roles'));
     }
 
     public function update(UserUpdateRequest $request, User $user)
     {
-        $this->validarAcesso();
+        if ($this->negarAcesso('edit', true)) {
+            return to_route('admin.users.index')->with('messageDanger', 'Usuário sem permissão de edição.');
+        }
         $user->update($request->validated());
-        return to_route('admin.manager-user.users.index')->with('message', 'User updated.');
+        return to_route('admin.users.index')->with('message', 'User updated.');
     }
 
     public function destroy(User $user)
     {
-        $this->validarAcesso();
+        if ($this->negarAcesso('delete', true)) {
+            return to_route('admin.users.index')->with('messageDanger', 'Usuário sem permissão de remover o registros.');
+        }
         $user->delete();
-        return to_route('admin.manager-user.users.index')->with('message', 'User deleted.');
+        return to_route('admin.users.index')->with('message', 'User deleted.');
     }
 
-    private function validarAcesso()
+    /**
+     * Método responsável por validar o acesso do usuário logado as actions da controller.
+     */
+    private function negarAcesso($tipo = 'view', $isRedirect = false)
     {
-        $this->authorize('sectionManagerUsers', Menu::class);
+        //Verifica se o grupo é Admin já da permissão diretamente
+        if(auth()->user()->hasRole('admin')){ return false; }
+
+        $nome = $this->permissionName."-".ucfirst($tipo);
+        if (!auth()->user()->role->hasPermission($nome)) {
+            if($isRedirect){
+                return true;
+            }else{
+                abort(403, 'Acesso negado');
+            }
+        }else{
+            if($isRedirect){
+                return false;
+            }
+        }
     }
 }
