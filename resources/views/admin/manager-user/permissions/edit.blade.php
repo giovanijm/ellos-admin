@@ -21,7 +21,7 @@
         </p>
         <div class="sm:px-6 sm:py-6 mt-2 sm:mt-6 bg-white sm:bg-transparent border rounded-lg">
             <div class="lg:grid lg:grid-cols-3 lg:gap-6 border-0 bg-white sm:bg-transparent rounded-lg sm:rounded-none">
-                <div class="lg:col-span-1 hidden sm:block">
+                <div class="lg:col-span-1">
                     <div class="px-4 sm:px-0">
                         <h3 class="text-lg font-medium leading-6 text-gray-900">Específica</h3>
                         <p class="mt-1 text-sm text-gray-600">Aqui vais as informações necessárias para a edição de uma permissão. <b>Após confirmar e salvar os dados, lembre-se de fazer as alterações necessárias também nas validações que utilizam desta permissão</b>.</p>

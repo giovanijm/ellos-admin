@@ -5,12 +5,18 @@ namespace App\Models\Admin\ManagerUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
+use Kyslik\ColumnSortable\Sortable;
 
 class Role extends Model
 {
-    use HasFactory;
+    use HasFactory, Sortable;
 
     protected $fillable = ['name', 'create_at', 'updated_at'];
+
+    public $sortable = [
+        'id',
+        'name',
+    ];
 
     public function users()
     {

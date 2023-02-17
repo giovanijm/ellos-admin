@@ -1,5 +1,5 @@
-$("#btnVoltar").on("click", function() {
-    $(location).attr('href', route('admin.permissions.index'));
+$("button.btn-voltar").on("click", function() {
+    $(location).attr('href', route('admin.roles.index'));
 });
 
 let showModalExclusao = function (idRegistro, nameRegistro, actionForm) {
@@ -34,8 +34,8 @@ let showModalExclusao = function (idRegistro, nameRegistro, actionForm) {
 
 $(".form-exclusao").on("submit", function(e){
     e.preventDefault();
-    var campoId = $(this).find('input[name="permission_id"]')[0].value;
-    var campoName = $(this).find('input[name="permission_name"]')[0].value;
+    var campoId = $(this).find('input[name="role_id"]')[0].value;
+    var campoName = $(this).find('input[name="role_name"]')[0].value;
     var actionForm = $(this).attr('action');
     showModalExclusao(campoId, campoName, actionForm);
     return false;

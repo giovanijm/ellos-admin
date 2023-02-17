@@ -12,7 +12,7 @@ class PermissionPolicy
 
     public function before(User $user, $ability)
     {
-        if ($user->hasRole('admin')) {
+        if ($user->hasRole(env('ROLE_NAME_ADMIN', 'admin'))) {
             return true;
         }
     }

@@ -120,7 +120,7 @@ class PermissionController extends Controller
 
         if($permission->update($data)){
             $returMsg = "[".$permission->id."]".$permission->name;
-            return to_route('admin.permissions.edit', ['permission' => $permission])->with('messageSuccess', 'O registro '.$returMsg.', foi atualizada com sucesso.');
+            return to_route('admin.permissions.edit', ['permission' => $permission])->with('messageSuccess', 'O registro '.$returMsg.', foi atualizada com sucesso.')->with('messageInfo', 'Não se esqueça de atualizar também os nomes das permissões no local onde ela é utilizado.');
         }else{
             return to_route('admin.permissions.edit', ['permission' => $permission])->with('messageDanger', 'Erro ao atualizar o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.");
         }
@@ -138,7 +138,7 @@ class PermissionController extends Controller
         $returMsg = "(".$permission->id.")".$permission->name;
 
         if(count($permission->roles) > 0){
-            return to_route('admin.permissions.index')->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Existem vínculos de outros dados com este registro.");
+            return to_route('admin.permissions.index')->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Existem vínculos entre este registro e outros dados.");
         }
 
         if($permission->delete()){
@@ -154,7 +154,7 @@ class PermissionController extends Controller
     private function negarAcesso($tipo = 'view', $isRedirect = false)
     {
         //Verifica se o grupo é Admin já da permissão diretamente
-        if(auth()->user()->hasRole('admin')){ return false; }
+        if(auth()->user()->hasRole(env('ROLE_NAME_ADMIN', 'admin'))){ return false; }
 
         $nome = $this->permissionName."-".ucfirst($tipo);
         if (!auth()->user()->role->hasPermission($nome)) {
