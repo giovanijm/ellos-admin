@@ -13,19 +13,60 @@ use Carbon\Carbon;
 
 class RoleController extends Controller
 {
-    private $role;
+    private $model;
     private $permissionName = 'CadGrupos';
+    private $objPermissions;
 
-    public function __construct(Role $role)
+    public function __construct(Role $model, Permission $permission)
     {
-        $this->role = $role;
+        $this->model = $model;
+        $this->objPermissions = $permission;
+        $this->objPermissions->name = $this->permissionName;
     }
 
-    public function index()
+    public function index(Request $request)
     {
         $this->negarAcesso();
-        $roles = Role::whereNotIn('name', ['admin'])->orderBy('name')->paginate(env('NUMBER_LINE_PER_PAGE', 20));
-        return view('admin.manager-user.roles.index', compact('roles'));
+
+        $sort = empty($request->query('sort')) ?? false
+                ? 'name'
+                : $request->query('sort');
+
+        $filter_search = $filter = empty($request->query('filter')) ?? false
+                ? ''
+                : $request->query('filter');
+
+        $filter_row = empty($request->query('filter_row')) ?? false
+                ? 'name'
+                : $request->query('filter_row');
+
+        switch ($filter_row)
+        {
+        case 'id':
+            $sort_type = '=';
+            break;
+        default:
+            $filter_search = empty($filter) ?? false
+                        ? ''
+                        : '%'.$filter.'%';
+            $sort_type = 'LIKE';
+        }
+
+        if(!empty($filter)){
+        $roles = $this->model::sortable()
+            ->where($filter_row, $sort_type, $filter_search)
+            ->with(['users'])
+            ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+        }else{
+        $roles = $this->model::sortable()
+            ->with(['users'])
+            ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+        }
+
+        $objPermissions = $this->objPermissions;
+        $objPermissions2 = clone $this->objPermissions;
+        $objPermissions2->name = "CadGruposPermissao";
+        return view('admin.manager-user.roles.index', compact('roles', 'filter', 'filter_row', 'objPermissions', 'objPermissions2'));
     }
 
     public function create()
@@ -42,28 +83,37 @@ class RoleController extends Controller
             return to_route('admin.roles.index')->with('messageDanger', 'Usuário sem permissão de criação.');
         }
         $data = $request->all();
-        $role = $this->role->create($data);
+        $role = $this->model->create($data);
         $returMsg = "[".$role->id."]".$role->name;
         return to_route('admin.roles.create')->with('messageSuccess', 'O registro '.$returMsg.', foi criado com sucesso.');
     }
 
-    public function edit(Role $role)
+    public function edit(Role $role, Request $request)
     {
         if ($this->negarAcesso('edit', true)) {
             return to_route('admin.roles.index')->with('messageDanger', 'Usuário sem permissão de edição.');
         }
-        $permissions = Permission::all();
-        return view('admin.manager-user.roles.edit', compact('role', 'permissions'));
+        $objPermissions = clone $this->objPermissions;
+        $objPermissions->name = "CadGruposPermissao";
+        $permissions = Permission::sortable(['name'])->get();
+        return view('admin.manager-user.roles.edit', compact('role', 'permissions', 'objPermissions'));
     }
 
     public function update(RoleRequest $request, Role $role)
     {
         if ($this->negarAcesso('edit', true)) {
-            return to_route('admin.roles.index')->with('messageDanger', 'Usuário sem permissão de edição.');
+            return back()->with('messageDanger', 'Usuário sem permissão de edição.');
         }
+
+        if($role->id == env('ROLE_ID_ADMIN', 2)) {
+            return back()->with('messageDanger', 'Este registro não pode ser alterado devido as regras do sistema.');
+        }
+
         $data = $request->all();
         $data['updated_at'] = Carbon::now('America/Sao_Paulo');
+
         $returMsg = "[".$role->id."]".$role->name;
+
         if($role->update($data)){
             $returMsg = "[".$role->id."]".$role->name;
             return to_route('admin.roles.edit', ['role' => $role])->with('messageSuccess', 'O registro '.$returMsg.', foi atualizada com sucesso.');
@@ -75,20 +125,42 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         if ($this->negarAcesso('delete', true)) {
-            return to_route('admin.roles.index')->with('messageDanger', 'Usuário sem permissão de remover o registros.');
+            back()->with('messageDanger', 'Usuário sem permissão de remover o registros.');
         }
+
+        if($role->id == env('ROLE_ID_ADMIN', 2)) {
+            return back()->with('messageDanger', 'Este registro não pode ser excluído devido as regras do sistema.');
+        }
+
         $returMsg = "[".$role->id."]".$role->name;
+
+        if(count($role->users) > 0){
+            return back()->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Existem vínculos entre este registro e outros dados.");
+        }
+
         if($role->delete()){
-            return to_route('admin.permissions.index')->with('messageSuccess', 'O registro '.$returMsg.', foi removido com sucesso.');
+            return back()->with('messageSuccess', 'O registro '.$returMsg.', foi removido com sucesso.');
         }else{
-            return to_route('admin.permissions.index')->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.");
+            return back()->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.");
         }
     }
 
     public function assignPermissions(Request $request, Role $role)
     {
+        if ($this->negarAcesso('edit', true)) {
+            return back()->with('messageDanger', 'Usuário sem permissão de edição.');
+        }
+
+        if($role->id == env('ROLE_ID_ADMIN', 2)) {
+            return back()->with('messageDanger', 'AS permissões deste grupo não pode ser alterada devido as regras do sistema.');
+        }
+
+        $returMsg = "[".$role->id."]".$role->name;
+
         $role->permissions()->sync($request->permissions);
-        return back()->with('message', 'Permissions added.');
+        $role['updated_at'] = Carbon::now('America/Sao_Paulo');
+        $role->update();
+        return back()->with('messageSuccess', 'As permissões do grupo '.$returMsg.', foram atualizadas com sucesso.');;
     }
 
     /**
@@ -97,7 +169,7 @@ class RoleController extends Controller
     private function negarAcesso($tipo = 'view', $isRedirect = false)
     {
         //Verifica se o grupo é Admin já da permissão diretamente
-        if(auth()->user()->hasRole('admin')){ return false; }
+        if(auth()->user()->hasRole(env('ROLE_NAME_ADMIN', 'admin'))){ return false; }
 
         $nome = $this->permissionName."-".ucfirst($tipo);
         if (!auth()->user()->role->hasPermission($nome)) {
