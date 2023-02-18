@@ -9,7 +9,7 @@
         <div class="flex flex-col ml-2">
             <span class="text-xs lg:text-sm font-medium text-gray-500">@lang('admin/permissions.labelManagerUsers')</span>
             <span class="font-bold text-normal text-sm lg:text-2xl  text-gray-900 uppercase drop-shadow">
-                {{ __('Listagem de Grupos de Usuários') }}
+                {{ __('admin/roles.titlePageIndex') }}
             </span>
         </div>
     </div>
@@ -27,6 +27,12 @@
                         <div class="flex items-center px-3">
                             <input @if($filter_row == 'name') checked @endif id="filter_row_name" type="radio" value="name" name="filter_row" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
                             <label for="filter_row_name" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Nome') }}</label>
+                        </div>
+                    </li>
+                    <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
+                        <div class="flex items-center px-3">
+                            <input @if($filter_row == 'active') checked @endif id="filter_row_active" type="radio" value="active" name="filter_row" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2 dark:bg-gray-600 dark:border-gray-500">
+                            <label for="filter_row_active" class="w-full py-3 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ __('Ativo') }}</label>
                         </div>
                     </li>
                 </ul>

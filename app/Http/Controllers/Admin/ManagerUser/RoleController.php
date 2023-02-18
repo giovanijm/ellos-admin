@@ -45,6 +45,12 @@ class RoleController extends Controller
         case 'id':
             $sort_type = '=';
             break;
+        case 'active':
+            $sort_type = '=';
+            $filter_search = empty($request->query('filter')) || mb_strtoupper($request->query('filter')) == 'FALSE' || mb_strtoupper($request->query('filter')) == 'FALSO' || mb_strtoupper($request->query('filter')) == 'NÃO' || mb_strtoupper($request->query('filter')) == 'NAO'
+                ? "0"
+                : "1";
+            break;
         default:
             $filter_search = empty($filter) ?? false
                         ? ''
@@ -52,15 +58,15 @@ class RoleController extends Controller
             $sort_type = 'LIKE';
         }
 
-        if(!empty($filter)){
-        $roles = $this->model::sortable()
-            ->where($filter_row, $sort_type, $filter_search)
-            ->with(['users'])
-            ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+        if(!empty($filter_search) || $filter_row == 'active'){
+            $roles = $this->model::sortable()
+                ->where($filter_row, $sort_type, $filter_search)
+                ->with(['users'])
+                ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }else{
-        $roles = $this->model::sortable()
-            ->with(['users'])
-            ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
+            $roles = $this->model::sortable()
+                ->with(['users'])
+                ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }
 
         $objPermissions = $this->objPermissions;
@@ -110,6 +116,8 @@ class RoleController extends Controller
         }
 
         $data = $request->all();
+
+        $data['active'] = empty($data['active']) ? 0 : 1;
         $data['updated_at'] = Carbon::now('America/Sao_Paulo');
 
         $returMsg = "[".$role->id."]".$role->name;

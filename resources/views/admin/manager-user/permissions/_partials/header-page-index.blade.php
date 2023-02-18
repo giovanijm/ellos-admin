@@ -9,7 +9,7 @@
         <div class="flex flex-col ml-2">
             <span class="text-xs lg:text-sm font-medium text-gray-500">@lang('admin/permissions.labelManagerUsers')</span>
             <span class="font-bold text-normal text-sm lg:text-2xl  text-gray-900 uppercase drop-shadow">
-                {{ __('admin/permissions.titlePage') }}
+                {{ __('admin/permissions.titlePageIndex') }}
             </span>
         </div>
     </div>

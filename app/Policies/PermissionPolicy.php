@@ -2,9 +2,11 @@
 
 namespace App\Policies;
 
+use App\Http\Controllers\Auth\AuthenticatedSessionController;
 use App\Models\User;
 use App\Models\Admin\ManagerUser\Permission;
 use Illuminate\Auth\Access\HandlesAuthorization;
+use Illuminate\Support\Facades\Auth;
 
 class PermissionPolicy
 {
@@ -68,4 +70,5 @@ class PermissionPolicy
         $permissionName = $permission->name . "-Delete";
         return $user->role->hasPermission($permissionName);
     }
+
 }

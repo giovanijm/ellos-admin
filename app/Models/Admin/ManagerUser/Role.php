@@ -11,11 +11,12 @@ class Role extends Model
 {
     use HasFactory, Sortable;
 
-    protected $fillable = ['name', 'create_at', 'updated_at'];
+    protected $fillable = ['name', 'active', 'create_at', 'updated_at'];
 
     public $sortable = [
         'id',
         'name',
+        'active',
     ];
 
     public function users()

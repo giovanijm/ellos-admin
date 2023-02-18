@@ -8,13 +8,9 @@
     <meta name="referrer" content="always">
 
     <title>@yield('title') - {{ config('app.name', 'Sistema Ellos') }}</title>
-
     @vite('resources/css/app.css')
     @vite('resources/js/app.js')
     @routes
-
-    <script src="https://kit.fontawesome.com/65edcec876.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
