@@ -77,7 +77,7 @@
                             type="password"
                             name="password"
                             :value="old('password')"
-                            placeholder=""
+                            placeholder="••••••••"
                             required
                         />
                     </div>
@@ -96,7 +96,7 @@
                             type="password"
                             name="password_confirmation"
                             :value="old('password_confirmation')"
-                            placeholder=""
+                            placeholder="••••••••"
                             required
                         />
                     </div>

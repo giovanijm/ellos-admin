@@ -8,6 +8,8 @@ use App\Models\Admin\ManagerUser\{ Role, Permission };
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -83,6 +85,25 @@ class UserController extends Controller
         return view('admin.manager-user.users.create', compact('roles'));
     }
 
+    public function store(Request $request)
+    {
+        if ($this->negarAcesso('new', true)) {
+            return to_route('admin.users.index')->with('messageDanger', 'Usuário sem permissão de criação.');
+        }
+        $data = $request->all();
+        $data['active'] = empty($data['active']) ? 0 : 1;
+
+        $user = $this->model->create([
+            'role_id'   => $data['role_id'],
+            'name'      => $data['name'],
+            'email'     => $data['email'],
+            'password'  => Hash::make($data['password']),
+            'status'    => $data['active'],
+        ]);
+        $returMsg = "[".$user->id."]".$user->name;
+        return to_route('admin.users.create')->with('messageSuccess', 'O registro '.$returMsg.', foi criado com sucesso.');
+    }
+
     public function edit(User $user)
     {
         if ($this->negarAcesso('edit', true)) {
@@ -117,8 +138,14 @@ class UserController extends Controller
         if ($this->negarAcesso('delete', true)) {
             return to_route('admin.users.index')->with('messageDanger', 'Usuário sem permissão de remover o registros.');
         }
-        $user->delete();
-        return to_route('admin.users.index')->with('message', 'User deleted.');
+
+        $returMsg = "[".$user->id."]".$user->name;
+
+        if($user->delete()){
+            return back()->with('messageSuccess', 'O registro '.$returMsg.', foi removido com sucesso.');
+        }else{
+            return back()->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.");
+        }
     }
 
     /**

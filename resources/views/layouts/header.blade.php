@@ -90,14 +90,22 @@
                     <p class="mx-2 font-bold text-sm uppercase">{{ Auth::user()->role->name }}</p>
                 </div>
                 @can('view', $modifyProfile)
-                    <x-responsive-nav-link :href="route('profile.edit')" icon='codicon-gear'>
-                        {{ __('admin/onboarding.labelProfile') }}
+                    <x-responsive-nav-link :href="route('profile.edit')">
+                        <div class="flex">
+                            <svg aria-hidden="true" class="w-6 h-6 mr-2" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path clip-rule="evenodd" d="M4.5 3.75a3 3 0 00-3 3v10.5a3 3 0 003 3h15a3 3 0 003-3V6.75a3 3 0 00-3-3h-15zm4.125 3a2.25 2.25 0 100 4.5 2.25 2.25 0 000-4.5zm-3.873 8.703a4.126 4.126 0 017.746 0 .75.75 0 01-.351.92 7.47 7.47 0 01-3.522.877 7.47 7.47 0 01-3.522-.877.75.75 0 01-.351-.92zM15 8.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15zM14.25 12a.75.75 0 01.75-.75h3.75a.75.75 0 010 1.5H15a.75.75 0 01-.75-.75zm.75 2.25a.75.75 0 000 1.5h3.75a.75.75 0 000-1.5H15z" fill-rule="evenodd"></path>
+                            </svg>
+                            {{ __('admin/onboarding.labelProfile') }}
+                        </div>
                     </x-responsive-nav-link>
                 @endcan
                 <form method="POST" action="{{ route('logout') }}">
                     @csrf
-                    <x-responsive-nav-link :href="route('logout')" icon='codicon-sign-out' onclick="event.preventDefault(); this.closest('form').submit();">
-                        {{ __('admin/onboarding.labelLogOut') }}
+                    <x-responsive-nav-link :href="route('logout')" onclick="event.preventDefault(); this.closest('form').submit();">
+                        <div class="flex">
+                            <x-codicon-sign-out class="w-6 h-6 mr-2" />
+                            {{ __('admin/onboarding.labelLogOut') }}
+                        </div>
                     </x-responsive-nav-link>
                 </form>
             </div>

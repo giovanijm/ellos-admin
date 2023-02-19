@@ -7,26 +7,36 @@
     <div class="p-2 sm:p-4 xl:p-6 mt-4 bg-white sm:shadow rounded-lg">
         @include('admin.manager-user.users._partials.header-page-index')
         <div class="overflow-x-auto mt-4 bg-white border  rounded-lg">
-            <table class="w-full text-sm text-left text-gray-900 dark:text-gray-100 table-auto">
-                <thead class="text-xs uppercase bg-gray-700 text-gray-200">
+            <table class="w-full text-sm text-left text-gray-800 table-auto">
+                <thead class="bg-gray-700 text-gray-200">
                     <tr>
-                        <th scope="col" class="px-2 py-4">#</th>
-                        <th scope="col" class="px-2 py-4">@sortablelink('name','Nome')</th>
-                        <th scope="col" class="px-2 py-4">@sortablelink('email','E-mail')</th>
-                        <th scope="col" class="px-2 py-4">@sortablelink('active','Ativo')</th>
-                        <th scope="col" class="px-2 py-4">@lang('admin/users.labelTableRole')</th>
+                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('id','Código')</th>
+                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('name','Nome')</th>
+                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('active','Ativo')</th>
+                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@lang('admin/users.labelTableRole')</th>
                         @canany(['edit', 'delete'], $objPermissions)
-                            <th scope="col" class="px-2 py-4">Ações</th>
+                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">Ações</th>
                         @endcanany
                     </tr>
                 </thead>
                 <tbody>
                     @foreach ($users as $user)
                         <tr class="even:bg-white odd:bg-gray-50 dark:bg-gray-800 hover:bg-blue-100">
-                            <th scope="row" class="px-2 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white">{{ str_pad($user->id , 4 , '0' , STR_PAD_LEFT) }}</th>
-                            <td scope="row" class="px-2 py-2">{{ $user->name }}</td>
-                            <td scope="row" class="px-2 py-2">{{ $user->email }}</td>
-                            <td class="px-2 py-2">
+                            <th scope="row" class="px-2 py-2">
+                                <a class="font-bold text-blue-700 hover:underline" href="{{ route('admin.users.edit', $user->id) }}">
+                                    #{{ str_pad($user->id , 4 , '0' , STR_PAD_LEFT) }}
+                                </a>
+                            </th>
+                            <td scope="row" class="flex items-center justify-items-center px-2 py-3 whitespace-nowrap">
+                                <div class="relative inline-flex items-center justify-center  w-8 h-8 ring-2 ring-gray-900 ring-offset-slate-900 drop-shadow-sm overflow-hidden rounded-full bg-gray-600">
+                                    <span class="font-bold text-gray-300">{{ Str::upper(Str::substr($user->name, 0, 2)) }}</span>
+                                </div>
+                                <div class="ml-2">
+                                    <div class="text-sm font-bold text-gray-700 px-1 uppercase">{{ $user->name }}</div>
+                                    <div class="text-sm font-normal text-gray-500 px-1">{{ $user->email }}</div>
+                                </div>
+                            </td>
+                            <td scope="row" class="px-2 py-2">
                                 @if($user->active)
                                     <div class="flex items-center mx-2">
                                         <div class="h-2.5 w-2.5 rounded-full bg-green-700 mr-2"></div> Sim

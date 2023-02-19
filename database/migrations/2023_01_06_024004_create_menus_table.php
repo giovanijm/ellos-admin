@@ -21,7 +21,7 @@ return new class extends Migration
             $table->string('route');
             $table->string('icon')->nullable();
             $table->integer('sequence');
-            $table->boolean('active')->default(1);
+            $table->boolean('active')->default(0);
             $table->timestamps();
         });
     }

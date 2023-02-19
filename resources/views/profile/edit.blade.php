@@ -1,6 +1,7 @@
 @extends('layouts.app')
-@section('title', 'Perfil do Usuário')
+@section('title', 'Gerenciar Perfil')
 @section('content')
+    @include('profile.partials.breadcumbs')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
