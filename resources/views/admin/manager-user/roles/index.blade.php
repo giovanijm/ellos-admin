@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Todos os Grupos'))
+@section('title', __('admin/roles.titlePageIndex'))
 
 @section('content')
     @include('admin.manager-user.roles._partials.breadcumbs')
@@ -25,7 +25,7 @@
                 <tbody>
                     @foreach ($roles as $role)
                         <tr class="even:bg-white odd:bg-gray-50 dark:bg-gray-800 hover:bg-blue-100">
-                            <th scope="row" class="px-2 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white">{{ $role->id }}</th>
+                            <th scope="row" class="px-2 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white">{{ str_pad($role->id , 4 , '0' , STR_PAD_LEFT) }}</th>
                             <td class="px-2 py-2">{{ $role->name }}</td>
                             <td class="px-2 py-2">
                                 @if($role->active)

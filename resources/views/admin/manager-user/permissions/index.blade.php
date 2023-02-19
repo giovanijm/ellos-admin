@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('admin/permissions.titlePage'))
+@section('title', __('admin/permissions.titlePageIndex'))
 
 @section('content')
     @include('admin.manager-user.permissions._partials.breadcumbs')
@@ -22,7 +22,7 @@
                 <tbody>
                     @foreach ($permissions as $permission)
                         <tr class="even:bg-white odd:bg-gray-50 dark:bg-gray-800 hover:bg-blue-100">
-                            <th scope="row" class="px-2 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white">{{ $permission->id }}</th>
+                            <th scope="row" class="px-2 py-2 font-bold text-gray-900 whitespace-nowrap dark:text-white">{{ str_pad($permission->id , 4 , '0' , STR_PAD_LEFT) }}</th>
                             <td class="px-2 py-2">{{ $permission->name }}</td>
                             <td class="px-2 py-2">{{ $permission->description }}</td>
                             <td class="px-4 py-2 ">

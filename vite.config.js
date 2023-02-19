@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/admin/manager-user/permissions.js',
                 'resources/js/admin/manager-user/roles.js',
+                'resources/js/admin/manager-user/users.js',
                 'resources/js/message-toast.js',
             ],
             refresh: true,

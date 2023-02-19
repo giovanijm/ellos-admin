@@ -24,10 +24,23 @@ class UserUpdateRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required'],
-            'email' => ['required', 'email', Rule::unique('users')->ignore($this->user->id)],
-            'role_id' => ['required']
-        ];
+        switch ($this->method()) {
+            case 'PUT':
+                $rules = [
+                    'name'          => 'required|min:3|max:80',
+                    'email'         => 'required|email|max:80|unique:users,email,'.$this->user->id,
+                    'role_id'       => 'required|exists:roles,id',
+                ];
+                break;
+            default:
+                $rules = [
+                    'name'          => 'required|min:3|max:80',
+                    'email'         => 'required|email|max:80|unique:users',
+                    'role_id'       => 'required|exists:roles,id',
+                ];
+                break;
+        }
+
+        return $rules;
     }
 }

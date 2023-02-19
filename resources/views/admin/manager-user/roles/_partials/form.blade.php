@@ -4,7 +4,7 @@
         <div class="col-span-3 sm:col-span-1">
             <label for="id" class="block text-sm text-gray-700">Código:</label>
             <input type="text" name="id" id="id"
-            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="{{ $role->id ?? old('id') }}">
+            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="{{ str_pad($role->id , 4 , '0' , STR_PAD_LEFT) ?? old('id') }}">
         </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 pb-2">

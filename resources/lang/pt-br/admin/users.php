@@ -9,4 +9,5 @@ return [
     'labelNewUser' => 'Novo Usuário',
     'labelTableNameUser' => 'Nome do Usuário',
     'indexDescriptionUsers' => 'Lista de todos os usuários com seus devidos grupos, cadastrados no sistema. O usuário que está logado na sessão que está ativa não irá aparecer na listagem.',
+    'titlePageIndex' => 'Todos os Usuários',
 ];

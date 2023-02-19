@@ -23,7 +23,6 @@ class PermissionRequest extends FormRequest
      */
     public function rules()
     {
-
         switch ($this->method()) {
             case 'PUT':
                 $rules = [

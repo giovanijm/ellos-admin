@@ -10,5 +10,5 @@ return [
     'labelNewRole' => 'Novo Grupo',
     'labelNotPermission' => 'Sem Permissão',
     'indexDescriptionRoles' => 'Lista de todos os grupos de usuários cadastrados no sistema. Só não vai constar na lista o ADMIN, por ser um grupo padrão.',
-    'titlePageIndex' => 'Todas os Grupos',
+    'titlePageIndex' => 'Todos os Grupos',
 ];

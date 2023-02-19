@@ -1,4 +1,6 @@
-<x-admin-layout>
+@extends('layouts.app')
+@section('title', 'Perfil do Usuário')
+@section('content')
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Profile') }}
@@ -19,11 +21,11 @@
                 </div>
             </div>
 
-            <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
+            {{-- <div class="p-4 sm:p-8 bg-white shadow sm:rounded-lg">
                 <div class="max-w-xl">
                     @include('profile.partials.delete-user-form')
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
-</x-admin-layout>
+@endsection

@@ -3,60 +3,56 @@
 @section('title', 'Alterar ' . __('Usuário'))
 
 @section('content')
-    <div class="mt-12 max-w-6xl mx-auto bg-slate-50 p-4 rounded">
-        <div class="flex m-2 p-2">
-            <a href="{{ route('admin.users.index') }}" class="px-4 py-2 bg-indigo-400 hover:bg-indigo-600 rounded">
-                Back</a>
+    @include('admin.manager-user.users._partials.breadcumbs')
+    <div class="p-2 sm:p-4 xl:p-6 mt-4 bg-white sm:shadow rounded-lg">
+        <div class="flex items-center mb-2">
+            <div class="flex items-center justify-center text-gray-100 bg-green-700 rounded-md w-8 h-8 lg:w-12 lg:h-12 shadow">
+                <x-clarity-note-edit-line class="h-4 w-4 sm:h-6 sm:w-6" fill="currentColor" />
+            </div>
+            <div class="flex flex-col ml-2">
+                <span class="text-xs lg:text-sm font-medium text-gray-500">@lang('admin/permissions.labelManagerUsers')</span>
+                <span class="font-bold text-normal text-sm lg:text-2xl  text-gray-900 uppercase drop-shadow">
+                    Alterar {{ __('Usuário') }}
+                </span>
+            </div>
         </div>
-        <div class="max-w-md mx-auto bg-gray-100 p-6 mt-12 rounded">
-            <form class="space-y-5" method="POST" action="{{ route('admin.users.update', $user->id) }}">
-                @csrf
-                @method('PUT')
-                <div>
-                    <label for="name" class="text-xl">Name</label>
-                    <input id="name" type="text" name="name" value="{{ $user->name }}"
-                        class="block w-full py-3 px-3 mt-2
-                            text-gray-800 appearance-none
-                            border-2 border-gray-100
-                            focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md" />
-                    @error('name')
-                        <span class="text-sm text-red-400">{{ $message }}</span>
-                    @enderror
+        <p class="text-sm font-medium text-gray-500">
+            Preencha as informações abaixo solicitadas. Os campos marcados em negrito, são de preenchimento obrigatório.
+        </p>
+        <div class="sm:px-6 sm:py-6 mt-2 sm:mt-6 bg-white sm:bg-transparent border rounded-lg">
+            <div class="lg:grid lg:grid-cols-3 lg:gap-6 border-0 bg-white sm:bg-transparent rounded-lg sm:rounded-none">
+                <div class="lg:col-span-1">
+                    <div class="px-4 sm:px-0">
+                        <h3 class="text-lg font-medium leading-6 text-gray-900">Específica</h3>
+                        <p class="mt-1 text-sm text-gray-600">Aqui vais as informações necessárias para a edição de um usuário.</p>
+                    </div>
                 </div>
-                <div>
-                    <label for="email" class="text-xl">Email</label>
-                    <input id="email" type="text" name="email" value="{{ $user->email }}"
-                        class="block w-full py-3 px-3 mt-2
-                            text-gray-800 appearance-none
-                            border-2 border-gray-100
-                            focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md" />
-                    @error('email')
-                        <span class="text-sm text-red-400">{{ $message }}</span>
-                    @enderror
+                <div class="lg:col-span-2 mt-2 lg:mt-0">
+                    <form class="w-full" method="POST" action="{{ route('admin.users.update', $user->id) }}">
+                        @method('PUT')
+                        <div class="sm:overflow-hidden rounded-lg sm:border">
+                            @include('admin.manager-user.users._partials.form', ['pageOrigem' => 'edit'])
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-gray-50 px-4 py-3 sm:px-6">
+                                <x-primary-button
+                                    type="submit"
+                                    icon="codicon-save"
+                                >
+                                    {{ __('Atualizar') }}
+                                </x-primary-button>
+                                <x-danger-button
+                                    type="button"
+                                    id="btnVoltar"
+                                    icon="codicon-reply"
+                                    class="btn-voltar"
+                                >
+                                    {{ __('Voltar') }}
+                                </x-danger-button>
+                            </div>
+                        </div>
+                    </form>
                 </div>
-                <div>
-                    <label class="text-xl">
-                        <span class="text-gray-700">Role</span>
-                        <select name="role_id"
-                            class="block w-full py-3 px-3 mt-2
-                            text-gray-800 appearance-none
-                            border-2 border-gray-100
-                            focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md">
-                            @foreach ($roles as $role)
-                                <option value="{{ $role->id }}" @selected($user->hasRole($role->name))>
-                                    {{ $role->name }}</option>
-                            @endforeach
-                        </select>
-                    </label>
-                </div>
-
-                <button type="submit"
-                    class="w-full py-3 mt-10 bg-indigo-400 hover:bg-indigo-600 rounded-md
-                        font-medium text-white uppercase
-                        focus:outline-none hover:shadow-none">
-                    Update
-                </button>
-            </form>
+            </div>
         </div>
     </div>
+    @vite('resources/js/admin/manager-user/users.js')
 @endsection
