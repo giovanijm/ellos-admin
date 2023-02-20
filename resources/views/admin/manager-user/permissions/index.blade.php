@@ -23,7 +23,7 @@
                     @foreach ($permissions as $permission)
                         <tr class="even:bg-white odd:bg-gray-50 dark:bg-gray-800 hover:bg-blue-100">
                             <th scope="row" class="px-2 py-2">
-                                <a class="font-bold text-blue-700 hover:underline" href="{{ route('admin.users.edit', $permission->id) }}">
+                                <a class="font-bold text-blue-700 hover:underline" href="{{ route('admin.permissions.edit', $permission->id) }}">
                                     #{{ str_pad($permission->id , 4 , '0' , STR_PAD_LEFT) }}
                                 </a>
                             <td class="px-2 py-2 whitespace-nowrap">{{ $permission->name }}</td>

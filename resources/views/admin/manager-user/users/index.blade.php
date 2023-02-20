@@ -39,11 +39,11 @@
                             <td scope="row" class="px-2 py-2">
                                 @if($user->active)
                                     <div class="flex items-center mx-2">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-green-700 mr-2"></div> Sim
+                                        <div class="h-2.5 w-2.5 rounded-full bg-green-700 mr-2"></div> SIM
                                     </div>
                                 @else
                                     <div class="flex items-center mx-2">
-                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> Não
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500 mr-2"></div> NÃO
                                     </div>
                                 @endif
                             </td>
