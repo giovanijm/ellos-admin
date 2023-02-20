@@ -1,8 +1,7 @@
 import Alpine from 'alpinejs';
 import jQuery from 'jquery';
 import 'flowbite';
-
-import { Dismiss } from 'flowbite';
+import 'preline';
 
 window.Alpine = Alpine;
 window.$ = jQuery;

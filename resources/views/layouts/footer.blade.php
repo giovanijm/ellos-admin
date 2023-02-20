@@ -29,8 +29,9 @@
             <a href="#" class="hover:underline" data-drawer-target="drawer-right-contato" data-drawer-show="drawer-right-contato" data-drawer-placement="right" aria-controls="drawer-right-contato">Contato</a>
         </li>
     </ul>
+
+    @include('admin._partials.sobre')
+    @include('admin._partials.politica-privacidade')
+    @include('admin._partials.licenciamento')
+    @include('admin._partials.contato')
 </footer>
-@include('admin._partials.sobre')
-@include('admin._partials.politica-privacidade')
-@include('admin._partials.licenciamento')
-@include('admin._partials.contato')

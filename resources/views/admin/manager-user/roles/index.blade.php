@@ -4,7 +4,7 @@
 
 @section('content')
     @include('admin.manager-user.roles._partials.breadcumbs')
-    <div class="p-2 sm:p-4 xl:p-6 mt-4 bg-white sm:shadow rounded-lg">
+    <div class="p-3 sm:p-4 lg:mt-3 bg-white sm:shadow rounded-lg">
         @include('admin.manager-user.roles._partials.header-page-index')
         <div class="overflow-x-auto mt-4 bg-white border rounded-lg">
             <table class="w-full text-sm text-left text-gray-800 table-auto">

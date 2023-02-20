@@ -14,13 +14,13 @@
 </head>
 
 <body>
-    <div x-data="{ sidebarOpen: false }" class="flex h-screen font-roboto">
+    <div class="flex h-screen font-roboto">
         @include('layouts.sidebar')
 
         <div class="flex-1 flex flex-col overflow-hidden">
             @include('layouts.header')
 
-            <main class="flex-1 overflow-x-hidden overflow-y-auto px-2 sm:px-6 py-9 lg:py-4 bg-gray-100">
+            <main class="flex-1 overflow-x-hidden overflow-y-auto p-2 lg:p-4 bg-gray-100">
                 @include('layouts.message')
 
                 @yield('content')

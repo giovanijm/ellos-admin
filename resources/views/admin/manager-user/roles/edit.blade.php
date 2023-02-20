@@ -4,7 +4,7 @@
 
 @section('content')
     @include('admin.manager-user.roles._partials.breadcumbs')
-    <div class="p-2 sm:p-4 xl:p-6 mt-4 bg-white sm:shadow rounded-lg">
+    <div class="p-3 sm:p-4 lg:mt-3 bg-white sm:shadow rounded-lg">
         <div class="flex items-center mb-2">
             <div class="flex items-center justify-center text-gray-100 bg-green-700 rounded-md w-8 h-8 lg:w-12 lg:h-12 shadow">
                 <x-clarity-note-edit-line class="h-4 w-4 sm:h-6 sm:w-6" fill="currentColor" />

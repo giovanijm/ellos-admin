@@ -12,9 +12,7 @@
 @endphp
 
 <!-- INICIO SIDE BAR -->
-        <!-- BOTÃO PARA SAIR QUANDO FICA OCULTANDO -->
-        <div x-cloak :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="fixed inset-0 z-30 transition-opacity bg-black opacity-90 lg:hidden"></div>
-        <div x-cloak :class="sidebarOpen ? 'translate-x-0 ease-out' : '-translate-x-full ease-in'" class="fixed inset-y-0 left-0 z-40 w-64 overflow-y-auto transition duration-300 transform bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
+        <div id="application-sidebar" class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full hidden fixed inset-y-0 left-0 z-[60] w-64 overflow-y-auto transition duration-300 transform scrollbar-y lg:block bg-gray-900 lg:translate-x-0 lg:static lg:inset-0">
             <!-- INICIO MENU SIDE BAR -->
             <x-avatar-sidebar>
                 @if(Auth::user()->id == 3)
@@ -25,10 +23,6 @@
             </x-avatar-sidebar>
             <nav class="mt-5 mx-2">
                 <h5 id="drawer-navigation-label" class="text-base font-semibold text-gray-500 uppercase ml-2 dark:text-gray-400">Menu</h5>
-                <button type="button" x-cloak :class="sidebarOpen ? 'block' : 'hidden'" @click="sidebarOpen = false" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm p-1.5 absolute top-2.5 right-2.5 inline-flex items-center dark:hover:bg-gray-600 dark:hover:text-white lg:hidden">
-                    <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
-                    <span class="sr-only">Close menu</span>
-                </button>
                 @can('view', $sectionHome)
                     <x-sidebar-menu-v2 :active="request()->routeIs('admin.index')" :open="request()->routeIs('admin.index')">
                         <x-sidebar-menu-section-v2>
