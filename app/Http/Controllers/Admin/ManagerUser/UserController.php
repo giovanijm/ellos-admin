@@ -98,7 +98,7 @@ class UserController extends Controller
             'name'      => $data['name'],
             'email'     => $data['email'],
             'password'  => Hash::make($data['password']),
-            'status'    => $data['active'],
+            'active'    => $data['active'],
         ]);
         $returMsg = "[".$user->id."]".$user->name;
         return to_route('admin.users.create')->with('messageSuccess', 'O registro '.$returMsg.', foi criado com sucesso.');

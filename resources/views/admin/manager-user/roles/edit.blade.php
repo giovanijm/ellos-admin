@@ -62,13 +62,64 @@
                         </div>
                     </div>
                     <div class="lg:col-span-2 mt-2 lg:mt-0">
-                        <form class="w-full" method="POST" action="{{ route('admin.roles.permissions', $role->id) }}">
-                            @csrf
-                            <div class="sm:overflow-hidden rounded-lg sm:border">
-                                <div class="bg-white px-4 pb-4 sm:p-6">
-                                    <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 pb-2">
+                        <div class="sm:overflow-hidden rounded-lg sm:border">
+                            <div class="w-full px-4 pt-4">
+                                <div class="grid grid-cols-7 gap-2 mb-2 sm:mb-0 sm:flex sm:items-center w-full">
+                                    <label for="filter" class="sr-only">Search</label>
+                                    <div class="col-span-7 sm:col-span-1 relative w-full">
+                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                            <svg aria-hidden="true" class="w-5 h-5 text-gray-500 dark:text-gray-400" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" clip-rule="evenodd"></path></svg>
+                                        </div>
+                                        <input type="text" id="filter" name="filter" value="" class="input-search-checkbox bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Digite a palavra chave ...">
+                                    </div>
+                                    <button data-tooltip-target="tooltip-btn-search" data-tooltip-placement="top" type="button" target_name="divPermissions" class="btn-search-checkbox p-2 ml-2 text-sm font-medium text-white shadow bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <x-eos-manage-search class="w-6 h-6" fill="currentColor" />
+                                        <span class="sr-only">Search</span>
+                                    </button>
+                                    <div id="tooltip-btn-search" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Filtrar os registros
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <button data-tooltip-target="tooltip-btn-clear" data-tooltip-placement="top" type="button" target_name="divPermissions" class="btn-search-checkbox-clear p-2 ml-2 text-sm font-medium text-white shadow bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <x-eos-restore-page-o class="w-6 h-6" fill="currentColor" />
+                                        <span class="sr-only">Reset</span>
+                                    </button>
+                                    <div id="tooltip-btn-clear" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Limpar o filtro
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <button data-tooltip-target="tooltip-btn-seleciona" data-tooltip-placement="top" type="button" target_name="divPermissions" class="btn-select-all p-2 ml-2 text-sm font-medium text-white shadow bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+                                        <x-eos-check-box-o class="h-6 w-6" alt="" title="" fill="currentColor" />
+                                        <span class="sr-only">Select All</span>
+                                    </button>
+                                    <div id="tooltip-btn-seleciona" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Selecionar todos os registros
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <button data-tooltip-target="tooltip-btn-remove" data-tooltip-placement="top" type="button" target_name="divPermissions" class="btn-no-select-all p-2 ml-2 text-sm font-medium text-white shadow bg-red-600 rounded-lg border border-red-600 hover:bg-red-800 focus:ring-4 focus:outline-none focus:ring-red-300">
+                                        <x-eos-check-box-blank class="h-6 w-6" alt="" title="" fill="currentColor" />
+                                        <span class="sr-only">Remove All</span>
+                                    </button>
+                                    <div id="tooltip-btn-remove" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Desmarcar todos os registros
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                    <button data-tooltip-target="tooltip-btn-inverter" data-tooltip-placement="top" type="button" target_name="divPermissions" class="btn-select-invert p-2 ml-2 text-sm font-medium text-white shadow bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                        <x-eos-library-add-check class="h-6 w-6" alt="" title="" fill="currentColor" />
+                                        <span class="sr-only">Invert All</span>
+                                    </button>
+                                    <div id="tooltip-btn-inverter" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
+                                        Inverter seleção dos registros
+                                        <div class="tooltip-arrow" data-popper-arrow></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <form class="w-full" method="POST" action="{{ route('admin.roles.permissions', $role->id) }}">
+                                @csrf
+                                <div class="bg-white px-4 pb-4 sm:p-4">
+                                    <div id="divPermissions" class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 pb-2">
                                         @foreach ($permissions as $permission)
-                                            <div class="flex items-center my-1 pl-4 border border-gray-200 rounded dark:border-gray-700">
+                                            <div for="permissions-checkbox-{{$permission->id}}" class="flex items-center my-1 pl-4 border border-gray-200 rounded dark:border-gray-700">
                                                 <input @checked($role->hasPermission($permission->name)) id="permissions-checkbox-{{$permission->id}}" type="checkbox" value="{{$permission->id}}" name="permissions[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
                                                 <label for="permissions-checkbox-{{$permission->id}}" class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$permission->name}}</label>
                                             </div>
@@ -92,8 +143,8 @@
                                         {{ __('Voltar') }}
                                     </x-danger-button>
                                 </div>
-                            </div>
-                        </form>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -101,81 +152,3 @@
     </div>
     @vite('resources/js/admin/manager-user/roles.js')
 @endsection
-
-
-{{-- @extends('layouts.app')
-
-@section('title', 'Alterar ' . __('Grupo'))
-
-@section('content')
-    <div class="mt-12 max-w-6xl mx-auto bg-slate-50 p-4 rounded">
-        <div class="flex m-2 p-2">
-            <a href="{{ route('admin.roles.index') }}" class="px-4 py-2 bg-indigo-400 hover:bg-indigo-600 rounded">
-                Back</a>
-        </div>
-        <div class="max-w-md mx-auto bg-gray-100 p-6 mt-12 rounded">
-            <form class="space-y-5" method="POST" action="{{ route('admin.roles.update', $role->id) }}">
-                @csrf
-                @method('PUT')
-                <div>
-                    <label for="name" class="text-xl">Name</label>
-                    <input id="name" type="text" name="name" value="{{ $role->name }}"
-                        class="block w-full py-3 px-3 mt-2
-                            text-gray-800 appearance-none
-                            border-2 border-gray-100
-                            focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md" />
-                    @error('name')
-                        <span class="text-sm text-red-400">{{ $message }}</span>
-                    @enderror
-                </div>
-
-                <button type="submit"
-                    class="w-full py-3 mt-10 bg-indigo-400 hover:bg-indigo-600 rounded-md
-                        font-medium text-white uppercase
-                        focus:outline-none hover:shadow-none">
-                    Update
-                </button>
-            </form>
-        </div>
-    </div>
-    <div class="mt-12 max-w-6xl mx-auto bg-slate-50 p-4 rounded">
-        <div class="flex m-2 p-2">
-            <h2>Permissions</h2>
-            <div class="max-w-md mx-auto">
-                @foreach ($role->permissions as $rp)
-                    <span class="m-2 p-2 bg-indigo-300 rounded-md">{{ $rp->name }}</span>
-                @endforeach
-            </div>
-        </div>
-        <div class="max-w-md mx-auto bg-gray-100 p-6 mt-12 rounded">
-            <form class="space-y-5" method="POST" action="{{ route('admin.roles.permissions', $role->id) }}">
-                @csrf
-                <div>
-                    <label class="text-xl" style="max-width: 300px">
-                        <span class="text-gray-700">Permissions</span>
-                        <select name="permissions[]"
-                            class="block w-full py-3 px-3 mt-2
-                            text-gray-800 appearance-none
-                            border-2 border-gray-100
-                            focus:text-gray-500 focus:outline-none focus:border-gray-200 rounded-md"
-                            multiple>
-                            @foreach ($permissions as $permission)
-                                <option value="{{ $permission->id }}" @selected($role->hasPermission($permission->name))>
-                                    {{ $permission->name }}</option>
-                            @endforeach
-                        </select>
-                    </label>
-
-                </div>
-
-                <button type="submit"
-                    class="w-full py-3 mt-10 bg-indigo-400 hover:bg-indigo-600 rounded-md
-                        font-medium text-white uppercase
-                        focus:outline-none hover:shadow-none">
-                    Assign Permissions
-                </button>
-            </form>
-        </div>
-    </div>
-@endsection
- --}}
