@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
+use App\Notifications\notificationUser;
 
 class UserController extends Controller
 {
@@ -146,6 +147,14 @@ class UserController extends Controller
         }else{
             return back()->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.");
         }
+    }
+
+    public function sendToMail(User $user)
+    {
+        $this->negarAcesso('sendnotification', false);
+
+        $user->notify(new notificationUser($user));
+        return back()->with('messageSuccess', 'E-mail foi enviado com sucesso.');
     }
 
     /**

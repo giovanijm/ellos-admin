@@ -71,4 +71,17 @@ class PermissionPolicy
         return $user->role->hasPermission($permissionName);
     }
 
+    /**
+     * Determine whether the user can view the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Permission  $permission
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function sendnotification(User $user, Permission $permission)
+    {
+        $permissionName = $permission->name . "-SendNotification";
+        return $user->role->hasPermission($permissionName);
+    }
+
 }

@@ -50,7 +50,7 @@
                                 </div>
                             </td>
                             <td scope="row" class="px-2 py-2 whitespace-nowrap">{{ $user->role->name }}</td>
-                            @canany(['edit', 'delete'], $objPermissions)
+                            @canany(['edit', 'delete', 'sendnotification'], $objPermissions)
                                 <td scope="row" class="px-2 py-2 border-l">
                                     <div class="hs-dropdown relative inline-flex items-center lg:hidden">
                                         <button id="hs-dropdown-basic" type="button" class="hs-dropdown-toggle hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-12 w-12 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
@@ -60,6 +60,13 @@
                                         </button>
                                         <div class="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 hidden z-10 shadow-md rounded-lg p-2 bg-gray-800 border border-gray-700 divide-gray-700" aria-labelledby="hs-dropdown-basic">
                                             <div class="py-2 first:pt-0 last:pb-0 grid grid-cols-1 gap-y-2">
+                                                @can('sendnotification', $objPermissions)
+                                                    <a href="{{ route('admin.user.notification', $user->id) }}">
+                                                        <x-secondary-button class="w-full" icon="clarity-email-outline-alerted">
+                                                            {{ __('Boas Vindas') }}
+                                                        </x-secondary-button>
+                                                    </a>
+                                                @endcan
                                                 @can('edit', $objPermissions)
                                                     <a href="{{ route('admin.users.edit', $user->id) }}">
                                                         <x-secondary-button class="w-full" icon="codicon-edit">
@@ -81,10 +88,19 @@
                                         </div>
                                     </div>
                                     <div class="hidden lg:flex justify-center">
+                                        @can('sendnotification', $objPermissions)
+                                            <div class="m-1 lg:m2">
+                                                <a href="{{ route('admin.user.notification', $user->id) }}">
+                                                    <x-secondary-button class="w-full lg:w-auto" icon="clarity-email-outline-alerted" adaptative="true">
+                                                        {{ __('Boas Vindas') }}
+                                                    </x-secondary-button>
+                                                </a>
+                                            </div>
+                                        @endcan
                                         @can('edit', $objPermissions)
                                             <div class="m-1 lg:m2">
                                                 <a href="{{ route('admin.users.edit', $user->id) }}">
-                                                    <x-secondary-button class="lg:w-auto" icon="codicon-edit" adaptative="true">
+                                                    <x-secondary-button class="w-full lg:w-auto" icon="codicon-edit" adaptative="true">
                                                         {{ __('admin/default.labelUpdate') }}
                                                     </x-secondary-button>
                                                 </a>
