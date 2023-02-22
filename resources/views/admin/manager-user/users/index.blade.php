@@ -62,7 +62,7 @@
                                             <div class="py-2 first:pt-0 last:pb-0 grid grid-cols-1 gap-y-2">
                                                 @can('sendnotification', $objPermissions)
                                                     <a href="{{ route('admin.user.notification', $user->id) }}">
-                                                        <x-secondary-button class="w-full" icon="clarity-email-outline-alerted">
+                                                        <x-secondary-button class="w-full whitespace-nowrap" icon="clarity-email-outline-alerted">
                                                             {{ __('Boas Vindas') }}
                                                         </x-secondary-button>
                                                     </a>
@@ -91,7 +91,7 @@
                                         @can('sendnotification', $objPermissions)
                                             <div class="m-1 lg:m2">
                                                 <a href="{{ route('admin.user.notification', $user->id) }}">
-                                                    <x-secondary-button class="w-full lg:w-auto" icon="clarity-email-outline-alerted" adaptative="true">
+                                                    <x-secondary-button class="w-full lg:w-auto whitespace-nowrap" icon="clarity-email-outline-alerted" adaptative="true">
                                                         {{ __('Boas Vindas') }}
                                                     </x-secondary-button>
                                                 </a>
