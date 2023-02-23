@@ -29,15 +29,4 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::get('manager-user/users/{user}/notification', [UserController::class, 'sendToMail'])->name('user.notification');
 });
 
-/* Route::get('envio-email', function(){
-    $usuario1 = new User();
-    $usuario1->name = "Giovani Júlio Mariano";
-    $usuario1->email = "giovanijm@gmail.com";
-    $usuario1->role_id = 2;
-
-    return new MailNewUser($usuario1);
-
-    //Mail::send(new newSistemaEllos($usuario1));
-}); */
-
 require __DIR__.'/auth.php';

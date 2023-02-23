@@ -8,7 +8,7 @@
 <footer class="footer p-6 bg-white border-t border-gray-200 shadow xl:flex items-center justify-between hidden">
     <div class="inline-flex items-center">
         <span>
-            <img class="mr-2 w-8" src="/imagem/layout/logoEllos_p1.png"/>
+            <img class="mr-2 w-8" src="{{getUrlImageServidor('802f9a82-0015-43c4-0ab9-2da5d868cd00')}}"/>
         </span>
         <span class="text-sm text-left text-gray-500">
             © 2023 <a href="https://sistemaellos.com.br" class="hover:underline">Ellos Tecnologia™ by GJM</a>.<br/>

@@ -3,14 +3,14 @@
 @section('title', __('Login'))
 
 @section('content')
-    <div class="flex flex-col items-center justify-center h-full sm:p-4 bg-gray-200 bg-cover bg-center" style="background-image: url('/imagem/layout/fundo_principal_claro.jpg')">
+    <div class="flex flex-col items-center justify-center h-full sm:p-4 bg-gray-200 bg-cover bg-center" style="background-image: url('{{getUrlImageServidor('48de15f1-6386-4839-2372-f6544c61bc00')}}')">
         <div class="relative w-full lg:w-10/12 xl:w-8/12 xl2:w-3/12">
             <div class="block shadow-lg rounded-lg">
                 <div class="lg:flex lg:flex-wrap g-0">
                     <div class="lg:w-6/12 px-4 md:px-0 rounded-none lg:rounded-l-lg bg-gray-50 bg-opacity-80">
                         <div class="p-4 md:p-12 md:mx-6">
                             <div class="text-center my-4 sm:my-8">
-                                <img class="mx-auto w-72" src="/imagem/layout/login/logoSistemaEllos.png" alt="Sistema Ellos"/>
+                                <img class="mx-auto w-72" src="{{getUrlImageServidor('bcf7a664-5455-441e-e25d-58abd62d2d00')}}" alt="Sistema Ellos"/>
                             </div>
                             <h2 class="text-2xl font-bold text-gray-700 mb-4">
                                 Entre com suas credências:
@@ -92,7 +92,7 @@
                             </form>
                         </div>
                     </div>
-                    <div class="lg:w-6/12 h-80 sm:h-56 lg:h-auto flex items-center rounded-none lg:rounded-r-lg bg-cover bg-top lg:bg-center" style="background-image: url('/imagem/layout/login/img_login1.jpg')">
+                    <div class="lg:w-6/12 h-80 sm:h-56 lg:h-auto flex items-center rounded-none lg:rounded-r-lg bg-cover bg-top lg:bg-center" style="background-image: url('{{getUrlImageServidor('59e2cc34-a543-4b41-61e9-c07819566300')}}')">
                         <div class="text-white px-4 py-6 md:p-12 md:mx-6"></div>
                     </div>
                 </div>
