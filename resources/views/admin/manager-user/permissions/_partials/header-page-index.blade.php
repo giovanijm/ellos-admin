@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="lg:col-span-2">
-        <form class="" method="GET">
+        <form class="form-clockUi-show" method="GET">
             <div class="lg:flex lg:gap-2">
                 <ul data-tooltip-target="tooltip-btn-filter-row" data-tooltip-placement="top" class="items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex my-2 uppercase">
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
@@ -59,7 +59,7 @@
                         <div class="tooltip-arrow" data-popper-arrow></div>
                     </div>
                     <a href="{{ route('admin.permissions.index') }}">
-                        <button data-tooltip-target="tooltip-btn-clear" data-tooltip-placement="top" type="button" class="p-2.5 ml-2 text-sm font-medium text-white shadow bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                        <button data-tooltip-target="tooltip-btn-clear" data-tooltip-placement="top" type="button" class="clockUi-show p-2.5 ml-2 text-sm font-medium text-white shadow bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                                 <path clip-rule="evenodd" d="M12 5.25c1.213 0 2.415.046 3.605.135a3.256 3.256 0 013.01 3.01c.044.583.077 1.17.1 1.759L17.03 8.47a.75.75 0 10-1.06 1.06l3 3a.75.75 0 001.06 0l3-3a.75.75 0 00-1.06-1.06l-1.752 1.751c-.023-.65-.06-1.296-.108-1.939a4.756 4.756 0 00-4.392-4.392 49.422 49.422 0 00-7.436 0A4.756 4.756 0 003.89 8.282c-.017.224-.033.447-.046.672a.75.75 0 101.497.092c.013-.217.028-.434.044-.651a3.256 3.256 0 013.01-3.01c1.19-.09 2.392-.135 3.605-.135zm-6.97 6.22a.75.75 0 00-1.06 0l-3 3a.75.75 0 101.06 1.06l1.752-1.751c.023.65.06 1.296.108 1.939a4.756 4.756 0 004.392 4.392 49.413 49.413 0 007.436 0 4.756 4.756 0 004.392-4.392c.017-.223.032-.447.046-.672a.75.75 0 00-1.497-.092c-.013.217-.028.434-.044.651a3.256 3.256 0 01-3.01 3.01 47.953 47.953 0 01-7.21 0 3.256 3.256 0 01-3.01-3.01 47.759 47.759 0 01-.1-1.759L6.97 15.53a.75.75 0 001.06-1.06l-3-3z" fill-rule="evenodd"></path>
                             </svg>
@@ -72,7 +72,7 @@
                     </a>
                     @can('new', $objPermissions)
                         <a href="{{ route('admin.permissions.create') }}">
-                            <button data-tooltip-target="tooltip-btn-adicionar" data-tooltip-placement="top" type="button" class="p-2.5 ml-2 text-sm font-medium text-white shadow bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
+                            <button data-tooltip-target="tooltip-btn-adicionar" data-tooltip-placement="top" type="button" class="clockUi-show p-2.5 ml-2 text-sm font-medium text-white shadow bg-green-600 rounded-lg border border-green-600 hover:bg-green-800 focus:ring-4 focus:outline-none focus:ring-green-300">
                                 <x-codicon-new-file class="h-5 w-5" fill="currentColor" />
                                 <span class="sr-only">Limpar</span>
                             </button>

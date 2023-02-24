@@ -23,7 +23,7 @@
                     @foreach ($permissions as $permission)
                         <tr class="even:bg-white odd:bg-gray-50 dark:bg-gray-800 hover:bg-blue-100">
                             <th scope="row" class="px-2 py-2">
-                                <a class="font-bold text-blue-700 hover:underline" href="{{ route('admin.permissions.edit', $permission->id) }}">
+                                <a class="clockUi-show font-bold text-blue-700 hover:underline" href="{{ route('admin.permissions.edit', $permission->id) }}">
                                     #{{ str_pad($permission->id , 4 , '0' , STR_PAD_LEFT) }}
                                 </a>
                             <td class="px-2 py-2 whitespace-nowrap">{{ $permission->name }}</td>
@@ -46,7 +46,7 @@
                                             <div class="py-2 first:pt-0 last:pb-0 grid grid-cols-1 gap-y-2">
                                                 @can('edit', $objPermissions)
                                                     <a href="{{ route('admin.permissions.edit', $permission->id) }}">
-                                                        <x-secondary-button class="w-full" icon="codicon-edit">
+                                                        <x-secondary-button class="w-full clockUi-show" icon="codicon-edit">
                                                             {{ __('admin/default.labelUpdate') }}
                                                         </x-secondary-button>
                                                     </a>
@@ -67,7 +67,7 @@
                                     <div class="hidden lg:flex justify-center">
                                         @can('edit', $objPermissions)
                                             <div class="m-1 lg:m2">
-                                                <a href="{{ route('admin.permissions.edit', $permission->id) }}">
+                                                <a href="{{ route('admin.permissions.edit', $permission->id) }}" class="clockUi-show">
                                                     <x-secondary-button class="lg:w-auto" icon="codicon-edit">
                                                         {{ __('admin/default.labelUpdate') }}
                                                     </x-secondary-button>
@@ -104,5 +104,8 @@
         </div>
     </div>
     @include('admin.manager-user.permissions._partials.modal')
-    @vite('resources/js/admin/manager-user/permissions.js')
 @endsection
+
+@push('scripts')
+        @vite('resources/js/admin/manager-user/permissions.js')
+@endpush

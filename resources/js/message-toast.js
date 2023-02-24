@@ -1,23 +1,36 @@
-if($('div.alert-toast').length)
-{
-    let showAlertToast = function (fechar = null, duracaoMsg = 5000) {
-        let target = $('div.alert-toast');
-        let optionsTM = {
-            transition: 'transition-opacity',
-            duration: 1000,
-            timing: 'ease-out',
-        };
+import { Modal } from 'flowbite';
 
-        var dismiss = new Array();
-        for(var i = 0; i < target.length; i++){
-            dismiss[i] = new Dismiss(target[i], null, optionsTM);
-        }
+// set the modal menu element
+const $targetModalLoading = document.getElementById('modalLoading');
 
-        setTimeout(function() {
-            for(var i = 0; i < dismiss.length; i++){
-                dismiss[i].hide();
-            }
-        }, duracaoMsg);
-    }
-    showAlertToast(null, 6000);
-}
+// options with default values
+const options = {
+  placement: 'center-center',
+  backdrop: 'static',
+  backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-[60]',
+  closable: false,
+  onHide: () => {
+
+  },
+  onShow: () => {
+
+  },
+  onToggle: () => {
+
+  }
+};
+
+var modalLoading = new Modal($targetModalLoading, options);
+
+
+$('.clockUi-show').on('click', function(){
+    modalLoading.show();
+});
+
+$('.form-clockUi-show').on('submit', function(){
+    modalLoading.show();
+});
+
+$('.clockUi-close').on('click', function(){
+    modalLoading.hide();
+});

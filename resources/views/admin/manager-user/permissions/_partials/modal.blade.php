@@ -18,12 +18,6 @@
                         Deseja excluír o registro <span id="lblMemsagemExclusao"></span>?
                     </h3>
                     <div class="grid grid-cols-1 sm:grid-cols-2 gap-2">
-                        <x-danger-button
-                            type="submit"
-                            icon="codicon-trash"
-                        >
-                            Sim, quero excluir
-                        </x-danger-button>
                         <x-secondary-button
                             id="btnRecusarModal"
                             type="button"
@@ -32,6 +26,13 @@
                         >
                             Não, cancelar
                         </x-secondary-button>
+                        <x-danger-button
+                            type="submit"
+                            icon="codicon-trash"
+                            class="clockUi-show"
+                        >
+                            Sim, quero excluir
+                        </x-danger-button>
                     </div>
                 </div>
             </form>

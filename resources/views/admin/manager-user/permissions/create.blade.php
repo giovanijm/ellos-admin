@@ -28,7 +28,7 @@
                     </div>
                 </div>
                 <div class="lg:col-span-2 mt-2 lg:mt-0">
-                    <form class="w-full" method="POST" action="{{ route('admin.permissions.store') }}">
+                    <form class="form-clockUi-show w-full" method="POST" action="{{ route('admin.permissions.store') }}">
                         <div class="sm:overflow-hidden rounded-lg sm:border">
                             @include('admin.manager-user.permissions._partials.form')
                             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 bg-gray-50 px-4 py-3 sm:px-6">
@@ -42,6 +42,7 @@
                                     type="button"
                                     id="btnVoltar"
                                     icon="codicon-reply"
+                                    class="clockUi-show"
                                 >
                                     {{ __('Voltar') }}
                                 </x-danger-button>
