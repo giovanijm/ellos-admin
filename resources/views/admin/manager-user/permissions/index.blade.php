@@ -10,9 +10,9 @@
             <table class="w-full text-sm text-left text-gray-800 table-auto">
                 <thead class="bg-gray-700 text-gray-200">
                     <tr>
-                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('id','Código')</th>
-                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('name', trans('admin/permissions.labelPermissionName'))</th>
-                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('description', trans('admin/permissions.labelPermissionDescription'))</th>
+                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('id','Código',null, ['class' => 'clockUi-show'])</th>
+                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('name', trans('admin/permissions.labelPermissionName'),null, ['class' => 'clockUi-show'])</th>
+                        <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('description', trans('admin/permissions.labelPermissionDescription'),null, ['class' => 'clockUi-show'])</th>
                         <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">{{ __('Grupos') }}</th>
                         @canany(['edit', 'delete'], $objPermissions)
                             <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">Ações</th>

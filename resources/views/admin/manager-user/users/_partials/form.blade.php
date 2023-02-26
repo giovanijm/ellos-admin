@@ -157,7 +157,7 @@
                         type="text"
                         name="created_at"
                         :disabled=true
-                        :value="!empty($user) ? $user->created_at->format('d/m/Y - H:i:s') : old('created_at')"
+                        :value="!empty($user) ? $user->created_at : old('created_at')"
                     />
                 </div>
             </div>
@@ -174,7 +174,7 @@
                         type="text"
                         name="updated_at"
                         :disabled=true
-                        :value="!empty($user) ? $user->updated_at->format('d/m/Y - H:i:s') : old('updated_at')"
+                        :value="!empty($user) ? $user->updated_at : old('updated_at')"
                     />
                 </div>
             </div>

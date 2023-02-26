@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Models\Admin\ManagerUser\Permission;
 use App\Http\Requests\Admin\ManagerUser\PermissionRequest;
 use Illuminate\Http\Request;
-use Carbon\Carbon;
 
 class PermissionController extends Controller
 {
@@ -114,7 +113,6 @@ class PermissionController extends Controller
         }
 
         $data = $request->all();
-        $data['updated_at'] = Carbon::now('America/Sao_Paulo');
 
         $returMsg = "[".$permission->id."]".$permission->name;
 

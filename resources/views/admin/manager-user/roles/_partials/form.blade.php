@@ -32,12 +32,12 @@
         <div class="col-span-2 sm:col-span-1 pb-2 sm:pb-0">
             <label for="created_at" class="block text-sm text-gray-700">Data de Criação:</label>
             <input type="text" name="created_at" id="created_at"
-            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="@if(!empty($role)){{$role->created_at->format('d/m/Y - H:i:s')}}@else{{old('created_at')}}@endif">
+            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="@if(!empty($role)){{$role->created_at}}@else{{old('created_at')}}@endif">
         </div>
         <div class="col-span-2 sm:col-span-1">
             <label for="updated_at" class="block text-sm text-gray-700">Data de Alteração:</label>
             <input type="text" name="updated_at" id="updated_at"
-            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="@if(!empty($role)){{ $role->updated_at->format('d/m/Y - H:i:s')}}@else{{old('updated_at')}}@endif">
+            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="@if(!empty($role)){{ $role->updated_at}}@else{{old('updated_at')}}@endif">
         </div>
     </div>
 </div>

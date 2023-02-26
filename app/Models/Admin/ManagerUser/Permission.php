@@ -5,6 +5,7 @@ namespace App\Models\Admin\ManagerUser;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
+use Carbon\Carbon;
 
 class Permission extends Model
 {
@@ -20,6 +21,16 @@ class Permission extends Model
         'name',
         'description',
     ];
+
+    public function getCreatedAtAttribute($created_at)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $created_at)->format('d/m/Y - H:i:s');
+    }
+
+    public function getUpdatedAtAttribute($updated_at)
+    {
+        return Carbon::createFromFormat('Y-m-d H:i:s', $updated_at)->format('d/m/Y - H:i:s');
+    }
 
     public function users()
     {
