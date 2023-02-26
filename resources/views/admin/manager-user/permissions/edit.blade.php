@@ -1,10 +1,10 @@
-@extends('layouts.app')
-
-@section('title', 'Alterar ' . __('admin/permissions.labelPermissions'))
-
-@section('content')
+<x-admin.layouts.app
+    title="Alterar {{  __('admin/permissions.labelPermissions') }}"
+    meta-description="Página Principal do Sistema"
+>
     @include('admin.manager-user.permissions._partials.breadcumbs')
-    <div class="p-3 sm:p-4 lg:mt-3 bg-white sm:shadow rounded-lg">
+    <div class="ellos-main-content">
+    <div class="p-3 sm:p-4">
         <div class="flex items-center mb-2">
             <div class="flex items-center justify-center text-gray-100 bg-green-700 rounded-md w-8 h-8 lg:w-12 lg:h-12 shadow">
                 <x-clarity-note-edit-line class="h-4 w-4 sm:h-6 sm:w-6" fill="currentColor" />
@@ -55,4 +55,4 @@
         </div>
     </div>
     @vite('resources/js/admin/manager-user/permissions.js')
-@endsection
+</x-admin.layouts.app>

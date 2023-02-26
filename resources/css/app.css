@@ -3,3 +3,370 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+/* Estilo do Header */
+
+@layer components {
+/* ==================================================================================================
+*| Estilo do Header
+*|=================================================================================================== */
+    .ellos-header {
+        @apply
+            top-0
+            inset-x-0
+            grid
+            grid-cols-2
+            h-16 lg:h-1/6
+            text-sm
+            bg-gradient-to-b from-teal-500 to-teal-700
+            dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-600;}
+
+        .ellos-header-left {
+            @apply
+                flex
+                items-start
+                justify-start
+                w-full
+                p-2;}
+
+        .ellos-header-right {
+            @apply
+                flex
+                items-start
+                justify-end
+                w-full
+                p-2;}
+
+        .ellos-header-button {
+            @apply
+                p-3
+                block
+                justify-center
+                items-center
+                rounded-lg
+                text-sm
+                font-medium
+                text-teal-600
+                dark:text-gray-200
+                hover:text-teal-800 dark:hover:text-red-200
+                bg-teal-300
+                dark:bg-gray-600
+                shadow-sm
+                hover:border
+                hover:border-teal-200 dark:hover:border-red-300;}
+
+
+
+
+    .ellos-main {
+        @apply
+            flex-1
+            overflow-x-hidden
+            overflow-y-auto
+            lg:-mt-32 mb-0 lg:mb-5 lg:mx-5 lg:p-2;}
+
+    .ellos-main-content {
+        @apply
+            lg:rounded-xl
+            lg:shadow
+            mt-0 lg:mt-3
+            p-2 lg:p-4 bg-white;}
+
+
+    .ellos-bradcrumbs-layout {
+        @apply
+            hidden
+            lg:flex
+            lg:items-center
+            p-4;
+    }
+
+    .ellos-bradcrumbs{
+        @apply
+            inline-flex
+            items-center;
+    }
+
+    .ellos-bradcrumbs .item{
+        @apply
+            flex items-center
+            text-sm font-normal
+            uppercase
+            text-white dark:text-red-100;
+    }
+
+    .ellos-bradcrumbs .item A{
+        @apply
+            inline-flex
+            items-center
+            hover:underline-offset-4
+            hover:underline
+            hover:text-teal-800 dark:hover:text-red-300;
+    }
+
+    .ellos-bradcrumbs .item P{
+        @apply
+            ml-2;
+    }
+
+    .ellos-bradcrumbs .item-active{
+        @apply
+            flex items-center
+            text-sm font-bold
+            uppercase
+            text-teal-800 dark:text-red-300;
+    }
+
+    .ellos-bradcrumbs .item-active P{
+        @apply
+            ml-2;
+    }
+
+    .ellos-bradcrumbs .icon-item{
+        @apply
+            w-6 h-6;
+    }
+
+    .ellos-bradcrumbs .icon-divisor{
+        @apply
+            w-6 h-6
+            mx-2
+            text-white dark:text-red-100;
+    }
+
+/* ==================================================================================================
+*| Estilo do Footer
+*|=================================================================================================== */
+    .ellos-footer {
+        @apply
+            text-sm
+            text-left
+            text-gray-500
+            dark:text-gray-600 p-6
+            bg-white border-t
+            border-gray-200
+            shadow
+            lg:flex
+            items-center
+            justify-between
+            hidden
+            dark:bg-gray-300;}
+
+        .ellos-footer-left {
+            @apply
+                inline-flex
+                items-center;}
+
+        .ellos-footer-right {
+            @apply
+                flex flex-wrap
+                items-center
+                mt-3
+                sm:mt-0
+                mr-24;}
+
+        .ellos-footer-link {
+                @apply
+                    hover:underline
+                    hover:text-blue-700
+                    dark:text-gray-600
+                    dark:hover:text-gray-800;}
+
+
+/* ==================================================================================================
+*| Estilo do Sidebar
+*|=================================================================================================== */
+    .ellos-sidebar {
+        @apply
+            py-4
+            bg-gray-50 dark:bg-gray-900
+            border-r border-r-gray-200 dark:border-r-gray-700;}
+
+        .ellos-sidebar NAV {
+            @apply
+                mt-4
+                mr-1 lg:mr-0;}
+
+            .ellos-sidebar NAV H5{
+                @apply
+                    uppercase
+                    pl-6 py-3 mt-2
+                    font-bold
+                    text-sm text-left
+                    text-gray-400  dark:text-gray-600;}
+
+            .ellos-sidebar NAV .modulo-item{
+                @apply
+                    flex items-center
+                    px-6 py-2 my-1 rounded-r-lg
+                    text-lg font-normal
+                    hover:bg-teal-50 dark:hover:bg-gray-800
+                    text-gray-600 dark:text-gray-400
+                    hover:text-gray-900 dark:hover:text-gray-200
+                    hover:border-r-2 hover:border-r-teal-600 dark:hover:border-r-red-300 hover:shadow;}
+
+                .ellos-sidebar NAV .modulo-item .icon-item{
+                    @apply
+                        w-6 h-6
+                        text-gray-600 dark:text-gray-400;}
+
+            .ellos-sidebar NAV .modulo-item-active{
+                @apply
+                    flex items-center
+                    px-6 py-2 my-1 rounded-r-lg
+                    text-lg font-semibold shadow
+                    bg-teal-50 dark:bg-gray-800
+                    hover:underline hover:bg-teal-50 dark:hover:bg-gray-800
+                    text-teal-600 dark:text-red-300
+                    border-r-2 border-r-teal-600 dark:border-r-red-300;}
+
+                .ellos-sidebar NAV .modulo-item-active .icon-item{
+                    @apply
+                        w-6 h-6
+                        text-teal-600 dark:text-red-300;}
+
+
+/* ==================================================================================================
+*| Estilo do Avatar
+*|=================================================================================================== */
+    .ellos-avatar-horizontal {
+        @apply
+            grid grid-cols-1
+            place-items-center
+            p-2 gap-y-4;}
+
+        .avatar-img {
+            @apply
+                relative inline-flex items-center justify-center
+                w-14 h-14
+                ring-1 ring-offset-4
+                ring-gray-400 ring-offset-gray-100 dark:ring-gray-400 dark:ring-offset-gray-800
+                drop-shadow-sm overflow-hidden rounded-full
+                bg-gray-300 dark:bg-gray-600;}
+
+            .avatar-img P {
+                @apply
+                font-bold text-sm
+                text-gray-700 dark:text-gray-300;}
+
+            .avatar-img IMG {
+            @apply
+            object-cover w-full h-full;}
+
+        .avatar-content {
+            @apply
+                w-full
+                text-center text-sm
+                text-gray-700 dark:text-gray-300;}
+
+            .avatar-content H1 {
+                @apply
+                    uppercase
+                    font-bold
+                    text-teal-800 dark:text-red-400;}
+
+            .avatar-content P {
+        @apply
+            lowercase
+            font-normal
+            text-gray-500 dark:text-gray-500;}
+
+    .ellos-avatar-horizontal-md {
+        @apply
+            ellos-avatar-horizontal;}
+
+        .ellos-avatar-horizontal-md .avatar-img {
+            @apply
+                w-20 h-20;}
+
+        .ellos-avatar-horizontal-md .avatar-img P {
+            @apply
+                text-xl;}
+
+        .ellos-avatar-horizontal-md .avatar-content H1 {
+            @apply
+                text-sm;}
+
+    .ellos-avatar-horizontal-lg {
+        @apply
+            ellos-avatar-horizontal;}
+
+        .ellos-avatar-horizontal-lg .avatar-img {
+            @apply
+                w-24 h-24;}
+
+        .ellos-avatar-horizontal-lg .avatar-img P {
+            @apply
+                text-3xl;}
+
+        .ellos-avatar-horizontal-lg .avatar-content H1 {
+                @apply
+                    text-lg;}
+
+    .ellos-avatar-horizontal-sm {
+        @apply
+            ellos-avatar-horizontal
+            gap-y-2;}
+
+        .ellos-avatar-horizontal-sm .avatar-img {
+            @apply
+                w-[36px] h-[36px]
+                ring-offset-2;}
+
+        .ellos-avatar-horizontal-sm .avatar-img P {
+            @apply
+                text-sm;}
+
+        .ellos-avatar-horizontal-sm .avatar-content H1 {
+                @apply
+                    font-normal
+                    text-xs;}
+
+
+/* ==================================================================================================
+*| Estilo do Menu DropDown
+*|=================================================================================================== */
+    .ellos-dropdown-menu {
+        @apply
+            hidden
+            w-56 min-w-[15rem]
+            z-10 mt-2 p-2
+            bg-white dark:bg-gray-800
+            shadow rounded-lg;}
+
+        .ellos-dropdown-menu-header {
+            @apply
+                py-3 px-5 -m-2
+                rounded-t-lg
+                text-sm text-gray-100
+                bg-gray-200 dark:bg-gray-800
+                border-b border-b-gray-200 dark:border-b-gray-600 ;}
+
+            .ellos-dropdown-menu-header H1{
+                @apply
+                text-teal-700 dark:text-red-300
+                    font-bold
+                    uppercase;}
+
+            .ellos-dropdown-menu-header P{
+                    @apply
+                        font-medium
+                        text-gray-600 dark:text-gray-300;}
+
+        .ellos-dropdown-menu-content {
+            @apply
+                mt-2 py-2
+                first:pt-0
+                last:pb-0;}
+
+            .ellos-dropdown-menu-content A {
+                    @apply
+                        flex items-center
+                        gap-x-3.5 py-2 px-3
+                        rounded-md hover:underline
+                        text-sm text-gray-800 hover:text-teal-600 dark:text-gray-400 dark:hover:text-red-300
+                        hover:bg-gray-100 dark:hover:bg-gray-700
+                        focus:ring-2 focus:ring-teal-600;}
+
+}
