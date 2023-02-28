@@ -15,28 +15,30 @@
         @apply
             top-0
             inset-x-0
-            grid
-            grid-cols-2
+            flex
             h-16 lg:h-1/6
+            p-2
             text-sm
-            bg-gradient-to-b from-teal-500 to-teal-700
+            bg-gradient-to-b from-teal-700 to-teal-900
             dark:bg-gradient-to-b dark:from-gray-800 dark:to-gray-600;}
 
         .ellos-header-left {
             @apply
-                flex
+                flex-none
                 items-start
-                justify-start
-                w-full
-                p-2;}
+                justify-start;}
+
+        .ellos-header-center {
+            @apply
+                grow
+                items-start
+                justify-start;}
 
         .ellos-header-right {
             @apply
-                flex
+                flex-none
                 items-start
-                justify-end
-                w-full
-                p-2;}
+                justify-end;}
 
         .ellos-header-button {
             @apply
@@ -47,17 +49,13 @@
                 rounded-lg
                 text-sm
                 font-medium
-                text-teal-600
-                dark:text-gray-200
+                text-teal-300 dark:text-gray-200
                 hover:text-teal-800 dark:hover:text-red-200
-                bg-teal-300
+                bg-teal-600
                 dark:bg-gray-600
                 shadow-sm
                 hover:border
-                hover:border-teal-200 dark:hover:border-red-300;}
-
-
-
+                hover:border-teal-400 dark:hover:border-red-300;}
 
     .ellos-main {
         @apply
@@ -73,28 +71,24 @@
             mt-0 lg:mt-3
             p-2 lg:p-4 bg-white;}
 
-
     .ellos-bradcrumbs-layout {
         @apply
             hidden
             lg:flex
             lg:items-center
-            p-4;
-    }
+            p-4;}
 
     .ellos-bradcrumbs{
         @apply
             inline-flex
-            items-center;
-    }
+            items-center;}
 
     .ellos-bradcrumbs .item{
         @apply
             flex items-center
             text-sm font-normal
             uppercase
-            text-white dark:text-red-100;
-    }
+            text-white dark:text-red-100;}
 
     .ellos-bradcrumbs .item A{
         @apply
@@ -102,38 +96,34 @@
             items-center
             hover:underline-offset-4
             hover:underline
-            hover:text-teal-800 dark:hover:text-red-300;
-    }
+            hover:text-teal-400 dark:hover:text-red-300
+            drop-shadow shadow-black;}
 
     .ellos-bradcrumbs .item P{
         @apply
-            ml-2;
-    }
+            ml-2;}
 
     .ellos-bradcrumbs .item-active{
         @apply
             flex items-center
             text-sm font-bold
             uppercase
-            text-teal-800 dark:text-red-300;
-    }
+            text-teal-300 dark:text-red-300
+            drop-shadow shadow-black;}
 
     .ellos-bradcrumbs .item-active P{
         @apply
-            ml-2;
-    }
+            ml-2;}
 
     .ellos-bradcrumbs .icon-item{
         @apply
-            w-6 h-6;
-    }
+            w-6 h-6;}
 
     .ellos-bradcrumbs .icon-divisor{
         @apply
             w-6 h-6
             mx-2
-            text-white dark:text-red-100;
-    }
+            text-white dark:text-red-100;}
 
 /* ==================================================================================================
 *| Estilo do Footer

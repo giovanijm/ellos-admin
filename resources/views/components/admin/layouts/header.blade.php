@@ -17,6 +17,9 @@
             </svg>
         </button>
     </div>
+    <div class="ellos-header-center">
+
+    </div>
     <div class="ellos-header-right">
         <div class="hs-dropdown relative inline-flex">
             <button id="hs-dropdown-basic" type="button" class="hs-dropdown-toggle ellos-header-button">

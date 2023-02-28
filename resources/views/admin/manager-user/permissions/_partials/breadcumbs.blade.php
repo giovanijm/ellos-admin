@@ -34,3 +34,4 @@
         </li>
     </ol>
 </x-breadcrumb>
+@include('layouts.message')
