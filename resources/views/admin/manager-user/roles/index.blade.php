@@ -1,10 +1,15 @@
-@extends('layouts.app')
+<x-admin.layouts.app
+    title="{{  __('admin/roles.titlePageIndex') }}"
+    meta-description="Página Principal do Sistema"
+>
+    @section('submenu')
+        @include('admin.manager-user._partials.submenu')
+    @endsection
 
-@section('title', __('admin/roles.titlePageIndex'))
-
-@section('content')
     @include('admin.manager-user.roles._partials.breadcumbs')
-    <div class="p-3 sm:p-4 lg:mt-3 bg-white sm:shadow rounded-lg">
+
+    <div class="ellos-main-content">
+        <div class="p-3 sm:p-4">
         @include('admin.manager-user.roles._partials.header-page-index')
         <div class="overflow-x-auto mt-4 bg-white border rounded-lg">
             <table class="w-full text-sm text-left text-gray-800 table-auto">
@@ -144,7 +149,11 @@
                 'filter_row'    => request()->get('filter_row', 'name'),
             ])->links() !!}
         </div>
+        @push('modalGeral')
+            @include('admin.manager-user.roles._partials.modal')
+        @endpush
     </div>
-    @include('admin.manager-user.roles._partials.modal')
-    @vite('resources/js/admin/manager-user/roles.js')
-@endsection
+    @push('scripts')
+        @vite('resources/js/admin/manager-user/roles.js')
+    @endpush
+</x-admin.layouts.app>

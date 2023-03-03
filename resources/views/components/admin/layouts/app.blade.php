@@ -10,17 +10,17 @@
         <title>{{ config('app.name', 'Sistema Ellos') }}{{ $title ?? false ? ' - '.$title : '' }}</title>
         <meta name="description" content="{{ $metaDescription ?? 'Sistema Ellos' }}" />
 
-        @vite('resources/css/app.css')
+        @vite('resources/css/app.scss')
         @vite('resources/js/app.js')
         @vite('resources/js/message-toast.js')
         @routes
-
+        @stack('scripts')
     </head>
 
     <body>
-        <div class="flex h-screen font-roboto bg-gray-100">
+        <div class="ellos-body">
+            @stack('modalGeral')
             <x-admin.layouts.sidebar/>
-
             <div class="flex-1 flex flex-col overflow-hidden">
                 <x-admin.layouts.header/>
 

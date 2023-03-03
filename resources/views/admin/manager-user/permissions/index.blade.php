@@ -2,7 +2,12 @@
     title="{{  __('admin/permissions.titlePageIndex') }}"
     meta-description="Página Principal do Sistema"
 >
+    @section('submenu')
+        @include('admin.manager-user._partials.submenu')
+    @endsection
+
     @include('admin.manager-user.permissions._partials.breadcumbs')
+
     <div class="ellos-main-content">
         <div class="p-3 sm:p-4">
             @include('admin.manager-user.permissions._partials.header-page-index')
@@ -103,7 +108,11 @@
                     ])->links() !!}
             </div>
         </div>
-        @include('admin.manager-user.permissions._partials.modal')
+        @push('modalGeral')
+            @include('admin.manager-user.permissions._partials.modal')
+        @endpush
     </div>
-    @vite('resources/js/admin/manager-user/permissions.js')
+    @push('scripts')
+        @vite('resources/js/admin/manager-user/permissions.js')
+    @endpush
 </x-admin.layouts.app>

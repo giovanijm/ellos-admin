@@ -132,7 +132,7 @@
         @apply
             text-sm
             text-left
-            text-gray-500
+            text-gray-400
             dark:text-gray-600 p-6
             bg-white border-t
             border-gray-200
@@ -163,59 +163,231 @@
                     dark:text-gray-600
                     dark:hover:text-gray-800;}
 
+/* ==================================================================================================
+*| Estilo do Body e Tags HTML
+*|=================================================================================================== */
+.ellos-body {
+    @apply
+        flex h-screen
+        bg-gray-50;
+}
+
 
 /* ==================================================================================================
 *| Estilo do Sidebar
 *|=================================================================================================== */
-    .ellos-sidebar {
+.ellos-sidebar {
+    @apply
+    py-4
+    bg-gray-100 dark:bg-gray-900
+    shadow
+    border-r
+    border-r-gray-200 dark:border-r-gray-700;
+
+    NAV {
         @apply
-            py-4
-            bg-gray-50 dark:bg-gray-900
-            border-r border-r-gray-200 dark:border-r-gray-700;}
+        mt-4
+        mr-1 lg:mr-0;
 
-        .ellos-sidebar NAV {
+        P {
             @apply
-                mt-4
-                mr-1 lg:mr-0;}
+            uppercase
+            pl-6 py-2 mt-2
+            font-bold
+            text-xs text-left
+            text-gray-400  dark:text-gray-600;
+        }
 
-            .ellos-sidebar NAV H5{
-                @apply
-                    uppercase
-                    pl-6 py-3 mt-2
-                    font-bold
-                    text-sm text-left
-                    text-gray-400  dark:text-gray-600;}
+        .modulo-item {
+            @apply
+            flex items-center
+            px-6 py-2 my-1 rounded-r-lg
+            text-base font-normal
+            hover:bg-teal-50 dark:hover:bg-gray-800
+            text-gray-600 dark:text-gray-400
+            hover:text-gray-900 dark:hover:text-gray-200
+            hover:border-r-2 hover:border-r-teal-600 dark:hover:border-r-red-300 hover:shadow;
 
-            .ellos-sidebar NAV .modulo-item{
+            .icon-item{
                 @apply
-                    flex items-center
-                    px-6 py-2 my-1 rounded-r-lg
-                    text-lg font-normal
-                    hover:bg-teal-50 dark:hover:bg-gray-800
+                w-5 h-5;
+            }
+        }
+
+        .modulo-item-active{
+            @apply
+            flex items-center
+            px-6 py-2 my-1 rounded-r-lg
+            text-base font-semibold shadow
+            bg-teal-50 dark:bg-gray-800
+            hover:underline hover:bg-teal-50 dark:hover:bg-gray-800
+            text-teal-600 dark:text-red-300
+            border-r-2 border-r-teal-600 dark:border-r-red-300;
+
+            .icon-item{
+                @apply
+                w-5 h-5;
+            }
+        }
+
+        .modulo {
+            @apply
+            mb-6;
+
+            .menu-item {
+                @apply
+                flex
+                pl-6 mx-1 my-1
+                items-center
+                text-gray-600 dark:text-gray-400
+                hover:text-gray-900 dark:hover:text-gray-200
+                hover:underline;
+
+                .icon-item {
+                    @apply
+                    w-5 h-5;
+                }
+
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-normal
                     text-gray-600 dark:text-gray-400
-                    hover:text-gray-900 dark:hover:text-gray-200
-                    hover:border-r-2 hover:border-r-teal-600 dark:hover:border-r-red-300 hover:shadow;}
+                    hover:text-gray-900 dark:hover:text-gray-200;
+                }
+            }
 
-                .ellos-sidebar NAV .modulo-item .icon-item{
-                    @apply
-                        w-6 h-6
-                        text-gray-600 dark:text-gray-400;}
-
-            .ellos-sidebar NAV .modulo-item-active{
+            .menu-item-active{
                 @apply
-                    flex items-center
-                    px-6 py-2 my-1 rounded-r-lg
-                    text-lg font-semibold shadow
-                    bg-teal-50 dark:bg-gray-800
-                    hover:underline hover:bg-teal-50 dark:hover:bg-gray-800
-                    text-teal-600 dark:text-red-300
-                    border-r-2 border-r-teal-600 dark:border-r-red-300;}
+                flex
+                pl-6 mx-1 my-3
+                items-center
+                text-teal-700 dark:text-red-200
+                hover:text-teal-700 dark:hover:text-red-300;
 
-                .ellos-sidebar NAV .modulo-item-active .icon-item{
+                .icon-item {
                     @apply
-                        w-6 h-6
-                        text-teal-600 dark:text-red-300;}
+                    w-5 h-5;
+                }
 
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-normal
+                    text-teal-700 dark:text-red-200
+                    hover:text-teal-700 dark:hover:text-red-300;
+                }
+            }
+
+            .menu-item-open{
+                @apply
+                flex
+                pl-6 mx-1 my-3
+                items-center
+                text-gray-600 dark:text-gray-400
+                hover:text-gray-900 dark:hover:text-gray-200;
+
+                .icon-item {
+                    @apply
+                    w-5 h-5;
+                }
+
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-bold
+                    text-gray-600 dark:text-gray-400
+                    hover:text-gray-900 dark:hover:text-gray-200;
+                }
+            }
+
+            .menu-item-active-open{
+                @apply
+                flex
+                pl-6 mx-1 my-3
+                items-center
+                text-teal-700 dark:text-red-200
+                hover:text-teal-700 dark:hover:text-red-300;
+
+                .icon-item {
+                    @apply
+                    w-5 h-5;
+                }
+
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-bold
+                    text-teal-700 dark:text-red-200
+                    hover:text-teal-700 dark:hover:text-red-300;
+                }
+            }
+
+            .submenu {
+                @apply
+                space-y-2;
+
+                .submenu-item {
+                    @apply
+                    flex
+                    pl-12 mx-1 my-1
+                    items-center
+                    text-sm
+                    capitalize
+                    text-gray-500 dark:text-gray-400
+                    hover:text-gray-700 dark:hover:text-gray-200;
+
+                    .icon-item {
+                        @apply
+                        w-4 h-4;
+                    }
+
+                    P {
+                        @apply
+                        p-0 m-0
+                        ml-1 my-1 text-xs
+                        font-normal
+                        capitalize
+                        text-gray-500 dark:text-gray-400
+                        hover:text-gray-700 dark:hover:text-gray-200
+                        hover:underline;
+                    }
+                }
+
+                .submenu-item-active {
+                    @apply
+                    flex
+                    pl-12 mx-1 my-1
+                    items-center
+                    text-sm
+                    capitalize
+                    text-teal-700 dark:text-white
+                    hover:text-teal-700 dark:hover:text-red-200;
+
+                    .icon-item {
+                        @apply
+                        w-4 h-4;
+                    }
+
+                    P {
+                        @apply
+                        p-0 m-0
+                        ml-1 my-1 text-xs
+                        font-normal
+                        capitalize
+                        text-teal-700 dark:text-white
+                        hover:text-teal-700 dark:hover:text-red-200
+                        hover:underline;
+                    }
+                }
+            }
+        }
+    }
+}
 
 /* ==================================================================================================
 *| Estilo do Avatar

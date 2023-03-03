@@ -53,5 +53,7 @@
             </div>
         </div>
     </div>
-    @vite('resources/js/admin/manager-user/permissions.js')
+    @push('scripts')
+        @vite('resources/js/admin/manager-user/permissions.js')
+    @endpush
 </x-admin.layouts.app>

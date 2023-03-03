@@ -44,7 +44,7 @@
         </li>
         <li>
             <a href="#"
-                class="ellos-footer-link"
+                class="mr-6 ellos-footer-link"
                 data-drawer-target="drawer-right-contato"
                 data-drawer-show="drawer-right-contato"
                 data-drawer-placement="right"

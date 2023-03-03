@@ -1,12 +1,12 @@
 @props(['isActive' => 'false', 'open' => 'true'])
 
 @php
-    $classes = "flex items-center p-2 text-gray-100 transition-colors rounded-md hover:bg-indigo-100 hover:text-gray-700 mx-1 my-2";
+    $classes = "menu-item";
 @endphp
 <a
     href="#"
     {{ $attributes->merge(['class' => $classes]) }}
-    :class="{'bg-gray-700': isActive || open}"
+    :class="{'menu-item-active': isActive && !open, 'menu-item-open': open && !isActive, 'menu-item-active-open': isActive && open,}"
     @click="$event.preventDefault(); open = !open"
     role="button"
     aria-haspopup="true"

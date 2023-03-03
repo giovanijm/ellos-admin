@@ -16,7 +16,7 @@
 @if (Session::has('messageSuccess'))
     <div id="toastMessage-Info" class="alert-toast flex items-center p-4 mb-4 mt-2 lg:mt-0 text-green-800 border-l-4 border-green-300 bg-green-50 rounded-lg shadow-lg" role="alert" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)">
         <div class="fa-2x flex-shrink-0 inline-flex justify-center items-center w-[46px] h-[46px] sm:w-[62px] sm:h-[62px] rounded-full border-4 border-green-300 bg-green-200 text-green-500 dark:bg-green-700 dark:border-green-600 dark:text-green-100 mr-4">
-            <i class="fa-solid fa-circle-info fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;" ></i>
+            <x-eos-thumb-up class="w-8 h-8" />
         </div>
         <div>
             <span class="font-bold">Sucesso:</span><br/>{{ Session::get('messageSuccess') }}
@@ -30,7 +30,7 @@
 @if (Session::has('messageWarning'))
     <div id="toastMessage-Info" class="alert-toast flex items-center p-4 mb-4 mt-2 lg:mt-0 text-yellow-800 border-l-4 border-yellow-300 bg-yellow-50 rounded-lg shadow-lg" role="alert" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)">
         <div class="fa-2x flex-shrink-0 inline-flex justify-center items-center w-[46px] h-[46px] sm:w-[62px] sm:h-[62px] rounded-full border-4 border-yellow-300 bg-yellow-200 text-yellow-500 dark:bg-yellow-700 dark:border-yellow-600 dark:text-red-100 mr-4">
-            <i class="fa-solid fa-circle-info fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;" ></i>
+            <x-eos-waving-hand class="w-8 h-8" />
         </div>
         <div>
             <span class="font-bold">Atenção:</span><br/>{{ Session::get('messageWarning') }}
@@ -44,7 +44,7 @@
 @if (Session::has('messageDanger'))
     <div id="toastMessage-Info" class="alert-toast flex items-center p-4 mb-4 mt-2 lg:mt-0 text-red-800 border-l-4 border-red-300 bg-red-50 rounded-lg shadow-lg" role="alert" x-data="{ show: true }" x-show="show" x-transition x-init="setTimeout(() => show = false, 5000)">
         <div class="fa-2x flex-shrink-0 inline-flex justify-center items-center w-[46px] h-[46px] sm:w-[62px] sm:h-[62px] rounded-full border-4 border-red-300 bg-red-200 text-red-500 dark:bg-red-700 dark:border-red-600 dark:text-red-100 mr-4">
-            <i class="fa-solid fa-circle-info fa-beat-fade" style="--fa-beat-fade-opacity: 0.67; --fa-beat-fade-scale: 1.075;" ></i>
+            <x-eos-dangerous class="w-8 h-8" />
         </div>
         <div>
             <span class="font-bold">Erro:</span><br/>{{ Session::get('messageDanger') }}

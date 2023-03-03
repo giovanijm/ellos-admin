@@ -8,7 +8,7 @@
     <meta name="referrer" content="always">
 
     <title>@yield('title') - {{ config('app.name', 'Sistema Ellos') }}</title>
-    @vite('resources/css/app.css')
+    @vite('resources/css/app.scss')
     @vite('resources/js/app.js')
     @vite('resources/js/message-toast.js')
     @routes
