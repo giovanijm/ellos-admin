@@ -21,18 +21,18 @@
 
     </div>
     <div class="ellos-header-right">
-        <div class="hs-dropdown relative inline-flex">
+        <div class="hs-dropdown ellos-dropdown">
             <button id="hs-dropdown-basic" type="button" class="hs-dropdown-toggle ellos-header-button">
                 <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
                     <path d="M12 6.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 12.75a.75.75 0 110-1.5.75.75 0 010 1.5zM12 18.75a.75.75 0 110-1.5.75.75 0 010 1.5z" stroke-linecap="round" stroke-linejoin="round"></path>
                 </svg>
             </button>
-            <div class="ellos-dropdown-menu hs-dropdown-menu hs-dropdown-open:opacity-100 transition-[opacity,margin] duration" aria-labelledby="hs-dropdown-basic">
-                <div class="ellos-dropdown-menu-header">
+            <div class="menu-nav hs-dropdown-menu hs-dropdown-open:opacity-100 transition-[opacity,margin] duration" aria-labelledby="hs-dropdown-basic">
+                <div class="header">
                     <h1>{{ Auth::user()->name }}</h1>
                     <p>{{ Auth::user()->role->name }}</p>
                 </div>
-                <div class="ellos-dropdown-menu-content">
+                <div class="content">
                     @can('view', $modifyProfile)
                         <a class="clockUi-show" href="{{ route('profile.edit') }}">
                             <div class="flex">

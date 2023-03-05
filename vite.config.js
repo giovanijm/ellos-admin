@@ -5,12 +5,13 @@ export default defineConfig({
     plugins: [
         laravel({
             input: [
-                'resources/css/app.scss',
+                'resources/css/appv2.scss',
                 'resources/js/app.js',
                 'resources/js/admin/manager-user/permissions.js',
                 'resources/js/admin/manager-user/roles.js',
                 'resources/js/admin/manager-user/users.js',
                 'resources/js/message-toast.js',
+                'resources/js/hs.component-appearance.js',
             ],
             refresh: true,
         }),

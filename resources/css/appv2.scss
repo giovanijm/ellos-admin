@@ -1,0 +1,724 @@
+@import "@fortawesome/fontawesome-free/css/all.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Estilo do Header */
+
+@layer components {
+
+/* ==================================================================================================
+*| Estilo Toast Message
+*|=================================================================================================== */
+    .ellos-toast {
+        @apply
+        absolute
+        top-20 right-2
+        max-w-xs
+        overflow-visible z-50
+        space-y-2;
+
+        .ellos-toast-info {
+            @apply
+            relative
+            px-4 py-4
+            bg-blue-100
+            border border-blue-200
+            rounded-md
+            overflow-visible z-50
+            items-center
+            shadow-md;
+
+            .icon-item {
+                @apply
+                h-6 w-6
+                ml-2
+                text-blue-400;
+            }
+
+            .content {
+                @apply
+                text-sm
+                mx-5 my-2
+                text-blue-800
+                font-medium;
+            }
+
+            .button-close {
+                @apply
+                rounded-md
+                bg-blue-100 hover:bg-blue-200
+                text-blue-500
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-offset-blue-100
+                focus:ring-blue-600;
+
+                .icon-item {
+                    @apply
+                    h-6 w-6
+                    m-2;
+                }
+            }
+        }
+
+        .ellos-toast-success {
+            @apply
+            relative
+            px-4 py-4
+            bg-teal-50
+            border border-teal-200
+            rounded-md
+            overflow-visible z-50
+            items-center
+            shadow-md;
+
+            .icon-item {
+                @apply
+                h-6 w-6
+                ml-2
+                text-teal-400;
+            }
+
+            .content {
+                @apply
+                text-sm
+                mx-5 my-2
+                text-teal-800
+                font-medium;
+            }
+
+            .button-close {
+                @apply
+                rounded-md
+                bg-teal-50 hover:bg-teal-100
+                text-teal-500
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-offset-teal-50
+                focus:ring-teal-600;
+
+                .icon-item {
+                    @apply
+                    h-6 w-6
+                    m-2;
+                }
+            }
+        }
+
+        .ellos-toast-warning {
+            @apply
+            relative
+            px-4 py-4
+            bg-yellow-100
+            border border-yellow-200
+            rounded-md
+            overflow-visible z-50
+            items-center
+            shadow-md;
+
+            .icon-item {
+                @apply
+                h-6 w-6
+                ml-2
+                text-yellow-400;
+            }
+
+            .content {
+                @apply
+                text-sm
+                mx-5 my-2
+                text-yellow-800
+                font-medium;
+            }
+
+            .button-close {
+                @apply
+                rounded-md
+                bg-yellow-100 hover:bg-yellow-200
+                text-yellow-500
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-offset-yellow-100
+                focus:ring-yellow-600;
+
+                .icon-item {
+                    @apply
+                    h-6 w-6
+                    m-2;
+                }
+            }
+        }
+
+        .ellos-toast-danger {
+            @apply
+            relative
+            px-4 py-4
+            bg-red-100
+            border border-red-200
+            rounded-md
+            overflow-visible z-50
+            items-center
+            shadow-md;
+
+            .icon-item {
+                @apply
+                h-6 w-6
+                ml-2
+                text-red-400;
+            }
+
+            .content {
+                @apply
+                text-sm
+                mx-5 my-2
+                text-red-800
+                font-medium;
+            }
+
+            .button-close {
+                @apply
+                rounded-md
+                bg-red-100 hover:bg-red-200
+                text-red-500
+                focus:outline-none
+                focus:ring-2
+                focus:ring-offset-2
+                focus:ring-offset-red-100
+                focus:ring-red-600;
+
+                .icon-item {
+                    @apply
+                    h-6 w-6
+                    m-2;
+                }
+            }
+        }
+
+    }
+
+/* ==================================================================================================
+*| Estilo do Footer
+*|=================================================================================================== */
+    .ellos-footer {
+        @apply
+        py-5 px-4 sm:px-6 mx-auto
+        mt-4 lg:mt-8 lg:pl-72 lg:py-10 lg:px-8
+        text-sm
+        bg-gray-100 dark:bg-gray-800
+        border-y border-gray-200 dark:border-gray-700;
+
+        .content {
+            @apply
+            grid grid-cols-1 sm:grid-cols-3 gap-6
+            items-center;
+
+            .content-left {
+                @apply
+                inline-flex
+                items-center
+                justify-center lg:justify-start
+                text-center lg:text-left
+                text-gray-500;
+
+                IMG {
+                    @apply
+                    mr-2 w-8 lg:w-12 p-1
+                    dark:backdrop-brightness-200 dark:bg-white
+                    dark:rounded;
+                }
+            }
+
+            .content-center {
+                @apply
+                text-center;
+
+                LI {
+                    @apply
+                    block lg:inline-block relative lg:pr-8
+                    text-gray-500
+                    lg:last:pr-0 lg:last-of-type:before:hidden
+                    lg:before:absolute lg:before:top-1/2 lg:before:right-3 lg:before:-translate-y-1/2 lg:before:content-['/'] lg:before:text-gray-500 lg:dark:before:text-gray-500;
+                }
+            }
+
+            .content-right {
+                @apply
+                md:pr-10
+                text-center
+                md:text-right
+                space-x-5 lg:space-x-10;
+
+                A {
+                    @apply
+                    inline-flex justify-center items-center
+                    w-8 h-8
+                    text-center text-gray-500 hover:bg-gray-200
+                    rounded-full focus:outline-none
+                    focus:ring-1 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-inherit
+                    transition
+                    dark:text-gray-500 dark:hover:text-gray-200 dark:hover:bg-gray-800 dark:focus:ring-offset-slate-900;
+                }
+            }
+
+            .link {
+                @apply
+                hover:underline
+                hover:underline-offset-2
+                text-gray-500
+                hover:text-blue-700
+                dark:text-gray-500
+                dark:hover:text-white;
+            }
+        }
+
+
+    }
+
+
+/* ==================================================================================================
+*| Estilo do Breadcrumbs
+*|=================================================================================================== */
+    .ellos-breadcrumbs {
+        @apply
+        inline-flex
+        items-center
+        whitespace-nowrap
+        lg:mb-4;
+
+        .item {
+            @apply
+            text-sm
+            inline-flex
+            items-center;
+
+            A {
+                @apply
+                inline-flex
+                items-center
+                hover:underline-offset-4
+                hover:underline
+                text-gray-500 hover:text-teal-800 dark:hover:text-blue-600;
+
+                .icon-item {
+                    @apply
+                    flex-shrink-0
+                    lg:mr-3 h-5 w-5;
+                }
+
+                .icon-divisor {
+                    @apply
+                    flex-shrink-0
+                    mx-3
+                    h-4 w-4
+                    overflow-visible
+                    text-gray-400 dark:text-gray-500;
+                }
+            }
+        }
+
+        .item-selected {
+            @apply
+            flex items-center
+            text-sm
+            font-semibold
+            text-teal-800 truncate dark:text-gray-200;
+
+            .icon-item {
+                @apply
+                flex-shrink-0
+                mr-3 h-5 w-5;
+            }
+        }
+    }
+
+/* ==================================================================================================
+*| Estilo do Menu DropDown
+*|=================================================================================================== */
+    .ellos-dropdown {
+        @apply
+        hidden
+        min-w-[15rem] mt-1
+        bg-white
+        dark:bg-gray-800 dark:border dark:border-gray-700 dark:divide-gray-700
+        shadow rounded-lg;
+
+        .header-menu {
+            @apply
+            rounded-t-lg
+            p-4
+            text-sm text-gray-100
+            bg-gray-100 dark:bg-gray-800
+            border-b border-b-gray-200 dark:border-b-gray-600;
+
+            H1 {
+                @apply
+                text-teal-700 dark:text-red-300
+                font-bold
+                uppercase;
+            }
+
+            P {
+                @apply
+                    font-medium
+                    text-gray-600 dark:text-gray-300;
+                }
+        }
+
+        .content {
+            @apply
+            p-2 space-y-1;
+
+            A {
+                @apply
+                flex
+                items-center
+                p-2
+                rounded-md hover:underline hover:underline-offset-4
+                text-sm text-gray-800 hover:text-teal-600 dark:text-gray-400 dark:hover:text-red-300
+                hover:bg-gray-100 dark:hover:bg-gray-700;
+
+                .icon-item {
+                    @apply
+                    w-6 h-6 mr-2;
+                }
+            }
+        }
+    }
+
+
+
+
+
+
+/* ==================================================================================================
+*| Estilo do Body e Tags HTML
+*|=================================================================================================== */
+.ellos-body {
+    @apply
+        flex h-screen
+        bg-gray-50;
+}
+
+/* ==================================================================================================
+*| Estilo do Sidebar
+*|=================================================================================================== */
+.ellos-sidebar {
+    @apply
+    py-4
+    bg-gray-100 dark:bg-gray-900
+    shadow
+    border-r
+    border-r-gray-200 dark:border-r-gray-700;
+
+    NAV {
+        @apply
+        mt-4
+        mr-1 lg:mr-0;
+
+        P {
+            @apply
+            uppercase
+            pl-6 py-2 mt-2
+            font-bold
+            text-xs text-left
+            text-gray-400  dark:text-gray-600;
+        }
+
+        .modulo-item {
+            @apply
+            flex items-center
+            px-6 py-2 my-1 rounded-r-lg
+            text-base font-normal
+            hover:bg-teal-50 dark:hover:bg-gray-800
+            text-gray-600 dark:text-gray-400
+            hover:text-gray-900 dark:hover:text-gray-200
+            hover:border-r-2 hover:border-r-teal-600 dark:hover:border-r-red-300 hover:shadow;
+
+            .icon-item{
+                @apply
+                w-5 h-5;
+            }
+        }
+
+        .modulo-item-active{
+            @apply
+            flex items-center
+            px-6 py-2 my-1 rounded-r-lg
+            text-base font-semibold shadow
+            bg-teal-50 dark:bg-gray-800
+            hover:underline hover:bg-teal-50 dark:hover:bg-gray-800
+            text-teal-600 dark:text-red-300
+            border-r-2 border-r-teal-600 dark:border-r-red-300;
+
+            .icon-item{
+                @apply
+                w-5 h-5;
+            }
+        }
+
+        .modulo {
+            @apply
+            mb-6;
+
+            .menu-item {
+                @apply
+                flex
+                pl-6 mx-1 my-1
+                items-center
+                text-gray-600 dark:text-gray-400
+                hover:text-gray-900 dark:hover:text-gray-200
+                hover:underline;
+
+                .icon-item {
+                    @apply
+                    w-5 h-5;
+                }
+
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-normal
+                    text-gray-600 dark:text-gray-400
+                    hover:text-gray-900 dark:hover:text-gray-200;
+                }
+            }
+
+            .menu-item-active{
+                @apply
+                flex
+                pl-6 mx-1 my-3
+                items-center
+                text-teal-700 dark:text-red-200
+                hover:text-teal-700 dark:hover:text-red-300;
+
+                .icon-item {
+                    @apply
+                    w-5 h-5;
+                }
+
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-normal
+                    text-teal-700 dark:text-red-200
+                    hover:text-teal-700 dark:hover:text-red-300;
+                }
+            }
+
+            .menu-item-open{
+                @apply
+                flex
+                pl-6 mx-1 my-3
+                items-center
+                text-gray-600 dark:text-gray-400
+                hover:text-gray-900 dark:hover:text-gray-200;
+
+                .icon-item {
+                    @apply
+                    w-5 h-5;
+                }
+
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-bold
+                    text-gray-600 dark:text-gray-400
+                    hover:text-gray-900 dark:hover:text-gray-200;
+                }
+            }
+
+            .menu-item-active-open{
+                @apply
+                flex
+                pl-6 mx-1 my-3
+                items-center
+                text-teal-700 dark:text-red-200
+                hover:text-teal-700 dark:hover:text-red-300;
+
+                .icon-item {
+                    @apply
+                    w-5 h-5;
+                }
+
+                P {
+                    @apply
+                    p-0 m-0
+                    ml-2 text-xs
+                    font-bold
+                    text-teal-700 dark:text-red-200
+                    hover:text-teal-700 dark:hover:text-red-300;
+                }
+            }
+
+            .submenu {
+                @apply
+                space-y-2;
+
+                .submenu-item {
+                    @apply
+                    flex
+                    pl-12 mx-1 my-1
+                    items-center
+                    text-sm
+                    capitalize
+                    text-gray-500 dark:text-gray-400
+                    hover:text-gray-700 dark:hover:text-gray-200;
+
+                    .icon-item {
+                        @apply
+                        w-4 h-4;
+                    }
+
+                    P {
+                        @apply
+                        p-0 m-0
+                        ml-1 my-1 text-xs
+                        font-normal
+                        capitalize
+                        text-gray-500 dark:text-gray-400
+                        hover:text-gray-700 dark:hover:text-gray-200
+                        hover:underline;
+                    }
+                }
+
+                .submenu-item-active {
+                    @apply
+                    flex
+                    pl-12 mx-1 my-1
+                    items-center
+                    text-sm
+                    capitalize
+                    text-teal-700 dark:text-white
+                    hover:text-teal-700 dark:hover:text-red-200;
+
+                    .icon-item {
+                        @apply
+                        w-4 h-4;
+                    }
+
+                    P {
+                        @apply
+                        p-0 m-0
+                        ml-1 my-1 text-xs
+                        font-normal
+                        capitalize
+                        text-teal-700 dark:text-white
+                        hover:text-teal-700 dark:hover:text-red-200
+                        hover:underline;
+                    }
+                }
+            }
+        }
+    }
+}
+
+/* ==================================================================================================
+*| Estilo do Avatar
+*|=================================================================================================== */
+    .ellos-avatar-horizontal {
+        @apply
+            grid grid-cols-1
+            place-items-center
+            p-2 gap-y-4;}
+
+        .avatar-img {
+            @apply
+                relative inline-flex items-center justify-center
+                w-14 h-14
+                ring-1 ring-offset-4
+                ring-gray-400 ring-offset-gray-100 dark:ring-gray-400 dark:ring-offset-gray-800
+                drop-shadow-sm overflow-hidden rounded-full
+                bg-gray-300 dark:bg-gray-600;}
+
+            .avatar-img P {
+                @apply
+                font-bold text-sm
+                text-gray-700 dark:text-gray-300;}
+
+            .avatar-img IMG {
+            @apply
+            object-cover w-full h-full;}
+
+        .avatar-content {
+            @apply
+                w-full
+                text-center text-sm
+                text-gray-700 dark:text-gray-300;}
+
+            .avatar-content H1 {
+                @apply
+                    uppercase
+                    font-bold
+                    text-teal-800 dark:text-red-400;}
+
+            .avatar-content P {
+        @apply
+            lowercase
+            font-normal
+            text-gray-500 dark:text-gray-500;}
+
+    .ellos-avatar-horizontal-md {
+        @apply
+            ellos-avatar-horizontal;}
+
+        .ellos-avatar-horizontal-md .avatar-img {
+            @apply
+                w-20 h-20;}
+
+        .ellos-avatar-horizontal-md .avatar-img P {
+            @apply
+                text-xl;}
+
+        .ellos-avatar-horizontal-md .avatar-content H1 {
+            @apply
+                text-sm;}
+
+    .ellos-avatar-horizontal-lg {
+        @apply
+            ellos-avatar-horizontal;}
+
+        .ellos-avatar-horizontal-lg .avatar-img {
+            @apply
+                w-24 h-24;}
+
+        .ellos-avatar-horizontal-lg .avatar-img P {
+            @apply
+                text-3xl;}
+
+        .ellos-avatar-horizontal-lg .avatar-content H1 {
+                @apply
+                    text-lg;}
+
+    .ellos-avatar-horizontal-sm {
+        @apply
+            ellos-avatar-horizontal
+            gap-y-2;}
+
+        .ellos-avatar-horizontal-sm .avatar-img {
+            @apply
+                w-[36px] h-[36px]
+                ring-offset-2;}
+
+        .ellos-avatar-horizontal-sm .avatar-img P {
+            @apply
+                text-sm;}
+
+        .ellos-avatar-horizontal-sm .avatar-content H1 {
+                @apply
+                    font-normal
+                    text-xs;}
+
+
+
+}
+
+

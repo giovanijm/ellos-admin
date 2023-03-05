@@ -1,9 +1,6 @@
-<x-admin.layouts.app
+<x-admin.layouts-v2.app
     title="Home"
     meta-description="Página Principal do Sistema"
 >
-    @include('admin._partials.index-breadcrumb')
-    <div class="ellos-main-content">
-
-    </div>
-</x-admin.layouts.app>
+Conteúdo
+</x-admin.layouts-v2.app>
