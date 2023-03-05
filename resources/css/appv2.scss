@@ -392,8 +392,139 @@
     }
 
 
+/* ==================================================================================================
+*| Estilo do Sidebar Versão 02
+*|=================================================================================================== */
+    .ellos-sidebar {
+        @apply
+        w-64
+        pt-7 pb-10
+        bg-white dark:bg-gray-800
+        border-r border-gray-200 dark:border-gray-700;
 
+        .nav-modulo {
+            @apply
+            w-full flex flex-col flex-wrap
+            my-6;
 
+            LABEL {
+                @apply
+                uppercase
+                pl-6 py-2 mt-2
+                drop-shadow-md
+                font-bold
+                text-xs text-left
+                text-gray-400  dark:text-gray-500;
+            }
+
+            UL {
+                @apply
+                space-y-1.5 pr-1 lg:pr-0;
+
+                LI {
+                    @apply
+                    pl-6 py-2
+                    flex items-center
+                    px-6 rounded-r-lg
+                    text-base font-normal
+                    hover:bg-teal-50 dark:hover:bg-gray-700
+                    text-gray-500 dark:text-gray-400
+                    hover:text-gray-700 dark:hover:text-gray-300
+                    hover:border-r-2 hover:border-r-teal-600 dark:hover:border-r-red-400 hover:shadow;
+
+                    A {
+                        @apply
+                        flex items-center
+                        w-full;
+
+                        .icon-item{
+                            @apply
+                            w-5 h-5;
+                        };
+                    }
+                }
+
+                .item-selected {
+                    @apply
+                    bg-teal-50 dark:bg-slate-700
+                    border-r-2 border-r-teal-600 dark:border-r-red-400;
+                }
+            }
+        }
+
+        .nav-menu {
+            @apply
+            w-full flex flex-col flex-wrap;
+
+            LABEL {
+                @apply
+                uppercase
+                pl-6 py-2 mt-2
+                drop-shadow-md
+                font-bold
+                text-xs text-left
+                text-gray-400  dark:text-gray-500;
+            }
+
+            UL {
+                @apply
+                space-y-0 space-x-0;
+
+                LI {
+                    @apply
+                    pl-0 py-1;
+
+                    A {
+                        @apply
+                        flex items-center
+                        pl-6 pr-4 py-2
+                        text-sm text-slate-700 hover:text-teal-800 rounded-md dark:text-slate-400 dark:hover:text-slate-300;
+
+                        .icon-item {
+                            @apply
+                            w-5 h-5 mr-2;
+                        }
+                    }
+
+                    .submenu {
+                        @apply
+                        w-full overflow-hidden mt-1;
+
+                        UL {
+                            @apply
+                            p-0 gap-y-1;
+
+                            LI {
+                                @apply
+                                pl-0 py-0 mx-0;
+
+                                A {
+                                    @apply
+                                    pl-14 py-1.5
+                                    hover:text-teal-800 dark:hover:text-slate-300;
+
+                                    .icon-item {
+                                        @apply
+                                        w-4 h-4 mr-2;
+                                    }
+                                }
+                            }
+
+                            .item-selected {
+                                @apply
+                                font-bold;
+
+                                A {
+                                    @apply
+                                    text-teal-700 dark:text-red-300;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
 
 
 /* ==================================================================================================
@@ -405,221 +536,6 @@
         bg-gray-50;
 }
 
-/* ==================================================================================================
-*| Estilo do Sidebar
-*|=================================================================================================== */
-.ellos-sidebar {
-    @apply
-    py-4
-    bg-gray-100 dark:bg-gray-900
-    shadow
-    border-r
-    border-r-gray-200 dark:border-r-gray-700;
-
-    NAV {
-        @apply
-        mt-4
-        mr-1 lg:mr-0;
-
-        P {
-            @apply
-            uppercase
-            pl-6 py-2 mt-2
-            font-bold
-            text-xs text-left
-            text-gray-400  dark:text-gray-600;
-        }
-
-        .modulo-item {
-            @apply
-            flex items-center
-            px-6 py-2 my-1 rounded-r-lg
-            text-base font-normal
-            hover:bg-teal-50 dark:hover:bg-gray-800
-            text-gray-600 dark:text-gray-400
-            hover:text-gray-900 dark:hover:text-gray-200
-            hover:border-r-2 hover:border-r-teal-600 dark:hover:border-r-red-300 hover:shadow;
-
-            .icon-item{
-                @apply
-                w-5 h-5;
-            }
-        }
-
-        .modulo-item-active{
-            @apply
-            flex items-center
-            px-6 py-2 my-1 rounded-r-lg
-            text-base font-semibold shadow
-            bg-teal-50 dark:bg-gray-800
-            hover:underline hover:bg-teal-50 dark:hover:bg-gray-800
-            text-teal-600 dark:text-red-300
-            border-r-2 border-r-teal-600 dark:border-r-red-300;
-
-            .icon-item{
-                @apply
-                w-5 h-5;
-            }
-        }
-
-        .modulo {
-            @apply
-            mb-6;
-
-            .menu-item {
-                @apply
-                flex
-                pl-6 mx-1 my-1
-                items-center
-                text-gray-600 dark:text-gray-400
-                hover:text-gray-900 dark:hover:text-gray-200
-                hover:underline;
-
-                .icon-item {
-                    @apply
-                    w-5 h-5;
-                }
-
-                P {
-                    @apply
-                    p-0 m-0
-                    ml-2 text-xs
-                    font-normal
-                    text-gray-600 dark:text-gray-400
-                    hover:text-gray-900 dark:hover:text-gray-200;
-                }
-            }
-
-            .menu-item-active{
-                @apply
-                flex
-                pl-6 mx-1 my-3
-                items-center
-                text-teal-700 dark:text-red-200
-                hover:text-teal-700 dark:hover:text-red-300;
-
-                .icon-item {
-                    @apply
-                    w-5 h-5;
-                }
-
-                P {
-                    @apply
-                    p-0 m-0
-                    ml-2 text-xs
-                    font-normal
-                    text-teal-700 dark:text-red-200
-                    hover:text-teal-700 dark:hover:text-red-300;
-                }
-            }
-
-            .menu-item-open{
-                @apply
-                flex
-                pl-6 mx-1 my-3
-                items-center
-                text-gray-600 dark:text-gray-400
-                hover:text-gray-900 dark:hover:text-gray-200;
-
-                .icon-item {
-                    @apply
-                    w-5 h-5;
-                }
-
-                P {
-                    @apply
-                    p-0 m-0
-                    ml-2 text-xs
-                    font-bold
-                    text-gray-600 dark:text-gray-400
-                    hover:text-gray-900 dark:hover:text-gray-200;
-                }
-            }
-
-            .menu-item-active-open{
-                @apply
-                flex
-                pl-6 mx-1 my-3
-                items-center
-                text-teal-700 dark:text-red-200
-                hover:text-teal-700 dark:hover:text-red-300;
-
-                .icon-item {
-                    @apply
-                    w-5 h-5;
-                }
-
-                P {
-                    @apply
-                    p-0 m-0
-                    ml-2 text-xs
-                    font-bold
-                    text-teal-700 dark:text-red-200
-                    hover:text-teal-700 dark:hover:text-red-300;
-                }
-            }
-
-            .submenu {
-                @apply
-                space-y-2;
-
-                .submenu-item {
-                    @apply
-                    flex
-                    pl-12 mx-1 my-1
-                    items-center
-                    text-sm
-                    capitalize
-                    text-gray-500 dark:text-gray-400
-                    hover:text-gray-700 dark:hover:text-gray-200;
-
-                    .icon-item {
-                        @apply
-                        w-4 h-4;
-                    }
-
-                    P {
-                        @apply
-                        p-0 m-0
-                        ml-1 my-1 text-xs
-                        font-normal
-                        capitalize
-                        text-gray-500 dark:text-gray-400
-                        hover:text-gray-700 dark:hover:text-gray-200
-                        hover:underline;
-                    }
-                }
-
-                .submenu-item-active {
-                    @apply
-                    flex
-                    pl-12 mx-1 my-1
-                    items-center
-                    text-sm
-                    capitalize
-                    text-teal-700 dark:text-white
-                    hover:text-teal-700 dark:hover:text-red-200;
-
-                    .icon-item {
-                        @apply
-                        w-4 h-4;
-                    }
-
-                    P {
-                        @apply
-                        p-0 m-0
-                        ml-1 my-1 text-xs
-                        font-normal
-                        capitalize
-                        text-teal-700 dark:text-white
-                        hover:text-teal-700 dark:hover:text-red-200
-                        hover:underline;
-                    }
-                }
-            }
-        }
-    }
-}
 
 /* ==================================================================================================
 *| Estilo do Avatar
