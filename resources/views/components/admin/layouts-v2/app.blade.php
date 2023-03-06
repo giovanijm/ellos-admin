@@ -29,20 +29,17 @@
         <x-admin.layouts-v2.sidebar-toggle />
 
         <x-admin.layouts-v2.sidebar />
-        <div class="w-full pt-10 px-4 sm:px-6 md:px-8 lg:pl-72">
-            <div class="hidden lg:block">
-                @include('admin.manager-user._partials.breadcumbs')
-            </div>
-            <div class="content">
-                {{ $slot }}
-            </div>
-        </div>
+
+        <x-admin.layouts-v2.main>
+            {{ $slot }}
+        </x-admin.layouts-v2.main>
+
         <x-admin.layouts-v2.footer />
 
-        @include('admin._partials.sobre')
+        {{-- @include('admin._partials.sobre')
         @include('admin._partials.politica-privacidade')
         @include('admin._partials.licenciamento')
-        @include('admin._partials.contato')
+        @include('admin._partials.contato') --}}
         <!-- ========== END MAIN CONTENT ========== -->
 
         @vite('resources/js/hs.component-appearance.js')

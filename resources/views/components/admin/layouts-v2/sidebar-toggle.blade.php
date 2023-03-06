@@ -11,7 +11,7 @@
 
         <!-- Breadcrumb -->
             <div class="ml-6 mt-1">
-                @include('admin.manager-user._partials.breadcumbs')
+                @yield('breadcrumbs')
             </div>
         <!-- End Breadcrumb -->
     </div>

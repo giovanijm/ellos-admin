@@ -1,12 +1,14 @@
-<x-admin.layouts.app
+<x-admin.layouts-v2.app
     title="{{  __('admin/permissions.titlePageIndex') }}"
     meta-description="Página Principal do Sistema"
 >
+    @section('breadcrumbs')
+        @include('admin.manager-user._partials.breadcumbs')
+    @endsection
+
     @section('submenu')
         @include('admin.manager-user._partials.submenu')
     @endsection
-
-    @include('admin.manager-user.permissions._partials.breadcumbs')
 
     <div class="ellos-main-content">
         <div class="p-3 sm:p-4">
@@ -115,4 +117,4 @@
     @push('scripts')
         @vite('resources/js/admin/manager-user/permissions.js')
     @endpush
-</x-admin.layouts.app>
+</x-admin.layouts-v2.app>

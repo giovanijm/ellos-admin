@@ -14,7 +14,7 @@
         </div>
     </div>
     <div class="lg:col-span-2">
-        <form class="form-clockUi-show" method="GET">
+        <form method="GET">
             <div class="lg:flex lg:gap-2">
                 <ul data-tooltip-target="tooltip-btn-filter-row" data-tooltip-placement="top" class="items-center text-sm font-medium text-gray-900 bg-white border border-gray-200 rounded-lg sm:flex my-2 uppercase">
                     <li class="w-full border-b border-gray-200 sm:border-b-0 sm:border-r dark:border-gray-600">
@@ -36,10 +36,6 @@
                         </div>
                     </li>
                 </ul>
-                <div id="tooltip-btn-filter-row" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                    Selecione um dos campos para fazer a busca
-                    <div class="tooltip-arrow" data-popper-arrow></div>
-                </div>
                 <div class="flex items-center w-full my-2 lg:mx-2">
                     <label for="filter" class="sr-only">Search</label>
                     <div class="relative w-full">
@@ -54,10 +50,6 @@
                         </svg>
                         <span class="sr-only">Search</span>
                     </button>
-                    <div id="tooltip-btn-search" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                        Filtrar os registros
-                        <div class="tooltip-arrow" data-popper-arrow></div>
-                    </div>
                     <a href="{{ route('admin.permissions.index') }}">
                         <button data-tooltip-target="tooltip-btn-clear" data-tooltip-placement="top" type="button" class="clockUi-show p-2.5 ml-2 text-sm font-medium text-white shadow bg-blue-700 rounded-lg border border-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                             <svg aria-hidden="true" class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
@@ -65,10 +57,6 @@
                             </svg>
                             <span class="sr-only">Limpar</span>
                         </button>
-                        <div id="tooltip-btn-clear" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                            Limpar o filtro
-                            <div class="tooltip-arrow" data-popper-arrow></div>
-                        </div>
                     </a>
                     @can('new', $objPermissions)
                         <a href="{{ route('admin.permissions.create') }}">
@@ -76,10 +64,6 @@
                                 <x-codicon-new-file class="h-5 w-5" fill="currentColor" />
                                 <span class="sr-only">Limpar</span>
                             </button>
-                            <div id="tooltip-btn-adicionar" role="tooltip" class="absolute z-10 invisible inline-block px-3 py-2 text-sm font-medium text-white bg-gray-900 rounded-lg shadow-sm opacity-0 tooltip dark:bg-gray-700">
-                                Adicionar novo registro
-                                <div class="tooltip-arrow" data-popper-arrow></div>
-                            </div>
                         </a>
                     @endcan
                 </div>

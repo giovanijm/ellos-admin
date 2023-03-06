@@ -2,10 +2,13 @@
     title="Home"
     meta-description="Página Principal do Sistema"
 >
-Conteúdo
+    @section('breadcrumbs')
+        @include('admin._partials.breadcumbs')
+    @endsection
+    @section('submenu')
+        @include("admin._partials.submenu")
+    @endsection
 
-@section('submenu')
-    @include("admin.manager-user._partials.submenu")
-@endsection
+    Conteúdo da Página Index
 
 </x-admin.layouts-v2.app>
