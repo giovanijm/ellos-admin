@@ -3,7 +3,7 @@
     meta-description="Página Principal do Sistema"
 >
     @section('breadcrumbs')
-        @include('admin.manager-user._partials.breadcumbs')
+        @include('admin.manager-user.roles._partials.breadcumbs')
     @endsection
 
     @section('submenu')
@@ -151,10 +151,10 @@
                     'filter_row'    => request()->get('filter_row', 'name'),
                 ])->links() !!}
             </div>
-            @push('modalGeral')
-                @include('admin.manager-user.roles._partials.modal')
-            @endpush
         </div>
+        @push('modalGeral')
+            @include('admin.manager-user.roles._partials.modal')
+        @endpush
     </div>
     @push('scripts')
         @vite('resources/js/admin/manager-user/roles.js')

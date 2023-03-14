@@ -286,10 +286,12 @@
 *|=================================================================================================== */
     .ellos-breadcrumbs {
         @apply
-        inline-flex
+        flex
         items-center
+        justify-start
         whitespace-nowrap
-        lg:mb-4;
+        xl:mb-8
+        h-full w-full;
 
         .item {
             @apply
@@ -645,8 +647,9 @@
         @apply
             lg:rounded-xl
             lg:shadow
+            dark:lg:shadow-none
             mt-0 lg:mt-3
-            lg:p-4 dark:bg-gray-200;}
+            lg:p-4;}
 
 }
 

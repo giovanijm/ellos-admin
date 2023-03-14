@@ -1,5 +1,5 @@
 <div id="application-sidebar"
-    class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform scrollbar-y dark:scrollbar-y z-[60] hidden lg:block fixed top-0 left-0 bottom-0 overflow-y-auto lg:translate-x-0 lg:right-auto lg:bottom-0 ellos-sidebar"
+    class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform scrollbar-y dark:scrollbar-y z-[60] hidden xl:block fixed top-0 left-0 bottom-0 overflow-y-auto xl:translate-x-0 xl:right-auto xl:bottom-0 ellos-sidebar"
 >
 
     <x-avatar-sidebar :view-info-user="true"/>

@@ -11,14 +11,15 @@
 <x-admin.layouts-v2.nav-menu label="Menu">
     <x-admin.layouts-v2.nav-menu-item
         href="javascript:;"
-        :submenu="true"
-        :name="'account-accordion'"
+        :temsubmenu="true"
+        :nomemenu="'gestao-usuario-menu'"
+        :nomesubmenu="'gestao-usuario-submenu'"
     >
         <x-eos-manage-accounts class="icon-item" />
         {{ __('admin/sidebar.labelSectionManagerUsers') }}
 
         @section('nav-menu-submenu')
-            <x-admin.layouts-v2.nav-submenu :name="'account-accordion'">
+            <x-admin.layouts-v2.nav-submenu :nomesubmenu="'gestao-usuario-submenu'" :nomemenu="'gestao-usuario-menu'">
                 @can('view', $cadUsuarios)
                     <x-admin.layouts-v2.nav-submenu-item
                         href="{{ route('admin.users.index') }}"
@@ -51,21 +52,3 @@
 
     </x-admin.layouts-v2.nav-menu-item>
 </x-admin.layouts-v2.nav-menu>
-
-{{-- <x-admin.layouts-v2.nav-menu>
-    <x-admin.layouts-v2.nav-menu-item
-        href="javascript:;"
-    >
-        <x-eos-edit-calendar-o class="icon-item" />
-        Calendar
-    </x-admin.layouts-v2.nav-menu-item>
-</x-admin.layouts-v2.nav-menu>
-
-<x-admin.layouts-v2.nav-menu>
-    <x-admin.layouts-v2.nav-menu-item
-        href="javascript:;"
-    >
-        <x-eos-document-scanner class="icon-item" />
-        Documentation
-    </x-admin.layouts-v2.nav-menu-item>
-</x-admin.layouts-v2.nav-menu> --}}
