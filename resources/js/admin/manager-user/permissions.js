@@ -3,33 +3,28 @@ $("#btnVoltar").on("click", function() {
 });
 
 let showModalExclusao = function (idRegistro, nameRegistro, actionForm) {
-    let $targetE2 = document.getElementById('modalE2');
-    let options = {
-        placement: 'center-center',
-        backdrop: 'dynamic',
-        backdropClasses: 'bg-gray-900 bg-opacity-50 dark:bg-opacity-80 fixed inset-0 z-40',
-        closable: true,
-        onShow: () => {
-            $("#formExcluir").attr('action', actionForm);
-        },
-    };
-    let modalExclusao = new Modal($targetE2, options);
+    let $targetE2 = document.getElementById('modal-permissions');
+
+    $targetE2.addEventListener('close.hs.overlay', (evt) => {
+        console.log('Apagar dados');
+        $("#formExcluir").attr('action', actionForm);
+    });
 
     $("#lblMemsagemExclusao").html("<b>[" + idRegistro +"] " + nameRegistro + "</b>");
 
     $("#btnFecharModal").on("click", function() {
-        modalExclusao.hide();
+        window.HSOverlay.close($targetE2);
     });
 
     $("#btnRecusarModal").on("click", function() {
-        modalExclusao.hide();
+        window.HSOverlay.close($targetE2);
     });
 
     $("#formExcluir").on("submit", function(e){
-        modalExclusao.hide();
+        window.HSOverlay.close($targetE2);
     });
 
-    modalExclusao.show();
+    window.HSOverlay.open($targetE2);
 }
 
 $(".form-exclusao").on("submit", function(e){

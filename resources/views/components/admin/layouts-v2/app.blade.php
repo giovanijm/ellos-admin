@@ -17,10 +17,12 @@
         @vite('resources/css/appv2.scss')
         @vite('resources/js/app.js')
         @routes
+        @stack('scripts')
     </head>
 
 
     <body id="geral" class="bg-gray-50 dark:bg-slate-900">
+        @stack('modalGeral')
 
         @include('admin.manager-user._partials.toastmessage')
 

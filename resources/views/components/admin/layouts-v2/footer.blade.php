@@ -6,7 +6,7 @@
                     <img src="{{getUrlImageServidor('802f9a82-0015-43c4-0ab9-2da5d868cd00')}}"/>
                 </span>
                 <span>
-                    © 2023 <a href="https://sistemaellos.com.br" class="link">Ellos Tecnologia™ by GJM</a>.<br/>
+                    © 2023 <a href="https://sistemaellos.com.br" class="link">Ellos Tecnologia™</a><br/>
                     Todos os direitos reservados.
                 </span>
             </div>
