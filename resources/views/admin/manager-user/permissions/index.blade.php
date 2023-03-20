@@ -38,7 +38,7 @@
                                 <td class="px-4 py-2 ">
                                     <div class="relative inline-flex flex-shrink-0 justify-center items-center h-12 w-12 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
                                         <i class="fa-solid fa-users"></i>
-                                        <span class="absolute top-0 right-0 mt-1 inline-flex items-center py-0.5 px-1.5 rounded-full text-xs font-medium transform -translate-y-1/2 translate-x-1/2 @if($permission->roles->count() > 0) bg-green-500 @else bg-red-500 @endif text-white">{{ str_pad($permission->roles->count() , 2 , '0' , STR_PAD_LEFT) }}</span>
+                                        <span class="absolute top-0 right-0 mt-1 inline-flex items-center py-0.5 px-1.5 rounded-full text-xs font-medium transform -translate-y-1/2 translate-x-1/2 {{ $permission->roles->count() > 0 ? 'bg-green-500' : 'bg-red-500' }} text-white">{{ str_pad($permission->roles->count() , 2 , '0' , STR_PAD_LEFT) }}</span>
                                     </div>
                                 </td>
                                 @canany(['edit', 'delete'], $objPermissions)
