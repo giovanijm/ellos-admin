@@ -12,28 +12,28 @@
     <div class="ellos-main-content">
         <div class="p-3 sm:p-4">
             @include('admin.manager-user.users._partials.header-page-index')
-            <div class="overflow-x-auto mt-4 bg-white border  rounded-lg">
-                <table class="w-full text-sm text-left text-gray-800 table-auto">
-                    <thead class="bg-gray-700 text-gray-200">
+            <div class="overflow-x-auto mt-4 border rounded-lg dark:border-gray-800">
+                <table class="ellos-table">
+                    <thead>
                         <tr>
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('id','Código')</th>
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('name','Nome')</th>
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('active','Ativo')</th>
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@lang('admin/users.labelTableRole')</th>
+                            <th scope="col">@sortablelink('id','Código')</th>
+                            <th scope="col">@sortablelink('name','Nome')</th>
+                            <th scope="col">@sortablelink('active','Ativo')</th>
+                            <th scope="col">@lang('admin/users.labelTableRole')</th>
                             @canany(['edit', 'delete'], $objPermissions)
-                                <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">Ações</th>
+                                <th scope="col">Ações</th>
                             @endcanany
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($users as $user)
-                            <tr class="even:bg-white odd:bg-gray-50 dark:bg-gray-800 hover:bg-blue-100">
-                                <th scope="row" class="px-2 py-2">
-                                    <a class="font-bold text-blue-700 hover:underline" href="{{ route('admin.users.edit', $user->id) }}">
+                            <tr>
+                                <th scope="row">
+                                    <a class="link-id" href="{{ route('admin.users.edit', $user->id) }}">
                                         #{{ str_pad($user->id , 4 , '0' , STR_PAD_LEFT) }}
                                     </a>
                                 </th>
-                                <td scope="row" class="flex items-center justify-items-center px-2 py-3 whitespace-nowrap">
+                                <td scope="row" class="flex items-center justify-items-center whitespace-nowrap">
                                     <div class="relative inline-flex items-center justify-center  w-8 h-8 ring-2 ring-gray-900 ring-offset-slate-900 drop-shadow-sm overflow-hidden rounded-full bg-gray-600">
                                         <span class="font-bold text-gray-300">{{ Str::upper(Str::substr($user->name, 0, 2)) }}</span>
                                     </div>
@@ -42,7 +42,7 @@
                                         <div class="text-sm font-normal text-gray-500 px-1">{{ $user->email }}</div>
                                     </div>
                                 </td>
-                                <td scope="row" class="px-2 py-2">
+                                <td scope="row">
                                     <div class="w-24 flex justify-center">
                                         @if($user->active)
                                             <div class="flex items-center mx-2 text-xs uppercase text-green-700 bg-green-200 rounded-full px-4 py-1">
@@ -55,9 +55,9 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td scope="row" class="px-2 py-2 whitespace-nowrap">{{ $user->role->name }}</td>
+                                <td scope="row" class="whitespace-nowrap">{{ $user->role->name }}</td>
                                 @canany(['edit', 'delete', 'sendnotification'], $objPermissions)
-                                    <td scope="row" class="px-2 py-2 border-l">
+                                    <td scope="row" class="border-l dark:border-l-gray-900">
                                         <div class="hs-dropdown relative inline-flex items-center lg:hidden">
                                             <button id="hs-dropdown-basic" type="button" class="hs-dropdown-toggle hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-12 w-12 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
                                                 <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

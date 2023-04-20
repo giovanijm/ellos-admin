@@ -13,32 +13,32 @@
     <div class="ellos-main-content">
         <div class="p-3 sm:p-4">
             @include('admin.manager-user.roles._partials.header-page-index')
-            <div class="overflow-x-auto mt-4 bg-white border rounded-lg">
-                <table class="w-full text-sm text-left text-gray-800 table-auto">
-                    <thead class="bg-gray-700 text-gray-200">
+            <div class="overflow-x-auto mt-4 border rounded-lg dark:border-gray-800">
+                <table class="ellos-table">
+                    <thead>
                         <tr>
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('id','Código')</th>
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('name', trans('admin/roles.labelRolesName'))</th>
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">@sortablelink('active','Ativo')</th>
+                            <th scope="col">@sortablelink('id','Código')</th>
+                            <th scope="col">@sortablelink('name', trans('admin/roles.labelRolesName'))</th>
+                            <th scope="col">@sortablelink('active','Ativo')</th>
                             @canany(['view'], $objPermissions2)
-                                <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">Permissões</th>
+                                <th scope="col">Permissões</th>
                             @endcanany
-                            <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">Usuários</th>
+                            <th scope="col">Usuários</th>
                             @canany(['edit', 'delete'], $objPermissions)
-                                <th scope="col" class="px-2 py-4 text-sm font-bold whitespace-nowrap tracking-wide text-left uppercase">Ações</th>
+                                <th scope="col">Ações</th>
                             @endcanany
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($roles as $role)
-                            <tr class="even:bg-white odd:bg-gray-50 dark:bg-gray-800 hover:bg-blue-100">
-                                <th scope="row" class="px-2 py-2">
-                                    <a class="font-bold text-blue-700 hover:underline" href="{{ route('admin.users.edit', $role->id) }}">
+                            <tr>
+                                <th scope="row">
+                                    <a class="link-id" href="{{ route('admin.users.edit', $role->id) }}">
                                         #{{ str_pad($role->id , 4 , '0' , STR_PAD_LEFT) }}
                                     </a>
                                 </th>
-                                <td class="px-2 py-2 whitespace-nowrap">{{ $role->name }}</td>
-                                <td class="px-2 py-2">
+                                <td class="whitespace-nowrap">{{ $role->name }}</td>
+                                <td>
                                     <div class="w-24 flex justify-center">
                                         @if($role->active)
                                             <div class="flex items-center mx-2 text-xs uppercase text-green-700 bg-green-200 rounded-full px-4 py-1">
@@ -52,19 +52,19 @@
                                     </div>
                                 </td>
                                 @canany(['view'], $objPermissions2)
-                                    <td class="flex-grid justify-items-stretch px-2 py-2">
+                                    <td class="flex-grid justify-items-stretch">
                                         <div class="hidden lg:block">
                                             @forelse ($role->permissions as $rp)
-                                                <span class="inline-block my-1 mx-1 px-2 py-1 text-xs font-normal uppercase tracking-wider whitespace-nowrap border border-green-600 text-green-900 bg-green-400 hover:text-white hover:bg-green-600 rounded-lg bg-opacity-50">
+                                                <span class="ellos-tag">
                                                     {{ $rp->name }}
                                                 </span>
                                             @empty
                                                 @if ($role->id == env('ROLE_ID_ADMIN'))
-                                                    <span class="inline-block my-1 mx-1 px-2 py-1 text-xs font-normal uppercase tracking-wider whitespace-nowrap border border-green-600 text-green-900 bg-green-400 hover:text-white hover:bg-green-600 rounded-lg bg-opacity-50">
+                                                    <span class="ellos-tag">
                                                         {{ __('Permissão Total') }}
                                                     </span>
                                                 @else
-                                                    <span class="inline-block my-1 mx-1 px-2 py-1 text-xs font-normal uppercase tracking-wider whitespace-nowrap border border-red-600 text-red-900 bg-red-400 hover:text-white hover:bg-red-600 rounded-lg bg-opacity-50">
+                                                    <span class="ellos-tag">
                                                         {{ __('admin/roles.labelNotPermission') }}
                                                     </span>
                                                 @endif
@@ -78,14 +78,14 @@
                                         </div>
                                     </td>
                                 @endcanany
-                                <td class="px-2 py-2">
+                                <td>
                                     <div class="relative inline-flex flex-shrink-0 justify-center items-center h-12 w-12 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" href="#">
                                         <i class="fa-solid fa-user"></i>
                                         <span class="absolute top-0 right-0 mt-1 inline-flex items-center py-0.5 px-1.5 rounded-full text-xs font-medium transform -translate-y-1/2 translate-x-1/2 {{ $role->users->count() > 0 ? 'bg-green-500' : 'bg-red-500' }} text-white">{{ str_pad($role->users->count() , 2 , '0' , STR_PAD_LEFT) }}</span>
                                     </div>
                                 </td>
                                 @canany(['edit', 'delete'], $objPermissions)
-                                    <td scope="row" class="px-2 py-2 border-l">
+                                    <td scope="row" class="border-l dark:border-l-gray-900">
                                         <div class="hs-dropdown relative inline-flex items-center lg:hidden">
                                             <button id="hs-dropdown-basic" type="button" class="hs-dropdown-toggle hs-dropdown-toggle inline-flex flex-shrink-0 justify-center items-center h-12 w-12 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800">
                                                 <svg aria-hidden="true" class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="1.5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
