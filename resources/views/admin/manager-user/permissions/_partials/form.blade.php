@@ -6,7 +6,7 @@
             <div class="relative w-full">
                 <div class="relative w-full">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="fa-regular fa-id-badge text-gray-500 dark:text-gray-400"></i>
+                        <x-clarity-qr-code-line class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                     </div>
                     <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
                         id="id"

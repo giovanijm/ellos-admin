@@ -38,7 +38,7 @@
                                         <span class="font-bold text-gray-300">{{ Str::upper(Str::substr($user->name, 0, 2)) }}</span>
                                     </div>
                                     <div class="ml-2">
-                                        <div class="text-sm font-bold text-gray-700 px-1 uppercase">{{ $user->name }}</div>
+                                        <div class="text-sm font-bold text-gray-700 dark:text-gray-400 px-1 uppercase">{{ $user->name }}</div>
                                         <div class="text-sm font-normal text-gray-500 px-1">{{ $user->email }}</div>
                                     </div>
                                 </td>
