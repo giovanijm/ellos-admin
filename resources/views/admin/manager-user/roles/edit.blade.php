@@ -12,7 +12,7 @@
 
     <div class="ellos-main-content">
         <div class="p-3 sm:p-4">
-            @include('admin.manager-user.permissions._partials.header-page-edit')
+            @include('admin.manager-user.roles._partials.header-page-edit')
 
             <div class="xl:grid xl:grid-cols-3 gap-2 xl:gap-4 mt-4 xl:mt-6">
                 <div class="lg:col-span-3 mt-2 lg:mt-0">

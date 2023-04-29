@@ -33,7 +33,7 @@
                         @foreach ($roles as $role)
                             <tr>
                                 <th scope="row">
-                                    <a class="link-id" href="{{ route('admin.users.edit', $role->id) }}">
+                                    <a class="link-id" href="{{ route('admin.roles.edit', $role->id) }}">
                                         #{{ str_pad($role->id , 4 , '0' , STR_PAD_LEFT) }}
                                     </a>
                                 </th>

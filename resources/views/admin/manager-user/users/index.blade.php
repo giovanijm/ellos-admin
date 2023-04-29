@@ -34,7 +34,7 @@
                                     </a>
                                 </th>
                                 <td scope="row" class="flex items-center justify-items-center whitespace-nowrap">
-                                    <div class="relative inline-flex items-center justify-center  w-8 h-8 ring-2 ring-gray-900 ring-offset-slate-900 drop-shadow-sm overflow-hidden rounded-full bg-gray-600">
+                                    <div class="relative inline-flex items-center justify-center w-8 h-8 ring-2 ring-gray-700 overflow-hidden rounded-full bg-gray-600">
                                         <span class="font-bold text-gray-300">{{ Str::upper(Str::substr($user->name, 0, 2)) }}</span>
                                     </div>
                                     <div class="ml-2">
