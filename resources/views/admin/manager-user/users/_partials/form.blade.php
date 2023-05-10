@@ -1,12 +1,12 @@
 @csrf
-<div class="bg-white px-4 pb-4 sm:p-6">
+<div class="bg-white dark:bg-slate-900 px-4 pb-4 sm:p-6">
     <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
-        <div class="col-span-3 sm:col-span-1">
+        <div class="col-span-1">
             <x-input-label for="id" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Código').':'"/>
             <div class="relative w-full">
                 <div class="relative w-full">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                        <i class="fa-regular fa-id-badge text-gray-500 dark:text-gray-400"></i>
+                        <x-clarity-qr-code-line class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                     </div>
                     <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
                         id="id"
@@ -113,10 +113,10 @@
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <i class="fa-solid fa-user-group w-5 h-5 mt-1 text-gray-500 dark:text-gray-400"></i>
                     </div>
-                    <select id="role_id" name="role_id" class="py-[10px] px-4 pr-16 pl-10 block w-full text-sm border-gray-300 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm invalid:border-red-700 valid:border-green-700 disabled:bg-gray-50 disabled:text-gray-500">
+                    <select id="role_id" name="role_id" class="py-[10px] px-4 pr-16 pl-10 block w-full text-sm text-gray-700 dark:text-gray-400 dark:bg-slate-900 border-gray-600 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm invalid:border-red-700 disabled:bg-gray-50 disabled:text-gray-500">
                         <option value="0">Selecione uma opção...</option>
                         @foreach ($roles as $role)
-                            <option value="{{ $role->id }}" @selected(!empty($user) && $user->hasRole($role->name))>{{ $role->name }}</option>
+                            <option value="{{ $role->id }}" @selected(!empty($user) && $user->hasRole($role->name))>{{ Str::upper($role->name) }}</option>
                         @endforeach
                     </select>
                     @error('role_id')
@@ -134,7 +134,7 @@
         </div>
         <div class="col-span-2 sm:col-span-1 pb-2 sm:pb-0">
             <div class="sm:col-span-3 mt-3">
-                <label class="block text-sm font-sm text-gray-700">Grupo Ativo ?</label>
+                <x-input-label for="created_at" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Grupo Ativo').':'"/>
                 <div class="flex items-center my-2">
                     <label class="text-sm text-gray-500 mr-3 dark:text-gray-400">Não</label>
                     <input type="checkbox" id="switch_active" name="active" value="1" class="relative shrink-0 w-[3.25rem] h-7 bg-red-600 checked:bg-none checked:focus:bg-green-600 checked:bg-green-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none
@@ -144,6 +144,23 @@
             </div>
         </div>
     </div>
+    @if($pageOrigem == 'edit')
+        <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
+            <div class="col-span-3">
+                <x-input-label for="created_at" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
+                <div class="flex items-center justify-center w-full">
+                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
+                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
+                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Clique para fazer o upload</span> ou arraste o arquivo.</p>
+                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+                        </div>
+                        <input id="dropzone-file" type="file" class="hidden" />
+                    </label>
+                </div>
+            </div>
+        </div>
+    @endif
     <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
         <div class="col-span-2 sm:col-span-1 pb-2 sm:pb-0">
             <x-input-label for="created_at" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Data de Criação').':'"/>

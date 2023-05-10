@@ -1,5 +1,5 @@
 @props(['active', 'open'])
 
-<div x-data="{ isActive: {{ $active ?? false ? 'true' : 'false '}}, open: {{ $open ?? false ? 'true' : 'false ' }}}">
+<div  class="modulo" x-data="{ isActive: {{ $active ?? false ? 'true' : 'false '}}, open: {{ $open ?? false ? 'true' : 'false ' }}}">
     {{ $slot }}
 </div>

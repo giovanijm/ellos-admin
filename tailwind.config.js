@@ -5,9 +5,9 @@ module.exports = {
         "./resources/**/*.blade.php",
         "./resources/**/*.js",
         "./resources/**/*.vue",
-        "./node_modules/flowbite/**/*.js",
         "./node_modules/preline/dist/*.js",
     ],
+    darkMode: 'class',
     theme: {
         extend: {
             colors: {
@@ -28,7 +28,6 @@ module.exports = {
     plugins: [
         require("@tailwindcss/forms"),
         require("@tailwindcss/typography"),
-        require("flowbite/plugin"),
         require("preline/plugin"),
     ],
 }

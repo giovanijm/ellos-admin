@@ -27,6 +27,9 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('manager-user/permissions', PermissionController::class);
     Route::resource('manager-user/users', UserController::class);
     Route::get('manager-user/users/{user}/notification', [UserController::class, 'sendToMail'])->name('user.notification');
+    Route::get('manager-user', function () {
+        return redirect(route('admin.users.index'));
+    })->name('manager-user');
 });
 
 require __DIR__.'/auth.php';

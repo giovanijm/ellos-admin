@@ -1,25 +1,49 @@
 @csrf
-<div class="bg-white px-4 pb-4 sm:p-6">
-    <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 pb-2">
-        <div class="col-span-3 sm:col-span-1">
-            <label for="id" class="block text-sm text-gray-700">Código:</label>
-            <input type="text" name="id" id="id"
-            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="{{ str_pad($role->id ?? old('id'), empty($role) ? 0 : 4 , '0' , STR_PAD_LEFT) }}">
+<div class="bg-white dark:bg-slate-900 px-4 pb-4 sm:p-6">
+    <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
+        <div class="col-span-1">
+            <x-input-label for="id" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Código').':'"/>
+            <div class="relative w-full">
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <x-clarity-qr-code-line class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                    </div>
+                    <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
+                        id="id"
+                        type="text"
+                        name="id"
+                        :disabled=true
+                        :value="!empty($role) ? str_pad($role->id , 4 , '0' , STR_PAD_LEFT) : old('id')"
+                    />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
+        <div class="col-span-1 sm:col-span-3">
+            <x-input-label for="name" class="block mb-1 text-sm font-bold text-gray-700" :value="'* '.__('Nome do Grupo').':'"/>
+            <div class="relative w-full">
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <x-clarity-group-solid class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                    </div>
+                    <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
+                        id="name"
+                        type="text"
+                        name="name"
+                        :value="$role->name ?? old('name')"
+                        placeholder="Digite nome do grupo..."
+                        autofocus
+                        required
+                    />
+                </div>
+                <x-input-error :messages="$errors->get('name')" :enableIcon=true/>
+            </div>
         </div>
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 pb-2">
         <div class="sm:col-span-3">
-            <label for="name" class="block text-sm font-bold text-gray-700">Nome do Grupo:</label>
-            <input type="text" name="name" id="name" autocomplete="given-name" maxlength="30"
-            class="form-control mt-1 block w-full rounded-md focus:border-blue-500 focus:ring-blue-500 sm:text-sm valid:border-green-500 required:border-red-800 invalid:border-red-500 @error('name') is-invalid @enderror" required value="{{ $role->name ?? old('name') }}">
-            @error('name')
-                <p class="text-red-500 text-xs italic">{{ $message }}</p>
-            @enderror
-        </div>
-    </div>
-    <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 pb-2">
-        <div class="sm:col-span-3">
-            <label class="block text-sm font-sm text-gray-700">Grupo Ativo ?</label>
+            <x-input-label for="name" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Grupo Ativo').':'"/>
             <div class="flex items-center my-2">
                 <label class="text-sm text-gray-500 mr-3 dark:text-gray-400">NÃO</label>
                 <input type="checkbox" id="switch_active" name="active" value="1" class="relative shrink-0 w-[3.25rem] h-7 bg-red-600 checked:bg-none checked:bg-green-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 border border-transparent ring-1 ring-transparent checked:hover:bg-green-600 checked:focus:bg-green-600 focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none dark:bg-gray-700 dark:checked:bg-green-600 dark:focus:ring-offset-gray-800
@@ -30,14 +54,38 @@
     </div>
     <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
         <div class="col-span-2 sm:col-span-1 pb-2 sm:pb-0">
-            <label for="created_at" class="block text-sm text-gray-700">Data de Criação:</label>
-            <input type="text" name="created_at" id="created_at"
-            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="@if(!empty($role)){{$role->created_at}}@else{{old('created_at')}}@endif">
+            <x-input-label for="created_at" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Data de Criação').':'"/>
+            <div class="relative w-full">
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-calendar-days text-gray-500 dark:text-gray-400"></i>
+                    </div>
+                    <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
+                        id="created_at"
+                        type="text"
+                        name="created_at"
+                        :disabled=true
+                        :value="!empty($role) ? $role->created_at : old('created_at')"
+                    />
+                </div>
+            </div>
         </div>
         <div class="col-span-2 sm:col-span-1">
-            <label for="updated_at" class="block text-sm text-gray-700">Data de Alteração:</label>
-            <input type="text" name="updated_at" id="updated_at"
-            class="form-control mt-1 block w-full rounded-md sm:text-sm text-gray-500 border-gray-300 bg-gray-50" disabled="true" value="@if(!empty($role)){{ $role->updated_at}}@else{{old('updated_at')}}@endif">
+            <x-input-label for="updated_at" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Data de Alteração').':'"/>
+            <div class="relative w-full">
+                <div class="relative w-full">
+                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                        <i class="fa-solid fa-calendar-days text-gray-500 dark:text-gray-400"></i>
+                    </div>
+                    <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
+                        id="updated_at"
+                        type="text"
+                        name="updated_at"
+                        :disabled=true
+                        :value="!empty($role) ? $role->updated_at : old('updated_at')"
+                    />
+                </div>
+            </div>
         </div>
     </div>
 </div>
