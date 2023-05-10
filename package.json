@@ -23,6 +23,7 @@
         "flowbite": "^1.6.3",
         "jquery": "^3.6.3",
         "preline": "^1.7.0",
+        "redis": "^4.6.6",
         "remixicon": "^2.5.0"
     }
 }
