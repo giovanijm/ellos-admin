@@ -61,7 +61,7 @@
                                         @endif
                                     </div>
                                 </td>
-                                <td scope="row" class="whitespace-nowrap">{{ $user->role->name }}</td>
+                                <td scope="row" class="whitespace-nowrap uppercase">{{ $user->role->name }}</td>
                                 @canany(['edit', 'delete', 'sendnotification'], $objPermissions)
                                     <td scope="row" class="border-l dark:border-l-gray-900">
                                         <div class="hs-dropdown relative inline-flex items-center lg:hidden">
