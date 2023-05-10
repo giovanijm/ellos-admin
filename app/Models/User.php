@@ -30,6 +30,7 @@ class User extends Authenticatable
         'active',
         'create_at',
         'updated_at',
+        'photo'
     ];
 
     public $sortable = [

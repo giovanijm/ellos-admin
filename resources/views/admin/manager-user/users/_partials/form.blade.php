@@ -134,7 +134,7 @@
         </div>
         <div class="col-span-2 sm:col-span-1 pb-2 sm:pb-0">
             <div class="sm:col-span-3 mt-3">
-                <x-input-label for="created_at" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Grupo Ativo').':'"/>
+                <x-input-label for="switch_active" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Usuário Ativo').':'"/>
                 <div class="flex items-center my-2">
                     <label class="text-sm text-gray-500 mr-3 dark:text-gray-400">Não</label>
                     <input type="checkbox" id="switch_active" name="active" value="1" class="relative shrink-0 w-[3.25rem] h-7 bg-red-600 checked:bg-none checked:focus:bg-green-600 checked:bg-green-600 border-2 border-transparent rounded-full cursor-pointer transition-colors ease-in-out duration-200 ring-1 ring-transparent focus:border-green-600 focus:ring-green-600 ring-offset-white focus:outline-none appearance-none
@@ -144,22 +144,48 @@
             </div>
         </div>
     </div>
-    @if($pageOrigem == 'edit')
-        <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
-            <div class="col-span-3">
-                <x-input-label for="created_at" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
-                <div class="flex items-center justify-center w-full">
-                    <label for="dropzone-file" class="flex flex-col items-center justify-center w-full h-64 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                        <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                            <svg aria-hidden="true" class="w-10 h-10 mb-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12"></path></svg>
-                            <p class="mb-2 text-sm text-gray-500 dark:text-gray-400"><span class="font-semibold">Clique para fazer o upload</span> ou arraste o arquivo.</p>
-                            <p class="text-xs text-gray-500 dark:text-gray-400">SVG, PNG, JPG or GIF (MAX. 800x400px)</p>
+    @if ($pageOrigem == 'edit')
+        @if($user->photo)
+            <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
+                <div class="col-span-1">
+                    <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
+                    <div class="flex justify-content align-center">
+                        <div class="ellos-avatar-horizontal lg:ellos-avatar-horizontal-md 2xl:ellos-avatar-horizontal-lg">
+                            <div class="avatar-img">
+                                <img src="/storage/{{ $user->photo }}">
+                            </div>
                         </div>
-                        <input id="dropzone-file" type="file" class="hidden" />
-                    </label>
+
+                    </div>
+                    <a href="{{ route('admin.user.destroyphoto', $user->id) }}">
+                        <x-danger-button
+                            type="button"
+                            icon="codicon-trash"
+                            id="btnRemovePhoto"
+                        >
+                            {{ __('Remover Foto') }}
+                    </x-danger-button>
+                    </a>
                 </div>
             </div>
-        </div>
+        @else
+            <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
+                <div class="col-span-3">
+                    <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
+                    <input type="file" name="photo-file" id="photo-file"
+                        class="block w-full border border-gray-200 shadow-sm rounded-md text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400
+                            file:bg-transparent file:border-0
+                            file:bg-gray-200 file:mr-4
+                            file:py-3 file:px-4
+                            dark:file:bg-gray-700 dark:file:text-gray-400"
+                    >
+                    <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
+                    @error('photo-file')
+                        <p class="text-red-500 text-xs italic">{{ $message }}</p>
+                    @enderror
+                </div>
+            </div>
+        @endif
     @endif
     <div class="grid grid-cols-1 sm:grid-cols-2 sm:gap-4">
         <div class="col-span-2 sm:col-span-1 pb-2 sm:pb-0">

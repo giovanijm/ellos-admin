@@ -35,7 +35,13 @@
                                 </th>
                                 <td scope="row" class="flex items-center justify-items-center whitespace-nowrap">
                                     <div class="relative inline-flex items-center justify-center w-8 h-8 ring-2 ring-gray-700 overflow-hidden rounded-full bg-gray-600">
-                                        <span class="font-bold text-gray-300">{{ Str::upper(Str::substr($user->name, 0, 2)) }}</span>
+                                        <span class="font-bold text-gray-300">
+                                            @if ($user->photo)
+                                                <img src="/storage/{{ $user->photo }}" alt="{{ $user->name }}">
+                                            @else
+                                                {{ Str::upper(Str::substr($user->name, 0, 2)) }}
+                                            @endif
+                                        </span>
                                     </div>
                                     <div class="ml-2">
                                         <div class="text-sm font-bold text-gray-700 dark:text-gray-400 px-1 uppercase">{{ $user->name }}</div>

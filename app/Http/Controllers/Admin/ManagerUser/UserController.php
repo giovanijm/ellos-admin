@@ -8,9 +8,10 @@ use App\Models\Admin\ManagerUser\{ Role, Permission };
 use App\Models\User;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
-use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Hash;
 use App\Notifications\notificationUser;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class UserController extends Controller
 {
@@ -119,18 +120,29 @@ class UserController extends Controller
         if ($this->negarAcesso('edit', true)) {
             return back()->with('messageDanger', 'Usuário sem permissão de edição.');
         }
+
         $data = $request->all();
         $data['active'] = empty($data['active']) ? 0 : 1;
         $data['updated_at'] = Carbon::now('America/Sao_Paulo');
+
+        if($request->hasFile('photo-file'))
+        {
+            $returnUpload = $this->imageUpload($request);
+            if(!$returnUpload['success'])
+                return redirect()->Back()->withInput()->withErrors($returnUpload['msgError']);
+
+            $data['photo'] = $returnUpload['urlImage'];
+        }
+
         $returMsg = "[".$user->id."]".$user->name;
 
         $roles = Role::sortable(['name'])->get();
 
         if($user->update($data)){
             $returMsg = "[".$user->id."]".$user->name;
-            return to_route('admin.users.edit', ['user' => $user])->with('messageSuccess', 'O registro '.$returMsg.', foi atualizada com sucesso.')->with('roles', $roles);;
+            return to_route('admin.users.edit', ['user' => $user])->with('messageSuccess', 'O registro '.$returMsg.', foi atualizada com sucesso.')->with('roles', $roles);
         }else{
-            return to_route('admin.users.edit', ['user' => $user])->with('messageDanger', 'Erro ao atualizar o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.")->with('roles', $roles);;
+            return to_route('admin.users.edit', ['user' => $user])->with('messageDanger', 'Erro ao atualizar o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.")->with('roles', $roles);
         }
     }
 
@@ -157,6 +169,22 @@ class UserController extends Controller
         return back()->with('messageSuccess', 'E-mail foi enviado com sucesso.');
     }
 
+    public function destroyPhoto(User $user)
+    {
+        if ($this->negarAcesso('delete', true)) {
+            return to_route('admin.users.index')->with('messageDanger', 'Usuário sem permissão de remover o registros.');
+        }
+
+        if(Storage::disk('public')->exists($user->photo))
+        {
+            Storage::disk('public')->delete($user->photo);
+        }
+
+        $user->photo = null;
+        $user->update();
+        return back()->with('messageSuccess', 'Imagem do usuário foi excluída com sucesso.');
+    }
+
     /**
      * Método responsável por validar o acesso do usuário logado as actions da controller.
      */
@@ -177,5 +205,55 @@ class UserController extends Controller
                 return false;
             }
         }
+    }
+
+    private function imageUpload(UserUpdateRequest $request)
+    {
+        $uploadedImage = [
+            'success' => false,
+            'urlImage' => null,
+            'msgError' => null
+        ];
+
+        if($request->hasFile('photo-file'))
+        {
+            $image = $request->file('photo-file');
+
+            $input = [
+                'photo-file' => $image
+              ];
+
+            /*
+            * Regras da validação, como mimetype e tamanho máximo
+            * 2048 é igual a 2mb, altere conforme a necessidade
+            */
+            $rules = [
+                'photo-file' => 'image|mimes:jpeg,png,svg|max:2048'
+            ];
+
+            $messages = [
+                'mimes' => 'Formato da imagem inválido'
+            ];
+
+            $validator = Validator::make($input, $rules, $messages);
+
+            if ($validator->fails()) {
+                $uploadedImage = [
+                    'success' => false,
+                    'urlImage' => null,
+                    'msgError' => $validator
+                ];
+                return $uploadedImage;
+            }
+
+            $urlImage = $image->store('images/users', 'public');
+            $uploadedImage = [
+                'success' => true,
+                'urlImage' => $urlImage,
+                'msgError' => null
+            ];
+        }
+
+        return $uploadedImage;
     }
 }

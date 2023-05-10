@@ -16,7 +16,8 @@
 
             <div class="xl:grid xl:grid-cols-3 gap-2 xl:gap-4 mt-4 xl:mt-6">
                 <div class="lg:col-span-3 mt-2 lg:mt-0">
-                    <form class="form-clockUi-show w-full" method="POST" action="{{ route('admin.users.update', $user->id) }}">
+                    <form class="form-clockUi-show w-full" method="POST" action="{{ route('admin.users.update', $user->id) }}" enctype="multipart/form-data">
+                        @method('PUT')
                         <div class="sm:overflow-hidden rounded-lg sm:border dark:sm:border-gray-700 dark:bg-slate-700">
                             @include('admin.manager-user.users._partials.form', ['pageOrigem' => 'edit'])
 
