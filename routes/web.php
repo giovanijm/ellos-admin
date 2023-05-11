@@ -26,11 +26,15 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('manager-user/roles', RoleController::class);
     Route::resource('manager-user/permissions', PermissionController::class);
     Route::resource('manager-user/users', UserController::class);
+    Route::resource('manager-customers/customers', CustomerController::class);
     Route::get('manager-user/users/{user}/notification', [UserController::class, 'sendToMail'])->name('user.notification');
     Route::get('manager-user/users/{user}/destroyphoto', [UserController::class, 'destroyPhoto'])->name('user.destroyphoto');
     Route::get('manager-user', function () {
         return redirect(route('admin.users.index'));
     })->name('manager-user');
+    Route::get('manager-customers', function () {
+        return redirect(route('admin.customers.index'));
+    })->name('manager-customers');
 });
 
 require __DIR__.'/auth.php';
