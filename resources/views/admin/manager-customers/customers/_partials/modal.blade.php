@@ -1,4 +1,4 @@
-<div id="modal-users" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[70] overflow-visible">
+<div id="modal-customers" class="hs-overlay hidden w-full h-full fixed top-0 left-0 z-[70] overflow-visible">
     <div class="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all md:max-w-2xl md:w-full m-3 md:mx-auto">
         <div class="relative flex flex-col bg-white border shadow-sm rounded-xl overflow-hidden dark:bg-gray-800 dark:border-gray-700">
             <div class="absolute top-2 right-2">

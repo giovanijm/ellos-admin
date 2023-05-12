@@ -11,6 +11,7 @@ use App\Models\Admin\ManagerUser\{
 };
 use App\Models\Admin\{
     Customer,
+    TbStatus
 };
 
 class CustomerController extends Controller
@@ -32,7 +33,7 @@ class CustomerController extends Controller
         $this->negarAcesso();
 
         $sort = empty($request->query('sort')) ?? false
-                ? 'name'
+                ? 'fullName'
                 : $request->query('sort');
 
         $filter_search = $filter = empty($request->query('filter')) ?? false
@@ -40,7 +41,7 @@ class CustomerController extends Controller
                 : $request->query('filter');
 
         $filter_row = empty($request->query('filter_row')) ?? false
-                ? 'name'
+                ? 'fullName'
                 : $request->query('filter_row');
 
         switch ($filter_row)
@@ -48,6 +49,14 @@ class CustomerController extends Controller
             case 'id':
             case 'birthDate':
                 $sort_type = '=';
+                break;
+            case 'statusId':
+                $sort_type = '=';
+                $status = TbStatus::where('name', 'LIKE', $request->query('filter') . "%")
+                    ->first();
+                $filter_search = $status == null
+                    ? -1
+                    : $status->id;
                 break;
             default:
                 $filter_search = empty($filter) ?? false
@@ -59,11 +68,11 @@ class CustomerController extends Controller
         if(!empty($filter_search) || $filter_row == 'active'){
             $customers = $this->model::sortable()
                 ->where($filter_row, $sort_type, $filter_search)
-                ->with(['tbstatus'])
+                ->with(['status'])
                 ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }else{
             $customers = $this->model::sortable()
-                ->with(['tbstatus'])
+                ->with(['status'])
                 ->paginate(env('NUMBER_LINE_PER_PAGE', 20));
         }
 
