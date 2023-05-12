@@ -16,6 +16,7 @@
         "laravel/sanctum": "^3.0",
         "laravel/tinker": "^2.7",
         "nesbot/carbon": "^2.65",
+        "owenvoke/blade-fontawesome": "^2.2",
         "predis/predis": "^2.1",
         "saade/blade-iconsax": "^1.0",
         "tightenco/ziggy": "^1.5"

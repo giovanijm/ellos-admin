@@ -111,9 +111,13 @@
                                     <div class="bg-white dark:bg-slate-900 px-4 pb-4 sm:p-4">
                                         <div id="divPermissions" class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 pb-2">
                                             @foreach ($permissions as $permission)
-                                                <div for="permissions-checkbox-{{$permission->id}}" class="flex items-center my-1 pl-4 border border-gray-200 rounded dark:border-gray-700">
-                                                    <input @checked($role->hasPermission($permission->name)) id="permissions-checkbox-{{$permission->id}}" type="checkbox" value="{{$permission->id}}" name="permissions[]" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
-                                                    <label for="permissions-checkbox-{{$permission->id}}" class="w-full py-4 ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{$permission->name}}</label>
+                                                <div for="permissions-checkbox-{{$permission->id}}" class="flex items-start py-4 pl-4 border border-gray-200 rounded dark:border-gray-700">
+                                                    <input @checked($role->hasPermission($permission->name)) id="permissions-checkbox-{{$permission->id}}" type="checkbox" value="{{$permission->id}}" name="permissions[]" class="mt-0 w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600">
+                                                    <label for="permissions-checkbox-{{$permission->id}}" class="w-full ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">
+                                                        {{$permission->name}}
+                                                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-500" id="file_input_help">{{ $permission->description }}</p>
+                                                    </label>
+
                                                 </div>
                                             @endforeach
                                         </div>
