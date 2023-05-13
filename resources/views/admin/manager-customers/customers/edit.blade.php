@@ -61,24 +61,20 @@
                                 <table class="ellos-table">
                                     <thead>
                                         <tr>
-                                            <th scope="col">{{ __('Código') }}</th>
                                             <th scope="col">{{ __('Tipo') }}</th>
                                             <th scope="col">{{ __('Contato') }}</th>
                                             <th scope="col">{{ __('Nome do Contato') }}</th>
                                             {{-- @canany(['edit', 'delete'], $objPermissions) --}}
-                                                <th scope="col">Ações</th>
+                                                <th scope="col" class="grid justify-center">Ações</th>
                                             {{-- @endcanany --}}
                                         </tr>
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <th scope="row">
-                                                #
-                                            </th>
                                             <td scope="row">
                                                 <div class="relative w-full">
                                                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                                        <x-fas-rectangle-list class="fa-solid fa-user-group w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                                        <x-fas-hand-point-right class="fa-solid fa-user-group w-5 h-5 text-gray-500 dark:text-gray-400" />
                                                     </div>
                                                     <select id="typeContactId" name="typeContactId" class="py-[10px] px-4 pr-16 pl-10 block w-full text-sm text-gray-700 dark:text-gray-400 dark:bg-slate-900 border-gray-600 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm invalid:border-red-700 disabled:bg-gray-50 disabled:text-gray-500">
                                                         @foreach ($typeContact as $type)
@@ -130,34 +126,51 @@
                                                     <x-input-error :messages="$errors->get('contactName')" :enableIcon=true/>
                                                 </div>
                                             </td>
-                                            <td scope="row">
+                                            <td scope="row" class="grid justify-center">
                                                 <x-primary-button
                                                     type="submit"
                                                     icon="codicon-save"
-                                                    class="w-full"
-                                                >
-                                                    {{ __('Adicionar') }}
-                                                </x-primary-button>
+                                                    :textHidden="true"
+                                                />
                                             </td>
                                         </tr>
                                         @foreach ($customer->contacts as $contact)
                                             <tr>
-                                                <th scope="row">
-                                                    #{{ str_pad($contact->id , 4 , '0' , STR_PAD_LEFT) }}
-                                                </th>
-                                                <td scope="row" class="whitespace-nowrap uppercase">{{ $contact->typeContact->name }}</td>
+                                                <td scope="row" class="flex whitespace-nowrap uppercase">
+                                                    <div class="flex items-center pr-2 pointer-events-none">
+                                                        @switch($contact->typeContact->name)
+                                                            @case('CELULAR')
+                                                            @case('CELULAR RECADO')
+                                                                <x-fas-mobile-alt class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                                                                @break
+                                                            @case('TELEFONE FIXO')
+                                                            @case('TELEFONE RECADO')
+                                                                <x-fas-square-phone class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                                                                @break
+                                                            @case('E-MAIL')
+                                                                <x-fas-mail-bulk class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                                                                @break
+                                                            @case('WHATSAPP')
+                                                                <x-fab-whatsapp-square class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                                                                @break
+                                                            @default
+
+                                                        @endswitch
+
+                                                    </div>
+                                                    {{ $contact->typeContact->name }}
+                                                </td>
                                                 <td scope="row" class="whitespace-nowrap uppercase">{{ $contact->contact }}</td>
                                                 <td scope="row" class="whitespace-nowrap uppercase">{{ $contact->contactName }}</td>
-                                                <td scope="row">
+                                                <td scope="row" class="grid justify-center">
                                                     <x-danger-button
                                                         type="button"
                                                         id="btnContatoExcluir"
                                                         icon="codicon-trash"
-                                                        class="btn-contato-excluir w-full"
+                                                        class="btn-contato-excluir flex items-center"
                                                         data-contact-id="{{ $contact->id }}"
-                                                    >
-                                                        {{ __('Excluir') }}
-                                                    </x-danger-button>
+                                                        :textHidden="true"
+                                                    />
                                                 </td>
                                             </tr>
                                         @endforeach

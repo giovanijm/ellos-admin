@@ -1,4 +1,4 @@
-@props(['active' => true, 'icon', 'adaptative' => false])
+@props(['active' => true, 'icon', 'adaptative' => false, 'textHidden' => false])
 
 @php
 $classes = ($active ?? false)
@@ -26,8 +26,12 @@ if(empty($icon)){
 <button {{ $attrib }}>
     @if ($isIcon)
         <span class="w-6 h-6">{{ svg( $icon ) }}</span>
-        <span class="{{ $classesLabelIcon }}">{{ $slot }}</span>
+        @if(!$textHidden)
+            <span class="{{ $classesLabelIcon }}">{{ $slot }}</span>
+        @endif
     @else
-        <span class="{{ $classesLabel }}">{{ $slot }}</span>
+        @if(!$textHidden)
+            <span class="{{ $classesLabel }}">{{ $slot }}</span>
+        @endif
     @endif
 </button>

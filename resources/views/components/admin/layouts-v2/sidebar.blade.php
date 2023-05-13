@@ -33,8 +33,18 @@
         @can('view', $moduleRegistrations)
             <x-admin.layouts-v2.nav-modulo-item
                 href="{{ route('admin.manager-customers') }}"
-                class="{{ request()->routeIs('admin.customers.*') ? 'modulo-item-active' : 'modulo-item' }}"
-                selected="{{ request()->routeIs('admin.customers.*') ? 'item-selected' : '' }}"
+                class="{{ request()->routeIs('admin.customers.*')
+                            || request()->routeIs('admin.providers.*')
+                            || request()->routeIs('admin.services.*')
+                            || request()->routeIs('admin.status.*')
+                                ? 'modulo-item-active'
+                                : 'modulo-item' }}"
+                selected="{{ request()->routeIs('admin.customers.*')
+                            || request()->routeIs('admin.providers.*')
+                            || request()->routeIs('admin.services.*')
+                            || request()->routeIs('admin.status.*')
+                                ? 'item-selected'
+                                : '' }}"
             >
                 <x-fas-file-invoice class="icon-item" />
                 <span class="ml-2">{{ __('Cadastros') }}</span>

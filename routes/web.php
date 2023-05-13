@@ -29,10 +29,11 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('manager-user/permissions', PermissionController::class);
     Route::resource('manager-user/users', UserController::class);
     Route::resource('manager-customers/customers', CustomerController::class);
-    //Route::resource('manager-customers/contacts', CustomerContactsController::class);
     Route::post('manager-customers/contacts', [CustomerContactsController::class, 'store'])->name('contacts.store');
     Route::get('manager-customers/contacts/{id}/{customerId}', [CustomerContactsController::class, 'destroy'])->name('contacts.destroy');
     Route::resource('manager-customers/status', CustomerController::class);
+    Route::resource('manager-providers/providers', CustomerController::class);
+    Route::resource('manager-services/services', CustomerController::class);
     Route::get('manager-user/users/{user}/notification', [UserController::class, 'sendToMail'])->name('user.notification');
     Route::get('manager-user/users/{user}/destroyphoto', [UserController::class, 'destroyPhoto'])->name('user.destroyphoto');
     Route::get('manager-user', function () {
