@@ -87,4 +87,9 @@ class Customer extends Model
     {
         return $this->belongsTo(TbStatus::class, 'statusId', 'id');
     }
+
+    public function contacts()
+    {
+        return $this->hasMany(CustomerContacts::class, 'customerId');
+    }
 }

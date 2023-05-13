@@ -11,7 +11,8 @@ use App\Models\Admin\ManagerUser\{
 };
 use App\Models\Admin\{
     Customer,
-    TbStatus
+    TbStatus,
+    TypeContact
 };
 
 class CustomerController extends Controller
@@ -100,7 +101,8 @@ class CustomerController extends Controller
             return to_route('admin.customers.index')->with('messageDanger', 'Usuário sem permissão de edição.');
         }
         $tbstatus = TbStatus::all();
-        return view('admin.manager-customers.customers.edit', compact('customer', 'tbstatus'));
+        $typeContact = TypeContact::all();
+        return view('admin.manager-customers.customers.edit', compact('customer', 'tbstatus', 'typeContact'));
     }
 
     public function update(CustomerRequest $request)

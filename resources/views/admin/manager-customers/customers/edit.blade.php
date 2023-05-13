@@ -41,6 +41,134 @@
                     </form>
                 </div>
             </div>
+
+            <div class="sm:px-6 sm:py-6 mt-2 sm:mt-6 bg-white sm:overflow-hidden sm:border dark:sm:border-gray-700 dark:bg-slate-900 sm:bg-transparent border rounded-lg">
+                <div class="grid gap-2 mt-4">
+                    <div class="lg:col-span-1">
+                        <div class="px-4 sm:px-0">
+                            <div class="flex font-bold text-normal text-sm sm:text-xl xl:text-2xl  text-gray-900 dark:text-gray-300 uppercase drop-shadow">
+                                <x-fas-square-phone class="w-4 h-4 sm:w-8 sm:h-8"/>
+                                <span class="ml-2">Contatos</span>
+                            </div>
+                            <p class="mt-1 text-sm text-gray-600">Lista de contatos cadastrados para o cliente.</p>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto lg:col-span-2 mt-2 lg:mt-0">
+                        <div class="overflow-x-auto sm:overflow-hidden rounded-lg bg-white dark:bg-slate-900 sm:border border dark:border-gray-700">
+                            <form class="w-full" method="POST" action="{{ route('admin.contacts.store') }}">
+                                @csrf
+                                <input type="hidden" name="customerId" value="{{ $customer->id }}">
+                                <table class="ellos-table">
+                                    <thead>
+                                        <tr>
+                                            <th scope="col">{{ __('Código') }}</th>
+                                            <th scope="col">{{ __('Tipo') }}</th>
+                                            <th scope="col">{{ __('Contato') }}</th>
+                                            <th scope="col">{{ __('Nome do Contato') }}</th>
+                                            {{-- @canany(['edit', 'delete'], $objPermissions) --}}
+                                                <th scope="col">Ações</th>
+                                            {{-- @endcanany --}}
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <th scope="row">
+                                                #
+                                            </th>
+                                            <td scope="row">
+                                                <div class="relative w-full">
+                                                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                        <x-fas-rectangle-list class="fa-solid fa-user-group w-5 h-5 text-gray-500 dark:text-gray-400" />
+                                                    </div>
+                                                    <select id="typeContactId" name="typeContactId" class="py-[10px] px-4 pr-16 pl-10 block w-full text-sm text-gray-700 dark:text-gray-400 dark:bg-slate-900 border-gray-600 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm invalid:border-red-700 disabled:bg-gray-50 disabled:text-gray-500">
+                                                        @foreach ($typeContact as $type)
+                                                            <option value="{{ $type->id }}">{{ Str::upper($type->name) }}</option>
+                                                        @endforeach
+                                                    </select>
+                                                    @error('statusId')
+                                                        <div class="absolute inset-y-0 right-0 flex items-center pointer-events-none pr-8">
+                                                            <svg class="h-4 w-4 text-red-500" width="16" height="16" fill="currentColor" viewBox="0 0 16 16" aria-hidden="true">
+                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 4a.905.905 0 0 0-.9.995l.35 3.507a.552.552 0 0 0 1.1 0l.35-3.507A.905.905 0 0 0 8 4zm.002 6a1 1 0 1 0 0 2 1 1 0 0 0 0-2z"/>
+                                                            </svg>
+                                                        </div>
+                                                    @enderror
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="relative w-full">
+                                                    <div class="relative w-full">
+                                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                            <x-fas-clipboard-list class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                                                        </div>
+                                                        <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
+                                                            id="contact"
+                                                            type="text"
+                                                            name="contact"
+                                                            placeholder="Digite o contato do cliente..."
+                                                            autofocus
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <x-input-error :messages="$errors->get('contact')" :enableIcon=true/>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <div class="relative w-full">
+                                                    <div class="relative w-full">
+                                                        <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                                                            <x-clarity-user-solid class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
+                                                        </div>
+                                                        <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"
+                                                            id="contactName"
+                                                            type="text"
+                                                            name="contactName"
+                                                            placeholder="Digite o nome do contato..."
+                                                            autofocus
+                                                            required
+                                                        />
+                                                    </div>
+                                                    <x-input-error :messages="$errors->get('contactName')" :enableIcon=true/>
+                                                </div>
+                                            </td>
+                                            <td scope="row">
+                                                <x-primary-button
+                                                    type="submit"
+                                                    icon="codicon-save"
+                                                    class="w-full"
+                                                >
+                                                    {{ __('Adicionar') }}
+                                                </x-primary-button>
+                                            </td>
+                                        </tr>
+                                        @foreach ($customer->contacts as $contact)
+                                            <tr>
+                                                <th scope="row">
+                                                    #{{ str_pad($contact->id , 4 , '0' , STR_PAD_LEFT) }}
+                                                </th>
+                                                <td scope="row" class="whitespace-nowrap uppercase">{{ $contact->typeContact->name }}</td>
+                                                <td scope="row" class="whitespace-nowrap uppercase">{{ $contact->contact }}</td>
+                                                <td scope="row" class="whitespace-nowrap uppercase">{{ $contact->contactName }}</td>
+                                                <td scope="row">
+                                                    <x-danger-button
+                                                        type="button"
+                                                        id="btnContatoExcluir"
+                                                        icon="codicon-trash"
+                                                        class="btn-contato-excluir w-full"
+                                                        data-contact-id="{{ $contact->id }}"
+                                                    >
+                                                        {{ __('Excluir') }}
+                                                    </x-danger-button>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
     @push('scripts')

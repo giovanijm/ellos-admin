@@ -53,7 +53,39 @@ $(".form-exclusao").on("submit", function(e){
     return false;
 });
 
-$(document).ready(function(){
-    $('#documentNumber').mask('000.000.000-00', {reverse: true});
-    $('#postalCode').mask('00.000-000');
+
+$('#documentNumber').mask('000.000.000-00', {reverse: true});
+$('#postalCode').mask('00.000-000');
+
+let setMaskContact = function (valor) {
+    switch(valor) {
+        case '1':
+        case '4':
+        case '6':
+            $('#contact').mask('(00) 00000-0000');
+          break;
+        case '2':
+        case '5':
+            $('#contact').mask('(00) 0000-0000');
+            break;
+        default:
+            $('#contact').unmask();
+      }
+}
+
+setMaskContact($('#typeContactId').val());
+
+$('#typeContactId').on("change", function(e){
+    setMaskContact(this.value);
+});
+
+$('#typeContactId').on("change", function(e){
+    console.log('Alterou valor');
+});
+
+$("button.btn-contato-excluir").on("click", function() {
+    console.log($('#id').val());
+    console.log(this.getAttribute('data-contact-id'));
+
+    $(location).attr('href', route('admin.contacts.destroy', [this.getAttribute('data-contact-id'), $('#id').val()]));
 });

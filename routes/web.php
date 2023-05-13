@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\ManagerUser\PermissionController;
 use App\Http\Controllers\Admin\ManagerUser\RoleController;
 use App\Http\Controllers\Admin\ManagerUser\UserController;
 use App\Http\Controllers\Admin\ManagerCustomers\CustomerController;
+use App\Http\Controllers\Admin\ManagerCustomers\CustomerContactsController;
 use App\Http\Controllers\ProfileController;
 use App\Mail\MailNewUser;
 use App\Models\User;
@@ -28,6 +29,9 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('manager-user/permissions', PermissionController::class);
     Route::resource('manager-user/users', UserController::class);
     Route::resource('manager-customers/customers', CustomerController::class);
+    //Route::resource('manager-customers/contacts', CustomerContactsController::class);
+    Route::post('manager-customers/contacts', [CustomerContactsController::class, 'store'])->name('contacts.store');
+    Route::get('manager-customers/contacts/{id}/{customerId}', [CustomerContactsController::class, 'destroy'])->name('contacts.destroy');
     Route::resource('manager-customers/status', CustomerController::class);
     Route::get('manager-user/users/{user}/notification', [UserController::class, 'sendToMail'])->name('user.notification');
     Route::get('manager-user/users/{user}/destroyphoto', [UserController::class, 'destroyPhoto'])->name('user.destroyphoto');
