@@ -83,10 +83,24 @@ class CustomerController extends Controller
 
     public function create()
     {
+        if ($this->negarAcesso('new', true)) {
+            return to_route('admin.customers.index')->with('messageDanger', 'Usuário sem permissão de criação.');
+        }
+        $tbstatus = TbStatus::all();
+        return view('admin.manager-customers.customers.create', compact('tbstatus'));
     }
 
     public function store(CustomerRequest $request)
     {
+    }
+
+    public function edit(Customer $customer)
+    {
+        if ($this->negarAcesso('edit', true)) {
+            return to_route('admin.customers.index')->with('messageDanger', 'Usuário sem permissão de edição.');
+        }
+        $tbstatus = TbStatus::all();
+        return view('admin.manager-customers.customers.edit', compact('customer', 'tbstatus'));
     }
 
     public function update(CustomerRequest $request)

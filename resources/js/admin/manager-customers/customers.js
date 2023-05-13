@@ -1,3 +1,20 @@
+import vueMask from 'vue-jquery-mask';
+
+export default {
+    data () {
+      return {
+        date: null,
+        options: {
+          placeholder: '__.____-___',
+          // http://igorescobar.github.io/jQuery-Mask-Plugin/docs.html
+        }
+      }
+    },
+    components: {
+      vueMask
+    }
+  }
+
 $("button.btn-voltar").on("click", function() {
     $(location).attr('href', route('admin.customers.index'));
 });
@@ -34,4 +51,9 @@ $(".form-exclusao").on("submit", function(e){
     var actionForm = $(this).attr('action');
     showModalExclusao(campoId, campoName, actionForm);
     return false;
+});
+
+$(document).ready(function(){
+    $('#documentNumber').mask('000.000.000-00', {reverse: true});
+    $('#postalCode').mask('00.000-000');
 });

@@ -37,7 +37,7 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::get('manager-customers', function () {
         return redirect(route('admin.customers.index'));
     })->name('manager-customers');
-    Route::resource('manager-reports/reports', CustomerController::class);
+    //Route::resource('manager-reports/reports', CustomerController::class);
     Route::get('manager-reports', function () {
         return redirect(route('admin.reports.index'));
     })->name('manager-reports');

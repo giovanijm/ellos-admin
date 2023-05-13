@@ -12,6 +12,7 @@ export default defineConfig({
                 'resources/js/admin/manager-user/roles.js',
                 'resources/js/admin/manager-user/users.js',
                 'resources/js/admin/manager-customers/customers.js',
+                'resources/js/admin/jquery.mask.js',
                 'resources/js/message-toast.js',
                 'resources/js/hs.component-appearance.js',
             ],

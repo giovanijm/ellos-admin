@@ -5,9 +5,9 @@
                 <x-codicon-new-file class="h-4 w-4 sm:h-6 sm:w-6" fill="currentColor" />
             </div>
             <div class="flex flex-col ml-2">
-                <span class="text-xs lg:text-sm font-medium text-gray-500">@lang('admin/permissions.labelManagerUsers')</span>
+                <span class="text-xs lg:text-sm font-medium text-gray-500">{{ __('Gestão de Clientes') }}</span>
                 <span class="font-bold text-normal text-sm sm:text-xl xl:text-2xl  text-gray-900 dark:text-gray-300 uppercase drop-shadow">
-                    Adicionar {{ __('Usuário') }}
+                    Adicionar {{ __('Cliente') }}
                 </span>
             </div>
         </div>

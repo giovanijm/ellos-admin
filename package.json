@@ -24,6 +24,7 @@
         "jquery": "^3.6.3",
         "preline": "^1.7.0",
         "redis": "^4.6.6",
-        "remixicon": "^2.5.0"
+        "remixicon": "^2.5.0",
+        "vue-jquery-mask": "^2.0.0"
     }
 }
