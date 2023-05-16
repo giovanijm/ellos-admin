@@ -20,12 +20,9 @@
                             <th scope="col">@sortablelink('id','Código')</th>
                             <th scope="col">@sortablelink('name', trans('admin/roles.labelRolesName'))</th>
                             <th scope="col">@sortablelink('active','Ativo')</th>
-                            @canany(['view'], $objPermissions2)
-                                <th scope="col">Permissões</th>
-                            @endcanany
                             <th scope="col">Usuários</th>
                             @canany(['edit', 'delete'], $objPermissions)
-                                <th scope="col">Ações</th>
+                                <th scope="col" class="grid justify-center">Ações</th>
                             @endcanany
                         </tr>
                     </thead>
@@ -37,7 +34,7 @@
                                         #{{ str_pad($role->id , 4 , '0' , STR_PAD_LEFT) }}
                                     </a>
                                 </th>
-                                <td class="whitespace-nowrap">{{ $role->name }}</td>
+                                <td class="whitespace-nowrap uppercase">{{ $role->name }}</td>
                                 <td>
                                     <div class="w-24 flex justify-center">
                                         @if($role->active)
@@ -51,33 +48,6 @@
                                         @endif
                                     </div>
                                 </td>
-                                @canany(['view'], $objPermissions2)
-                                    <td class="flex-grid justify-items-stretch">
-                                        <div class="hidden lg:block">
-                                            @forelse ($role->permissions as $rp)
-                                                <span class="ellos-tag">
-                                                    {{ $rp->name }}
-                                                </span>
-                                            @empty
-                                                @if ($role->id == env('ROLE_ID_ADMIN'))
-                                                    <span class="ellos-tag">
-                                                        {{ __('Permissão Total') }}
-                                                    </span>
-                                                @else
-                                                    <span class="ellos-tag">
-                                                        {{ __('admin/roles.labelNotPermission') }}
-                                                    </span>
-                                                @endif
-                                            @endforelse
-                                        </div>
-                                        <div class="lg:hidden">
-                                            <div class="relative inline-flex flex-shrink-0 justify-center items-center h-12 w-12 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" href="#">
-                                                <i class="fa-solid fa-key"></i>
-                                                <span class="absolute top-0 right-0 mt-1 inline-flex items-center py-0.5 px-1.5 rounded-full text-xs font-medium transform -translate-y-1/2 translate-x-1/2 {{ $role->permissions->count() > 0 ? 'bg-green-500' : 'bg-red-500' }} text-white">{{ str_pad($role->permissions->count() , 2 , '0' , STR_PAD_LEFT) }}</span>
-                                            </div>
-                                        </div>
-                                    </td>
-                                @endcanany
                                 <td>
                                     <div class="relative inline-flex flex-shrink-0 justify-center items-center h-12 w-12 rounded-md border font-medium bg-white text-gray-700 shadow-sm align-middle hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-white focus:ring-blue-600 transition-all text-sm dark:bg-slate-900 dark:hover:bg-slate-800 dark:border-gray-700 dark:text-gray-400 dark:hover:text-white dark:focus:ring-offset-gray-800" href="#">
                                         <i class="fa-solid fa-user"></i>

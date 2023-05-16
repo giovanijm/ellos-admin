@@ -105,7 +105,6 @@
                                 <x-fas-person-circle-check class="fa-solid fa-user-group w-5 h-5 text-gray-500 dark:text-gray-400" />
                             </div>
                             <select id="statusId" name="statusId" class="py-[10px] px-4 pr-16 pl-10 block w-full text-sm text-gray-700 dark:text-gray-400 dark:bg-slate-900 border-gray-600 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm invalid:border-red-700 disabled:bg-gray-50 disabled:text-gray-500">
-                                <option value="0">Selecione uma opção...</option>
                                 @foreach ($tbstatus as $status)
                                     <option value="{{ $status->id }}" @selected(!empty($status) && $pageOrigem == 'edit' && $status->id == $customer->statusId)>{{ Str::upper($status->name) }}</option>
                                 @endforeach
@@ -214,7 +213,7 @@
             <x-input-label for="postalCode" class="block mb-1 text-sm font-bold text-gray-700" :value="'* '.__('Número CEP').':'"/>
             <div class="relative w-full">
                 <div class="relative w-full">
-                    <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                    <div id="postalCode-icon" class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                         <x-fas-location-dot class="w-5 h-5 text-gray-500 dark:text-gray-400"/>
                     </div>
                     <x-text-input class="sm:text-sm w-full pl-10 p-2.5 placeholder-gray-600"

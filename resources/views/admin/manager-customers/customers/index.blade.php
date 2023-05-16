@@ -22,7 +22,7 @@
                             <th scope="col">@sortablelink('documentNumber','Documento')</th>
                             <th scope="col">@sortablelink('statusId','Status')</th>
                             @canany(['edit', 'delete'], $objPermissions)
-                                <th scope="col">Ações</th>
+                                <th scope="col" class="grid justify-center">Ações</th>
                             @endcanany
                         </tr>
                     </thead>

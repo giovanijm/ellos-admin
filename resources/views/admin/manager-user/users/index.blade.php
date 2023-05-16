@@ -21,7 +21,7 @@
                             <th scope="col">@sortablelink('active','Ativo')</th>
                             <th scope="col">@lang('admin/users.labelTableRole')</th>
                             @canany(['edit', 'delete'], $objPermissions)
-                                <th scope="col">Ações</th>
+                                <th scope="col" class="grid justify-center">Ações</th>
                             @endcanany
                         </tr>
                     </thead>
@@ -103,9 +103,7 @@
                                             @can('sendnotification', $objPermissions)
                                                 <div class="m-1 lg:m2">
                                                     <a href="{{ route('admin.user.notification', $user->id) }}">
-                                                        <x-secondary-button class="w-full lg:w-auto whitespace-nowrap" icon="clarity-email-outline-alerted" adaptative="true">
-                                                            {{ __('Boas Vindas') }}
-                                                        </x-secondary-button>
+                                                        <x-secondary-button class="w-full lg:w-auto whitespace-nowrap" icon="clarity-email-outline-alerted" adaptative="true" textHidden="true" />
                                                     </a>
                                                 </div>
                                             @endcan

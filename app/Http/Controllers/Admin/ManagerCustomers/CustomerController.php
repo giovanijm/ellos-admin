@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ManagerCustomers\CustomerRequest;
 use Illuminate\Http\Request;
 use Carbon\Carbon;
+use Illuminate\Support\Str;
+use Ramsey\Uuid\Uuid;
 use App\Models\Admin\ManagerUser\{
     Permission,
 };
@@ -14,6 +16,7 @@ use App\Models\Admin\{
     TbStatus,
     TypeContact
 };
+use Illuminate\Support\Facades\Http;
 
 class CustomerController extends Controller
 {
@@ -93,6 +96,17 @@ class CustomerController extends Controller
 
     public function store(CustomerRequest $request)
     {
+        if ($this->negarAcesso('new', true)) {
+            return to_route('admin.customers.index')->with('messageDanger', 'Usuário sem permissão de criação.');
+        }
+        $data = $request->all();
+
+        $data["externalId"] = (string) Uuid::uuid4();
+        $data["origin"] = env('CUSTOMER_ORIGIN_DEFAULT');
+
+        $customer = $this->model->create($data);
+        $returMsg = "[".$customer->id."]".$customer->fullName;
+        return to_route('admin.customers.edit', $customer->id)->with('messageSuccess', 'O registro '.$returMsg.', foi criado com sucesso.');
     }
 
     public function edit(Customer $customer)
@@ -111,6 +125,20 @@ class CustomerController extends Controller
 
     public function destroy(CustomerRequest $role)
     {
+    }
+
+    public function searchPostalCode (string $cep)
+    {
+        $cep =  preg_replace("/[^0-9]/", "", $cep);
+        if(strlen($cep) == 8){
+            $result = Http::get("https://brasilapi.com.br/api/cep/v2/" . $cep);//->json();
+            if($result->ok())
+                return response()->json(["success" => false, "data" => $result->json()],200);
+            else
+                return response()->json(["success" => false],200);
+        }else{
+            return response()->json(["success" => false],200);
+        }
     }
 
     /**

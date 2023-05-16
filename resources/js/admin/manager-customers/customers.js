@@ -79,13 +79,43 @@ $('#typeContactId').on("change", function(e){
     setMaskContact(this.value);
 });
 
-$('#typeContactId').on("change", function(e){
-    console.log('Alterou valor');
+$("button.btn-contato-excluir").on("click", function() {
+    $(location).attr('href', route('admin.contacts.destroy', [this.getAttribute('data-contact-id'), $('#id').val()]));
 });
 
-$("button.btn-contato-excluir").on("click", function() {
-    console.log($('#id').val());
-    console.log(this.getAttribute('data-contact-id'));
+$("#contactName").on("focus", function(e){
+    if(!$.trim(this.value))
+        if($("#socialName").val())
+            $(this).val($("#socialName").val());
+        else
+            $(this).val($("#fullName").val());
+});
 
-    $(location).attr('href', route('admin.contacts.destroy', [this.getAttribute('data-contact-id'), $('#id').val()]));
+$("#socialName").on("focus", function(e){
+    if($("#fullName").val() && !this.value)
+        $(this).val($("#fullName").val().trim().split(' ')[0])
+});
+
+$("#postalCode").on("change", function(e){
+    let iconAnt = null;
+    let iconLoad = '<i class="fa fa-spinner fa-spin"></i>';
+    if(this.value.length == 10){
+        $.ajax({
+            type: "GET",
+            dataType: "JSON",
+            url: "/admin/common/searchpostalcode/"+this.value,
+            beforeSend: function(){
+                iconAnt = $("#postalCode-icon").html();
+                $("#postalCode-icon").html(iconLoad);
+            },
+            success: function(result){
+                $('#address').val(result["data"]["street"]);
+                $('#neighborhood').val(result["data"]["neighborhood"]);
+                $('#city').val(result["data"]["city"]);
+                $('#state').val(result["data"]["state"]);
+                $('#addressNumber').focus();
+                $("#postalCode-icon").html(iconAnt);
+            },
+        });
+    }
 });

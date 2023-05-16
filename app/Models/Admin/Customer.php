@@ -14,6 +14,7 @@ class Customer extends Model
     protected $table = 'customers';
 
     protected $fillable = [
+        'externalId',
         'fullName',
         'socialName',
         'documentNumber',
@@ -70,7 +71,7 @@ class Customer extends Model
 
     public function setDocumentNumberAttribute($document_number)
     {
-        return preg_replace("/[^0-9]/", "", $document_number);
+        $this->attributes['documentNumber'] = preg_replace("/[^0-9]/", "", $document_number);
     }
 
     public function getPostalCodeAttribute($postal_code)
@@ -80,7 +81,7 @@ class Customer extends Model
 
     public function setPostalCodeAttribute($postal_code)
     {
-        return preg_replace("/[^0-9]/", "", $postal_code);
+        $this->attributes['postalCode'] = preg_replace("/[^0-9]/", "", $postal_code);
     }
 
     public function status()

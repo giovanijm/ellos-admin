@@ -22,7 +22,7 @@
                             <th scope="col">@sortablelink('description', trans('admin/permissions.labelPermissionDescription'),null)</th>
                             <th scope="col">{{ __('Grupos') }}</th>
                             @canany(['edit', 'delete'], $objPermissions)
-                                <th scope="col">Ações</th>
+                                <th scope="col" class="grid justify-center">Ações</th>
                             @endcanany
                         </tr>
                     </thead>

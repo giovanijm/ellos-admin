@@ -36,6 +36,7 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('manager-services/services', CustomerController::class);
     Route::get('manager-user/users/{user}/notification', [UserController::class, 'sendToMail'])->name('user.notification');
     Route::get('manager-user/users/{user}/destroyphoto', [UserController::class, 'destroyPhoto'])->name('user.destroyphoto');
+    Route::get('common/searchpostalcode/{cep}', [CustomerController::class, 'searchPostalCode'])->name('common.searchpostalcode');
     Route::get('manager-user', function () {
         return redirect(route('admin.users.index'));
     })->name('manager-user');
