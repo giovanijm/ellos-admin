@@ -5,8 +5,7 @@
             <div class="col-span-1 lg:flex-none">
                 <div class="grid justify-content align-center">
                     <div class="grid grid-cols-1 avatar2-img">
-                        <img src="/storage/{{ $customer->photo }}">
-                        <a href="{{ route('admin.user.destroyphoto', $customer->id) }}">
+                        <a href="{{ route('admin.customers.destroyphoto', $customer->id) }}">
                             <x-danger-button
                                 type="button"
                                 icon="codicon-trash"
@@ -15,33 +14,10 @@
                                 {{ __('Excluir Foto') }}
                             </x-danger-button>
                         </a>
+                        <img src="/storage/{{ $customer->photo }}">
                     </div>
 
                 </div>
-
-
-    {{--        <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
-                    <div class="col-span-3">
-                        <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
-                        <div class="relative w-full">
-                            <div class="relative w-full">
-                                <div class="absolute bg-blue-700 dark:bg-blue-800 border-l border-t border-b border-gray-300 dark:border-gray-700 rounded-l-md inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
-                                    <x-fas-id-badge class="w-5 h-5 text-gray-200 dark:text-gray-400"/>
-                                </div>
-                                <input type="file" name="photo-file" id="photo-file"
-                                    class="block w-full border border-gray-300 shadow-sm rounded-md text-sm file:text-gray-200 text-gray-600 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400
-                                        file:border-0
-                                        file:bg-blue-700 file:mr-4
-                                        file:py-3 file:px-4
-                                        dark:file:bg-blue-800 dark:file:text-gray-400
-                                        file:ml-5"
-                                >
-                            </div>
-                        </div>
-                        <p class="mt-1 text-xs text-gray-500 dark:text-gray-300" id="file_input_help">SVG, PNG, JPG or GIF (MAX. 800x400px).</p>
-                        <x-input-error :messages="$errors->get('photo-file')" :enableIcon=true/>
-                    </div>
-                </div> --}}
             </div>
         @endif
         <div class="col-span-1 lg:flex-1 @if ($pageOrigem == 'edit' && $customer->photo) lg:pl-4 lg:pt-10 @endif">

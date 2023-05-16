@@ -17,6 +17,8 @@ use App\Models\Admin\{
     TypeContact
 };
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
 {
@@ -119,12 +121,52 @@ class CustomerController extends Controller
         return view('admin.manager-customers.customers.edit', compact('customer', 'tbstatus', 'typeContact'));
     }
 
-    public function update(CustomerRequest $request)
+    public function update(CustomerRequest $request, Customer $customer)
     {
+        if ($this->negarAcesso('edit', true)) {
+            return back()->with('messageDanger', 'Usuário sem permissão de edição.');
+        }
+
+        $data = $request->all();
+
+        if($request->hasFile('photo-file'))
+        {
+            $returnUpload = $this->imageUpload($request);
+            if(!$returnUpload['success'])
+                return redirect()->Back()->withInput()->withErrors($returnUpload['msgError']);
+
+            $data['photo'] = $returnUpload['urlImage'];
+        }
+
+        $returMsg = "[".$customer->id."]".$customer->name;
+
+
+        if($customer->update($data)){
+            $returMsg = "[".$customer->id."]".$customer->name;
+            return to_route('admin.customers.edit', ['customer' => $customer])->with('messageSuccess', 'O registro '.$returMsg.', foi atualizada com sucesso.')->with('status');
+        }else{
+            return to_route('admin.customers.edit', ['customer' => $customer])->with('messageDanger', 'Erro ao atualizar o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.")->with('status');
+        }
     }
 
     public function destroy(CustomerRequest $role)
     {
+    }
+
+    public function destroyPhoto(Customer $customer)
+    {
+        if ($this->negarAcesso('delete', true)) {
+            return to_route('admin.users.index')->with('messageDanger', 'Usuário sem permissão de remover o registros.');
+        }
+
+        if(Storage::disk('public')->exists($customer->photo))
+        {
+            Storage::disk('public')->delete($customer->photo);
+        }
+
+        $customer->photo = null;
+        $customer->update();
+        return back()->with('messageSuccess', 'Imagem foi excluída com sucesso.');
     }
 
     public function searchPostalCode (string $cep)
@@ -139,6 +181,56 @@ class CustomerController extends Controller
         }else{
             return response()->json(["success" => false],200);
         }
+    }
+
+    private function imageUpload(CustomerRequest $request)
+    {
+        $uploadedImage = [
+            'success' => false,
+            'urlImage' => null,
+            'msgError' => null
+        ];
+
+        if($request->hasFile('photo-file'))
+        {
+            $image = $request->file('photo-file');
+
+            $input = [
+                'photo-file' => $image
+              ];
+
+            /*
+            * Regras da validação, como mimetype e tamanho máximo
+            * 2048 é igual a 2mb, altere conforme a necessidade
+            */
+            $rules = [
+                'photo-file' => 'image|mimes:jpeg,png,svg|max:2048'
+            ];
+
+            $messages = [
+                'mimes' => 'Formato da imagem inválido'
+            ];
+
+            $validator = Validator::make($input, $rules, $messages);
+
+            if ($validator->fails()) {
+                $uploadedImage = [
+                    'success' => false,
+                    'urlImage' => null,
+                    'msgError' => $validator
+                ];
+                return $uploadedImage;
+            }
+
+            $urlImage = $image->store('images/customers', 'public');
+            $uploadedImage = [
+                'success' => true,
+                'urlImage' => $urlImage,
+                'msgError' => null
+            ];
+        }
+
+        return $uploadedImage;
     }
 
     /**

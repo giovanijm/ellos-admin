@@ -31,6 +31,7 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('manager-customers/customers', CustomerController::class);
     Route::post('manager-customers/contacts', [CustomerContactsController::class, 'store'])->name('contacts.store');
     Route::get('manager-customers/contacts/{id}/{customerId}', [CustomerContactsController::class, 'destroy'])->name('contacts.destroy');
+    Route::get('manager-customers/customers/{customer}/destroyphoto', [CustomerController::class, 'destroyPhoto'])->name('customers.destroyphoto');
     Route::resource('manager-customers/status', CustomerController::class);
     Route::resource('manager-providers/providers', CustomerController::class);
     Route::resource('manager-services/services', CustomerController::class);

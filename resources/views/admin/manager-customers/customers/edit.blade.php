@@ -16,7 +16,7 @@
 
             <div class="xl:grid xl:grid-cols-3 gap-2 xl:gap-4 mt-4 xl:mt-6">
                 <div class="lg:col-span-3 mt-2 lg:mt-0">
-                    <form class="form-clockUi-show w-full" method="POST" action="{{ route('admin.customers.update', $customer->id) }}">
+                    <form class="form-clockUi-show w-full" method="POST" action="{{ route('admin.customers.update', $customer->id) }}" enctype="multipart/form-data">
                         @method('PUT')
                         <div class="sm:overflow-hidden rounded-lg sm:border dark:sm:border-gray-700 dark:bg-slate-700">
                             @include('admin.manager-customers.customers._partials.form', ['pageOrigem' => 'edit'])
