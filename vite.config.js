@@ -15,7 +15,6 @@ export default defineConfig({
                 'resources/js/admin/manager-customers/providers.js',
                 'resources/js/admin/jquery.mask.js',
                 'resources/js/message-toast.js',
-                'resources/js/hs.component-appearance.js',
             ],
             refresh: true,
         }),

@@ -38,15 +38,11 @@
 
                     <div id="selectThemeDropdown" class="ellos-dropdown hs-dropdown-menu hs-dropdown-open:opacity-100 transition-[margin,opacity] opacity-0 duration-300 ellos-dropdown-menu">
                         <div class="content">
-                            <a class="hs-auto-mode-active:font-bold" href="javascript:;" data-hs-theme-click-value="auto">
-                                <x-eos-configuration-file class="icon-item" />
-                                Padrão do Sistema
-                            </a>
-                            <a class="hs-default-mode-active:font-bold hs-default-mode-active:bg-gray-100" href="javascript:;" data-hs-theme-click-value="default">
+                            <a id="btnThemeClear" class="font-bold hs-da hs-dark-mode-active:font-normal bg-gray-100 hs-da hs-dark-mode-active:bg-transparent">
                                 <x-eos-light-mode-o class="icon-item" />
                                 Tema Claro
                             </a>
-                            <a class="hs-dark-mode-active:font-bold hs-dark-mode-active:bg-gray-600"  href="javascript:;" data-hs-theme-click-value="dark">
+                            <a id="btnThemeDark" class=" hs-da hs-dark-mode-active:font-bold hs-dark-mode-active:bg-gray-600">
                                 <x-eos-dark-mode class="icon-item" />
                                 Tema Escuro
                             </a>
