@@ -4,14 +4,16 @@
         @if ($pageOrigem == 'edit' && $customer->photo)
             <div class="col-span-1 lg:flex-none">
                 <div class="grid justify-content align-center">
-                    <div class="grid grid-cols-1 avatar2-img">
+                    <div class="grid grid-cols-1 avatar2-img relative">
                         <a href="{{ route('admin.customers.destroyphoto', $customer->id) }}">
                             <x-danger-button
                                 type="button"
                                 icon="codicon-trash"
                                 id="btnRemovePhoto"
+                                class="absolute bottom-1 left-1 bg-opacity-25"
+                                :textHidden="true"
+                                title="Apagar imagem"
                             >
-                                {{ __('Excluir Foto') }}
                             </x-danger-button>
                         </a>
                         <img src="/storage/{{ $customer->photo }}">

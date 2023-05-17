@@ -20,16 +20,6 @@
             <x-eos-home class="icon-item" />
             <span class="ml-2">{{ __('admin/sidebar.labelHome') }}</span>
         </x-admin.layouts-v2.nav-modulo-item>
-        @can('view', $moduleSettings)
-            <x-admin.layouts-v2.nav-modulo-item
-                href="{{ route('admin.manager-user') }}"
-                class="{{ request()->routeIs('admin.users.*') || request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') ? 'modulo-item-active' : 'modulo-item' }}"
-                selected="{{ request()->routeIs('admin.users.*') || request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') ? 'item-selected' : '' }}"
-            >
-                <x-eos-settings class="icon-item" />
-                <span class="ml-2">{{ __('Configurações') }}</span>
-            </x-admin.layouts-v2.nav-modulo-item>
-        @endcan
         @can('view', $moduleRegistrations)
             <x-admin.layouts-v2.nav-modulo-item
                 href="{{ route('admin.manager-customers') }}"
@@ -58,6 +48,16 @@
             >
                 <x-fas-print class="icon-item" />
                 <span class="ml-2">{{ __('Relatórios') }}</span>
+            </x-admin.layouts-v2.nav-modulo-item>
+        @endcan
+        @can('view', $moduleSettings)
+            <x-admin.layouts-v2.nav-modulo-item
+                href="{{ route('admin.manager-user') }}"
+                class="{{ request()->routeIs('admin.users.*') || request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') ? 'modulo-item-active' : 'modulo-item' }}"
+                selected="{{ request()->routeIs('admin.users.*') || request()->routeIs('admin.roles.*') || request()->routeIs('admin.permissions.*') ? 'item-selected' : '' }}"
+            >
+                <x-eos-settings class="icon-item" />
+                <span class="ml-2">{{ __('Configurações') }}</span>
             </x-admin.layouts-v2.nav-modulo-item>
         @endcan
     </x-admin.layouts-v2.nav-modulo>

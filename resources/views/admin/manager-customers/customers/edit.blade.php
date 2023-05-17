@@ -25,6 +25,7 @@
                                 <x-primary-button
                                     type="submit"
                                     icon="codicon-save"
+                                    title="Atualizar dados"
                                 >
                                     {{ __('Atualizar') }}
                                 </x-primary-button>
@@ -33,6 +34,7 @@
                                     id="btnVoltar"
                                     icon="codicon-reply"
                                     class="btn-voltar clockUi-show"
+                                    title="Voltar a listagem de registros"
                                 >
                                     {{ __('Voltar') }}
                                 </x-danger-button>
@@ -131,6 +133,7 @@
                                                     type="submit"
                                                     icon="codicon-save"
                                                     :textHidden="true"
+                                                    title="Salvar contato"
                                                 />
                                             </td>
                                         </tr>
@@ -170,6 +173,7 @@
                                                         class="btn-contato-excluir flex items-center"
                                                         data-contact-id="{{ $contact->id }}"
                                                         :textHidden="true"
+                                                        title="Excluir contato"
                                                     />
                                                 </td>
                                             </tr>

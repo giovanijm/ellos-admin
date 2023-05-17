@@ -24,6 +24,7 @@
                                 <x-primary-button
                                     type="submit"
                                     icon="codicon-save"
+                                    title="Salvar dados"
                                 >
                                     {{ __('Salvar') }}
                                 </x-primary-button>
@@ -31,6 +32,7 @@
                                     type="button"
                                     class="btn-voltar"
                                     icon="codicon-reply"
+                                    title="Voltar a listagem de registros"
                                 >
                                     {{ __('Voltar') }}
                                 </x-danger-button>
