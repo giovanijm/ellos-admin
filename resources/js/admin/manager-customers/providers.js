@@ -98,7 +98,7 @@ $("#socialName").on("focus", function(e){
 
 $("#postalCode").on("change", function(e){
     let iconAnt = null;
-    let iconLoad = '<i class="fa fa-spinner fa-spin"></i>';
+    let iconLoad = '<i class="fa fa-spinner fa-spin text-gray-500 dark:text-gray-400"></i>';
     if(this.value.length == 10){
         $.ajax({
             type: "GET",
