@@ -1,11 +1,11 @@
 @csrf
 <div class="bg-white dark:bg-slate-900 px-4 pb-4 sm:p-6">
     <div class="grid grid-cols-1 lg:flex">
-        @if ($pageOrigem == 'edit' && $customer->photo)
+        @if ($pageOrigem == 'edit' && $provider->photo)
             <div class="col-span-1 lg:flex-none">
                 <div class="grid justify-content align-center">
                     <div class="grid grid-cols-1 avatar2-img relative">
-                        <a href="{{ route('admin.customers.destroyphoto', $customer->id) }}">
+                        <a href="{{ route('admin.providers.destroyphoto', $provider->id) }}">
                             <x-danger-button
                                 type="button"
                                 icon="codicon-trash"
@@ -16,13 +16,13 @@
                             >
                             </x-danger-button>
                         </a>
-                        <img src="/storage/{{ $customer->photo }}">
+                        <img src="/storage/{{ $provider->photo }}">
                     </div>
 
                 </div>
             </div>
         @endif
-        <div class="col-span-1 lg:flex-1 @if ($pageOrigem == 'edit' && $customer->photo) lg:pl-4 lg:pt-10 @endif">
+        <div class="col-span-1 lg:flex-1 @if ($pageOrigem == 'edit' && $provider->photo) lg:pl-4 lg:pt-10 @endif">
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 sm:gap-4 py-2">
                 <div class="col-span-1">
                     <x-input-label for="id" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Código').':'"/>
@@ -36,7 +36,7 @@
                                 type="text"
                                 name="id"
                                 :disabled=true
-                                :value="!empty($customer) ? str_pad($customer->id , 4 , '0' , STR_PAD_LEFT) : old('id')"
+                                :value="!empty($provider) ? str_pad($provider->id , 4 , '0' , STR_PAD_LEFT) : old('id')"
                             />
                         </div>
                     </div>
@@ -53,7 +53,7 @@
                                 type="text"
                                 name="id"
                                 :disabled=true
-                                :value="!empty($customer) ? $customer->externalId : old('externalId')"
+                                :value="!empty($provider) ? $provider->externalId : old('externalId')"
                             />
                         </div>
                     </div>
@@ -70,7 +70,7 @@
                                 type="text"
                                 name="origin"
                                 :disabled=true
-                                :value="!empty($customer) ? $customer->origin : 'SYSWEB'"
+                                :value="!empty($provider) ? $provider->origin : 'SYSWEB'"
                             />
                         </div>
                     </div>
@@ -84,7 +84,7 @@
                             </div>
                             <select id="statusId" name="statusId" class="py-[10px] px-4 pr-16 pl-10 block w-full text-sm text-gray-700 dark:text-gray-400 dark:bg-slate-900 border-gray-600 focus:border-blue-500 focus:ring-blue-500 rounded-md shadow-sm invalid:border-red-700 disabled:bg-gray-50 disabled:text-gray-500">
                                 @foreach ($tbstatus as $status)
-                                    <option value="{{ $status->id }}" @selected(!empty($status) && $pageOrigem == 'edit' && $status->id == $customer->statusId)>{{ Str::upper($status->name) }}</option>
+                                    <option value="{{ $status->id }}" @selected(!empty($status) && $pageOrigem == 'edit' && $status->id == $provider->statusId)>{{ Str::upper($status->name) }}</option>
                                 @endforeach
                             </select>
                             @error('statusId')
@@ -111,7 +111,7 @@
                                 id="fullName"
                                 type="text"
                                 name="fullName"
-                                :value="$customer->fullName ?? old('fullName')"
+                                :value="$provider->fullName ?? old('fullName')"
                                 placeholder="Digite nome completo do cliente..."
                                 autofocus
                                 required
@@ -131,7 +131,7 @@
                                 id="socialName"
                                 type="text"
                                 name="socialName"
-                                :value="$customer->socialName ?? old('socialName')"
+                                :value="$provider->socialName ?? old('socialName')"
                                 placeholder="Digite nome social do cliente..."
                                 autofocus
                                 required
@@ -151,7 +151,7 @@
                                 id="documentNumber"
                                 type="text"
                                 name="documentNumber"
-                                :value="$customer->documentNumber ?? old('documentNumber')"
+                                :value="$provider->documentNumber ?? old('documentNumber')"
                                 placeholder="Digite o número do CPF do cliente..."
                                 autofocus
                                 required
@@ -161,9 +161,9 @@
                         <x-input-error :messages="$errors->get('documentNumber')" :enableIcon=true/>
                     </div>
                 </div>
-                @if ($pageOrigem == 'edit' && !$customer->photo)
+                @if ($pageOrigem == 'edit' && !$provider->photo)
                     <div class="col-span-1 lg:col-span-4">
-                        <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
+                        <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Imagem do Perfil').':'"/>
                         <div class="relative w-full">
                             <div class="relative w-full">
                                 <div class="absolute bg-blue-700 dark:bg-blue-800 border-l border-t border-b border-gray-300 dark:border-gray-700 rounded-l-md inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -198,7 +198,7 @@
                         id="postalCode"
                         type="text"
                         name="postalCode"
-                        :value="$customer->postalCode ?? old('postalCode')"
+                        :value="$provider->postalCode ?? old('postalCode')"
                         placeholder="Digite CEP do endereço..."
                         autofocus
                         required
@@ -219,7 +219,7 @@
                         id="address"
                         type="text"
                         name="address"
-                        :value="$customer->address ?? old('address')"
+                        :value="$provider->address ?? old('address')"
                         placeholder="Digite o endereço do cliente..."
                         autofocus
                         required
@@ -239,7 +239,7 @@
                         id="addressNumber"
                         type="text"
                         name="addressNumber"
-                        :value="$customer->addressNumber ?? old('addressNumber')"
+                        :value="$provider->addressNumber ?? old('addressNumber')"
                         placeholder="Digite número do endereço..."
                         autofocus
                     />
@@ -260,7 +260,7 @@
                         id="complement"
                         type="text"
                         name="complement"
-                        :value="$customer->complement ?? old('complement')"
+                        :value="$provider->complement ?? old('complement')"
                         placeholder="Digite o complemento do endereço..."
                         autofocus
                     />
@@ -279,7 +279,7 @@
                         id="neighborhood"
                         type="text"
                         name="neighborhood"
-                        :value="$customer->neighborhood ?? old('neighborhood')"
+                        :value="$provider->neighborhood ?? old('neighborhood')"
                         placeholder="Digite o bairro do endereço..."
                         autofocus
                         required
@@ -299,7 +299,7 @@
                         id="city"
                         type="text"
                         name="city"
-                        :value="$customer->city ?? old('city')"
+                        :value="$provider->city ?? old('city')"
                         placeholder="Digite o cidade do endereço..."
                         autofocus
                         required
@@ -319,7 +319,7 @@
                         id="state"
                         type="text"
                         name="state"
-                        :value="$customer->state ?? old('state')"
+                        :value="$provider->state ?? old('state')"
                         placeholder="Digite o estado (UF) do endereço..."
                         autofocus
                         required
@@ -335,7 +335,7 @@
         <div class="col-span-1">
             <x-input-label for="observation" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Observação').':'"/>
             <div class="relative w-full">
-                <textarea id="observation" name="observation" class="w-full text-sm rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm invalid:border-red-700 valid:border-green-700 disabled:bg-gray-50 disabled:text-gray-500 dark:disabled:bg-slate-800 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" rows="5">{{ !empty($customer) ?  $customer->observation : '' }}</textarea>
+                <textarea id="observation" name="observation" class="w-full text-sm rounded border-gray-300 focus:border-blue-500 focus:ring-blue-500 shadow-sm invalid:border-red-700 valid:border-green-700 disabled:bg-gray-50 disabled:text-gray-500 dark:disabled:bg-slate-800 dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400" rows="5">{{ !empty($provider) ?  $provider->observation : '' }}</textarea>
             </div>
         </div>
     </div>
@@ -352,7 +352,7 @@
                         type="text"
                         name="created_at"
                         :disabled=true
-                        :value="!empty($customer) ? $customer->created_at : old('created_at')"
+                        :value="!empty($provider) ? $provider->created_at : old('created_at')"
                     />
                 </div>
             </div>
@@ -369,7 +369,7 @@
                         type="text"
                         name="updated_at"
                         :disabled=true
-                        :value="!empty($customer) ? $customer->updated_at : old('updated_at')"
+                        :value="!empty($provider) ? $provider->updated_at : old('updated_at')"
                     />
                 </div>
             </div>

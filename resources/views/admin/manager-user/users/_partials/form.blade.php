@@ -148,7 +148,7 @@
         @if($user->photo)
             <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
                 <div class="col-span-1">
-                    <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
+                    <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Imagem do Perfil').':'"/>
                     <div class="flex justify-content align-center">
                         <div class="ellos-avatar-horizontal lg:ellos-avatar-horizontal-md 2xl:ellos-avatar-horizontal-lg">
                             <div class="avatar-img">
@@ -171,7 +171,7 @@
         @else
             <div class="grid grid-cols-1 sm:grid-cols-3 sm:gap-4 py-2">
                 <div class="col-span-3">
-                    <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Foto do Usuário').':'"/>
+                    <x-input-label for="photo-file" class="block mb-1 text-sm font-bold text-gray-700" :value="__('Imagem do Perfil').':'"/>
                     <div class="relative w-full">
                         <div class="relative w-full">
                             <div class="absolute bg-blue-700 dark:bg-blue-800 border-l border-t border-b border-gray-300 dark:border-gray-700 rounded-l-md inset-y-0 left-0 flex items-center pl-3 pointer-events-none">

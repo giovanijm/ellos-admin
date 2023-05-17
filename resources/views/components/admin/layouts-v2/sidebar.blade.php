@@ -22,7 +22,7 @@
         </x-admin.layouts-v2.nav-modulo-item>
         @can('view', $moduleRegistrations)
             <x-admin.layouts-v2.nav-modulo-item
-                href="{{ route('admin.manager-customers') }}"
+                href="{{ route('admin.registrations') }}"
                 class="{{ request()->routeIs('admin.customers.*')
                             || request()->routeIs('admin.providers.*')
                             || request()->routeIs('admin.services.*')

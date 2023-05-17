@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin\ManagerCustomers;
+namespace App\Http\Controllers\Admin\Registrations;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\ManagerCustomers\CustomerRequest;
@@ -83,7 +83,7 @@ class CustomerController extends Controller
         }
 
         $objPermissions = $this->objPermissions;
-        return view('admin.manager-customers.customers.index', compact('customers', 'filter', 'filter_row', 'objPermissions'));
+        return view('admin.registrations.customers.index', compact('customers', 'filter', 'filter_row', 'objPermissions'));
 
     }
 
@@ -93,7 +93,7 @@ class CustomerController extends Controller
             return to_route('admin.customers.index')->with('messageDanger', 'Usuário sem permissão de criação.');
         }
         $tbstatus = TbStatus::all();
-        return view('admin.manager-customers.customers.create', compact('tbstatus'));
+        return view('admin.registrations.customers.create', compact('tbstatus'));
     }
 
     public function store(CustomerRequest $request)
@@ -118,7 +118,7 @@ class CustomerController extends Controller
         }
         $tbstatus = TbStatus::all();
         $typeContact = TypeContact::all();
-        return view('admin.manager-customers.customers.edit', compact('customer', 'tbstatus', 'typeContact'));
+        return view('admin.registrations.customers.edit', compact('customer', 'tbstatus', 'typeContact'));
     }
 
     public function update(CustomerRequest $request, Customer $customer)
@@ -138,11 +138,11 @@ class CustomerController extends Controller
             $data['photo'] = $returnUpload['urlImage'];
         }
 
-        $returMsg = "[".$customer->id."]".$customer->name;
+        $returMsg = "[".$customer->id."]".$customer->fullName;
 
 
         if($customer->update($data)){
-            $returMsg = "[".$customer->id."]".$customer->name;
+            $returMsg = "[".$customer->id."]".$customer->fullName;
             return to_route('admin.customers.edit', ['customer' => $customer])->with('messageSuccess', 'O registro '.$returMsg.', foi atualizada com sucesso.')->with('status');
         }else{
             return to_route('admin.customers.edit', ['customer' => $customer])->with('messageDanger', 'Erro ao atualizar o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.")->with('status');

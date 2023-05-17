@@ -1,15 +1,18 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminController;
-use App\Http\Controllers\Admin\ManagerUser\PermissionController;
-use App\Http\Controllers\Admin\ManagerUser\RoleController;
-use App\Http\Controllers\Admin\ManagerUser\UserController;
-use App\Http\Controllers\Admin\ManagerCustomers\CustomerController;
-use App\Http\Controllers\Admin\ManagerCustomers\CustomerContactsController;
+use App\Http\Controllers\Admin\ManagerUser\{
+    PermissionController,
+    RoleController,
+    UserController
+};
+use App\Http\Controllers\Admin\Registrations\{
+    CustomerController,
+    CustomerContactsController,
+    ProviderController,
+    ProviderContactsController
+};
 use App\Http\Controllers\ProfileController;
-use App\Mail\MailNewUser;
-use App\Models\User;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
@@ -28,22 +31,28 @@ Route::middleware('auth')->name('admin.')->prefix('/admin')->group(function () {
     Route::resource('manager-user/roles', RoleController::class);
     Route::resource('manager-user/permissions', PermissionController::class);
     Route::resource('manager-user/users', UserController::class);
-    Route::resource('manager-customers/customers', CustomerController::class);
-    Route::post('manager-customers/contacts', [CustomerContactsController::class, 'store'])->name('contacts.store');
-    Route::get('manager-customers/contacts/{id}/{customerId}', [CustomerContactsController::class, 'destroy'])->name('contacts.destroy');
-    Route::get('manager-customers/customers/{customer}/destroyphoto', [CustomerController::class, 'destroyPhoto'])->name('customers.destroyphoto');
-    Route::resource('manager-customers/status', CustomerController::class);
-    Route::resource('manager-providers/providers', CustomerController::class);
-    Route::resource('manager-services/services', CustomerController::class);
+    Route::resource('registrations/customers', CustomerController::class);
+
+    Route::post('registrations/contacts', [CustomerContactsController::class, 'store'])->name('contacts.store');
+    Route::get('registrations/contacts/{id}/{customerId}', [CustomerContactsController::class, 'destroy'])->name('contacts.destroy');
+
+    Route::post('registrations/providers/contacts', [ProviderContactsController::class, 'store'])->name('providers.contacts.store');
+    Route::get('registrations/providers/contacts/{id}/{providerId}', [ProviderContactsController::class, 'destroy'])->name('providers.contacts.destroy');
+
+    Route::get('registrations/customers/{customer}/destroyphoto', [CustomerController::class, 'destroyPhoto'])->name('customers.destroyphoto');
+    Route::get('registrations/providers/{provider}/destroyphoto', [ProviderController::class, 'destroyPhoto'])->name('providers.destroyphoto');
+    Route::resource('registrations/status', CustomerController::class);
+    Route::resource('registrations/providers', ProviderController::class);
+    Route::resource('registrations/services', CustomerController::class);
     Route::get('manager-user/users/{user}/notification', [UserController::class, 'sendToMail'])->name('user.notification');
     Route::get('manager-user/users/{user}/destroyphoto', [UserController::class, 'destroyPhoto'])->name('user.destroyphoto');
     Route::get('common/searchpostalcode/{cep}', [CustomerController::class, 'searchPostalCode'])->name('common.searchpostalcode');
     Route::get('manager-user', function () {
         return redirect(route('admin.users.index'));
     })->name('manager-user');
-    Route::get('manager-customers', function () {
+    Route::get('registrations', function () {
         return redirect(route('admin.customers.index'));
-    })->name('manager-customers');
+    })->name('registrations');
     //Route::resource('manager-reports/reports', CustomerController::class);
     Route::get('manager-reports', function () {
         return redirect(route('admin.reports.index'));
