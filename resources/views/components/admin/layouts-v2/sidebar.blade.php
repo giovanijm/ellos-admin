@@ -9,6 +9,14 @@
     class="hs-overlay hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform scrollbar-y dark:scrollbar-y z-[60] hidden xl:block fixed top-0 left-0 bottom-0 overflow-y-auto xl:translate-x-0 xl:right-auto xl:bottom-0 ellos-sidebar"
 >
 
+    <div class="hidden xl:flex justify-items-center text-xl font-semibold dark:text-white tracking-wide pb-6 pl-6">
+        <img class="mr-2 w-10 h-12 p-1 drop-shadow dark:backdrop-brightness-200 dark:bg-white dark:rounded" src="{{getUrlImageServidor('802f9a82-0015-43c4-0ab9-2da5d868cd00')}}"/>
+        <div class="grid grid-cols-1">
+            <span class="font-bold drop-shadow text-slate-900 dark:text-gray-300">Ellos</span>
+            <span class="text-xs whitespace-nowrap uppercase text-gray-600 dark:text-gray-500">Tecnologia de ponta</span>
+        </div>
+    </div>
+
     <x-avatar-sidebar :view-info-user="true"/>
 
     <x-admin.layouts-v2.nav-modulo label="Módulo">

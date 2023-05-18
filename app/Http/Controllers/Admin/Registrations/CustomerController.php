@@ -149,8 +149,26 @@ class CustomerController extends Controller
         }
     }
 
-    public function destroy(CustomerRequest $role)
+    public function destroy(Customer $customer)
     {
+        if ($this->negarAcesso('delete', true)) {
+            back()->with('messageDanger', 'Usuário sem permissão de remover o registros.');
+        }
+
+        $returMsg = "[".$customer->id."]".$customer->fullName;
+
+        if($customer->photo){
+            if(Storage::disk('public')->exists($customer->photo))
+            {
+                Storage::disk('public')->delete($customer->photo);
+            }
+        }
+
+        if($customer->delete()){
+            return back()->with('messageSuccess', 'O registro '.$returMsg.', foi removido com sucesso.');
+        }else{
+            return back()->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.");
+        }
     }
 
     public function destroyPhoto(Customer $customer)

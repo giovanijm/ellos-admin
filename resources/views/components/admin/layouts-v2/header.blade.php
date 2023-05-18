@@ -8,10 +8,10 @@
     <nav class="flex basis-full items-center w-full mx-auto px-4 sm:px-6 md:px-8" aria-label="Global">
         <div class="mr-5 lg:mr-0 xl:hidden">
             <a class="flex justify-items-center text-xl font-semibold dark:text-white tracking-wide" href="#" aria-label="Brand">
-                <img class="mr-2 w-10 h-12 p-1 dark:backdrop-brightness-200 dark:bg-white dark:rounded" src="{{getUrlImageServidor('802f9a82-0015-43c4-0ab9-2da5d868cd00')}}"/>
+                <img class="mr-2 w-10 h-12 p-1 drop-shadow dark:backdrop-brightness-200 dark:bg-white dark:rounded" src="{{getUrlImageServidor('802f9a82-0015-43c4-0ab9-2da5d868cd00')}}"/>
                 <div class="grid grid-cols-1">
-                    <span>Ellos</span>
-                    <span class="text-xs whitespace-nowrap uppercase text-gray-500">Tecnologia de ponta</span>
+                    <span class="font-bold drop-shadow text-slate-900 dark:text-gray-300">Ellos</span>
+                    <span class="text-xs whitespace-nowrap uppercase text-gray-600 dark:text-gray-500">Tecnologia de ponta</span>
                 </div>
             </a>
         </div>
@@ -37,14 +37,18 @@
                     </a>
 
                     <div id="selectThemeDropdown" class="ellos-dropdown hs-dropdown-menu hs-dropdown-open:opacity-100 transition-[margin,opacity] opacity-0 duration-300 ellos-dropdown-menu">
+                        <div class="header-menu">
+                            <h1>{{ __('Tema de trabalho') }}</h1>
+                            <p>{{ __('Escolha um dos temas abaixo:') }}</p>
+                        </div>
                         <div class="content">
                             <a id="btnThemeClear" class="font-bold hs-da hs-dark-mode-active:font-normal bg-gray-100 hs-da hs-dark-mode-active:bg-transparent">
                                 <x-eos-light-mode-o class="icon-item" />
-                                Tema Claro
+                                {{ __('Ligth') }}
                             </a>
                             <a id="btnThemeDark" class=" hs-da hs-dark-mode-active:font-bold hs-dark-mode-active:bg-gray-600">
                                 <x-eos-dark-mode class="icon-item" />
-                                Tema Escuro
+                                {{ __('Dark') }}
                             </a>
                         </div>
                     </div>

@@ -149,8 +149,26 @@ class ProviderController extends Controller
         }
     }
 
-    public function destroy(ProviderRequest $role)
+    public function destroy(Provider $provider)
     {
+        if ($this->negarAcesso('delete', true)) {
+            back()->with('messageDanger', 'Usuário sem permissão de remover o registros.');
+        }
+
+        $returMsg = "[".$provider->id."]".$provider->fullName;
+
+        if($provider->photo){
+            if(Storage::disk('public')->exists($provider->photo))
+            {
+                Storage::disk('public')->delete($provider->photo);
+            }
+        }
+
+        if($provider->delete()){
+            return back()->with('messageSuccess', 'O registro '.$returMsg.', foi removido com sucesso.');
+        }else{
+            return back()->with('messageDanger', 'Erro ao remover o registro '.$returMsg.". Se o problema persistir entre em contato com o suporte.");
+        }
     }
 
     public function destroyPhoto(Provider $provider)
