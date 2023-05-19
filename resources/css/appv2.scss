@@ -398,7 +398,7 @@
     .ellos-sidebar {
         @apply
         w-64
-        pt-7 pb-10
+        pt-4 pb-10
         bg-white dark:bg-gray-800
         border-r border-gray-200 dark:border-gray-700;
 
@@ -790,6 +790,17 @@
             lowercase
             font-normal
             text-gray-500 dark:text-gray-500;}
+
+        .avatar2-img {
+            @apply
+                relative inline-flex items-center justify-center
+                w-40 h-52
+                ring-1 ring-offset-4
+                ring-gray-400 ring-offset-gray-100 dark:ring-gray-400 dark:ring-offset-gray-800
+                drop-shadow-sm overflow-hidden rounded
+                bg-gray-300 dark:bg-gray-600
+                m-1 mb-3
+                ;}
 
     .ellos-avatar-horizontal-md {
         @apply

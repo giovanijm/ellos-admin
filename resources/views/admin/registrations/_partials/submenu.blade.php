@@ -20,6 +20,26 @@
                 {{ __('Clientes') }}
             </x-admin.layouts-v2.nav-menu-item>
         @endcan
+        @can('view', $cadCustomers)
+            <x-admin.layouts-v2.nav-menu-item
+                href="{{ route('admin.providers.index') }}"
+                :temsubmenu="false"
+                class="{{ request()->routeIs('admin.providers.*') ? 'item-selected' : ''}}"
+            >
+                <x-fas-user-md class="icon-item" />
+                {{ __('Prestadores de Serviço') }}
+            </x-admin.layouts-v2.nav-menu-item>
+        @endcan
+        @can('view', $cadCustomers)
+            <x-admin.layouts-v2.nav-menu-item
+                href="{{ route('admin.services.index') }}"
+                :temsubmenu="false"
+                class="{{ request()->routeIs('admin.services.*') ? 'item-selected' : ''}}"
+            >
+                <x-fas-cart-plus class="icon-item" />
+                {{ __('Serviços e Produtos') }}
+            </x-admin.layouts-v2.nav-menu-item>
+        @endcan
         @can('view', $cadAssistant)
             <x-admin.layouts-v2.nav-menu-item
                 href="javascript:;"

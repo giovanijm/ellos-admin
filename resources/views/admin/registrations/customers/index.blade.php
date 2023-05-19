@@ -3,15 +3,15 @@
     meta-description="Página Principal do Sistema"
 >
     @section('breadcrumbs')
-        @include('admin.manager-customers.customers._partials.breadcumbs')
+        @include('admin.registrations.customers._partials.breadcumbs')
     @endsection
     @section('submenu')
-        @include('admin.manager-customers._partials.submenu')
+        @include('admin.registrations._partials.submenu')
     @endsection
 
     <div class="ellos-main-content">
         <div class="p-3 sm:p-4">
-            @include('admin.manager-customers.customers._partials.header-page-index')
+            @include('admin.registrations.customers._partials.header-page-index')
             <div class="overflow-x-auto mt-4 border rounded-lg dark:border-gray-800">
                 <table class="ellos-table">
                     <thead>
@@ -22,7 +22,7 @@
                             <th scope="col">@sortablelink('documentNumber','Documento')</th>
                             <th scope="col">@sortablelink('statusId','Status')</th>
                             @canany(['edit', 'delete'], $objPermissions)
-                                <th scope="col">Ações</th>
+                                <th scope="col" class="grid justify-center">Ações</th>
                             @endcanany
                         </tr>
                     </thead>
@@ -121,7 +121,7 @@
                 ])->links() !!}
             </div>
             @push('modalGeral')
-                @include('admin.manager-customers.customers._partials.modal')
+                @include('admin.registrations.customers._partials.modal')
             @endpush
         </div>
     </div>

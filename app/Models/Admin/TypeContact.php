@@ -7,18 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Carbon\Carbon;
 
-class TbStatus extends Model
+class TypeContact extends Model
 {
     use HasFactory, Sortable;
 
-    protected $table = 'tbstatus';
+    protected $table = 'type_contacts';
 
-    protected $fillable = ['name', 'description', 'create_at', 'updated_at'];
+    protected $fillable = ['name', 'create_at', 'updated_at'];
 
     public $sortable = [
         'id',
         'name',
-        'description',
     ];
 
     public function getCreatedAtAttribute($created_at)
@@ -31,13 +30,8 @@ class TbStatus extends Model
         return Carbon::createFromFormat('Y-m-d H:i:s', $updated_at)->format('d/m/Y - H:i:s');
     }
 
-    public function customers()
+    public function customer_contacts()
     {
-        return $this->hasMany(Customer::class);
-    }
-
-    public function providers()
-    {
-        return $this->hasMany(Providers::class);
+        return $this->hasMany(CustomerContacts::class);
     }
 }

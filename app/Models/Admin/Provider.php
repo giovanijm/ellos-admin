@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 use Kyslik\ColumnSortable\Sortable;
 use Carbon\Carbon;
 
-class Customer extends Model
+class Provider extends Model
 {
     use HasFactory, Sortable;
 
-    protected $table = 'customers';
+    protected $table = 'providers';
 
     protected $fillable = [
         'externalId',
@@ -91,6 +91,6 @@ class Customer extends Model
 
     public function contacts()
     {
-        return $this->hasMany(CustomerContacts::class, 'customerId');
+        return $this->hasMany(ProviderContacts::class, 'providerId');
     }
 }

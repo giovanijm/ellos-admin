@@ -4,10 +4,16 @@
     $modifyProfile = new Permission(); $modifyProfile->name = "ModifyProfile";
 @endphp
 
-<header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-gray-200 text-sm py-2.5 sm:py-4 lg:pl-64 dark:bg-gray-800 dark:border-gray-700">
+<header class="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-gray-200 text-sm py-2.5 sm:py-4 xl:pl-64 dark:bg-gray-800 dark:border-gray-700">
     <nav class="flex basis-full items-center w-full mx-auto px-4 sm:px-6 md:px-8" aria-label="Global">
-        <div class="mr-5 lg:mr-0 lg:hidden">
-            <a class="flex-none text-xl font-semibold dark:text-white tracking-wide" href="#" aria-label="Brand">Ellos</a>
+        <div class="mr-5 lg:mr-0 xl:hidden">
+            <a class="flex justify-items-center text-xl font-semibold dark:text-white tracking-wide" href="#" aria-label="Brand">
+                <img class="mr-2 w-10 h-12 p-1 drop-shadow dark:backdrop-brightness-200 dark:bg-white dark:rounded" src="{{getUrlImageServidor('802f9a82-0015-43c4-0ab9-2da5d868cd00')}}"/>
+                <div class="grid grid-cols-1">
+                    <span class="font-bold drop-shadow text-slate-900 dark:text-gray-300">Ellos</span>
+                    <span class="text-xs whitespace-nowrap uppercase text-gray-600 dark:text-gray-500">Tecnologia de ponta</span>
+                </div>
+            </a>
         </div>
         <div class="w-full flex items-center justify-end ml-auto sm:justify-between sm:gap-x-3 sm:order-3">
             <div class="sm:hidden">
@@ -31,18 +37,18 @@
                     </a>
 
                     <div id="selectThemeDropdown" class="ellos-dropdown hs-dropdown-menu hs-dropdown-open:opacity-100 transition-[margin,opacity] opacity-0 duration-300 ellos-dropdown-menu">
+                        <div class="header-menu">
+                            <h1>{{ __('Tema de trabalho') }}</h1>
+                            <p>{{ __('Escolha um dos temas abaixo:') }}</p>
+                        </div>
                         <div class="content">
-                            <a class="hs-auto-mode-active:font-bold" href="javascript:;" data-hs-theme-click-value="auto">
-                                <x-eos-configuration-file class="icon-item" />
-                                Padrão do Sistema
-                            </a>
-                            <a class="hs-default-mode-active:font-bold hs-default-mode-active:bg-gray-100" href="javascript:;" data-hs-theme-click-value="default">
+                            <a id="btnThemeClear" class="font-bold hs-da hs-dark-mode-active:font-normal bg-gray-100 hs-da hs-dark-mode-active:bg-transparent">
                                 <x-eos-light-mode-o class="icon-item" />
-                                Tema Claro
+                                {{ __('Ligth') }}
                             </a>
-                            <a class="hs-dark-mode-active:font-bold hs-dark-mode-active:bg-gray-600"  href="javascript:;" data-hs-theme-click-value="dark">
+                            <a id="btnThemeDark" class=" hs-da hs-dark-mode-active:font-bold hs-dark-mode-active:bg-gray-600">
                                 <x-eos-dark-mode class="icon-item" />
-                                Tema Escuro
+                                {{ __('Dark') }}
                             </a>
                         </div>
                     </div>

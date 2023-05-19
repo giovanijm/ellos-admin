@@ -16,11 +16,11 @@ export default {
   }
 
 $("button.btn-voltar").on("click", function() {
-    $(location).attr('href', route('admin.customers.index'));
+    $(location).attr('href', route('admin.providers.index'));
 });
 
 let showModalExclusao = function (idRegistro, nameRegistro, actionForm) {
-    let $targetE2 = document.getElementById('modal-customers');
+    let $targetE2 = document.getElementById('modal-providers');
 
     $targetE2.addEventListener('close.hs.overlay', (evt) => {
         console.log('Apagar dados');
@@ -80,7 +80,7 @@ $('#typeContactId').on("change", function(e){
 });
 
 $("button.btn-contato-excluir").on("click", function() {
-    $(location).attr('href', route('admin.contacts.destroy', [this.getAttribute('data-contact-id'), $('#id').val()]));
+    $(location).attr('href', route('admin.providers.contacts.destroy', [this.getAttribute('data-contact-id'), $('#id').val()]));
 });
 
 $("#contactName").on("focus", function(e){
@@ -98,7 +98,7 @@ $("#socialName").on("focus", function(e){
 
 $("#postalCode").on("change", function(e){
     let iconAnt = null;
-    let iconLoad = '<i class="fa fa-spinner fa-spin"></i>';
+    let iconLoad = '<i class="fa fa-spinner fa-spin text-gray-500 dark:text-gray-400"></i>';
     if(this.value.length == 10){
         $.ajax({
             type: "GET",
